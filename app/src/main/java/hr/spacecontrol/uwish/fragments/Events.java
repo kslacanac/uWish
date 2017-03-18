@@ -7,8 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.adapters.EventListAdapter;
+import hr.spacecontrol.uwish.objects.Event;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +30,10 @@ import hr.spacecontrol.uwish.R;
 public class Events extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
+
+    ListView eventListView;
+    List<Event> events;
+    EventListAdapter eventListAdapter;
 
     public Events() {
         // Required empty public constructor
@@ -39,17 +52,32 @@ public class Events extends Fragment {
     /*@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }*/
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_events, container, false);
+
+        eventListView = (ListView) view.findViewById(R.id.event_list);
+
+        events = new ArrayList<>();
+        //add data to list
+        events.add(new Event("Birthday", "Monday"));
+        events.add(new Event("Wedding", "Saturday"));
+
+        //init adapter
+        eventListAdapter = new EventListAdapter(getActivity().getApplicationContext(), events);
+        eventListView.setAdapter(eventListAdapter);
+
+        eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //do something
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
