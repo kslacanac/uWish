@@ -1,6 +1,10 @@
 package hr.spacecontrol.uwish.activities;
 
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,6 +15,9 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.fragments.Events;
@@ -19,7 +26,7 @@ import hr.spacecontrol.uwish.fragments.MyWishList;
 import hr.spacecontrol.uwish.fragments.Search;
 import hr.spacecontrol.uwish.objects.Event;
 
-public class  DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -53,9 +60,30 @@ public class  DashboardActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_event_black_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_list_black_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_group_black_24dp);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_search_black_24dp);
+        changeFonts(tabLayout);
 
     }
 
+    private void changeFonts(TabLayout tabLayout) {
+
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(custom_font);
+                }
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,7 +120,7 @@ public class  DashboardActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             //Returning the current tabs
-            switch (position){
+            switch (position) {
                 case 0:
                     return Events.newInstance();
                 case 1:
@@ -127,4 +155,6 @@ public class  DashboardActivity extends AppCompatActivity {
             return null;
         }
     }
+
+
 }
