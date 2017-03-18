@@ -28,6 +28,8 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
+            style="@style/AppTabLayout"
+            app:tabTextAppearance="@style/AppTabTextAppearance"
             android:layout_height="wrap_content" />
 
     </android.support.design.widget.AppBarLayout>
