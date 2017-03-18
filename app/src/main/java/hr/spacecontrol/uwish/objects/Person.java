@@ -5,4 +5,8 @@ package hr.spacecontrol.uwish.objects;
  */
 
 public class Person {
+    String username;
+    String password;
+    String name;
+    String email;
 }

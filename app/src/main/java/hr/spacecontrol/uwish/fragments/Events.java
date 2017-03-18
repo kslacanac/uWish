@@ -13,26 +13,26 @@ import hr.spacecontrol.uwish.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MyFriendsList.OnFragmentInteractionListener} interface
+ * {@link Events.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MyFriendsList#newInstance} factory method to
+ * Use the {@link Events#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyFriendsList extends Fragment {
+public class Events extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
 
-    public MyFriendsList() {
+    public Events() {
         // Required empty public constructor
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment.
-     * @return A new instance of fragment MyFriendsList.
+     * @return A new instance of fragment Events.
      */
-    public static MyFriendsList newInstance() {
-        MyFriendsList fragment = new MyFriendsList();
+    public static Events newInstance() {
+        Events fragment = new Events();
         return fragment;
     }
 
@@ -49,11 +49,11 @@ public class MyFriendsList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_friends_list, container, false);
+        return inflater.inflate(R.layout.fragment_events, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    /*public void onButtonPressed(Uri uri) {
+   /* public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }

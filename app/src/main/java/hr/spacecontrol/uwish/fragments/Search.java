@@ -7,32 +7,33 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import hr.spacecontrol.uwish.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MyFriendsList.OnFragmentInteractionListener} interface
+ * {@link Search.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MyFriendsList#newInstance} factory method to
+ * Use the {@link Search#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyFriendsList extends Fragment {
+public class Search extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
 
-    public MyFriendsList() {
+    public Search() {
         // Required empty public constructor
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment.
-     * @return A new instance of fragment MyFriendsList.
+     * @return A new instance of fragment Search.
      */
-    public static MyFriendsList newInstance() {
-        MyFriendsList fragment = new MyFriendsList();
+    public static Search newInstance() {
+        Search fragment = new Search();
         return fragment;
     }
 
@@ -48,8 +49,7 @@ public class MyFriendsList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_friends_list, container, false);
+        return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

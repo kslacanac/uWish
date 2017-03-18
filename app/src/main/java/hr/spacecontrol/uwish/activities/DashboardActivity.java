@@ -1,8 +1,6 @@
 package hr.spacecontrol.uwish.activities;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,20 +9,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
-
-import hr.spacecontrol.uwish.MyFriendsListTab;
-import hr.spacecontrol.uwish.MyWishListTab;
 import hr.spacecontrol.uwish.R;
-import hr.spacecontrol.uwish.SearchTab;
+import hr.spacecontrol.uwish.fragments.Events;
+import hr.spacecontrol.uwish.fragments.MyFriendsList;
+import hr.spacecontrol.uwish.fragments.MyWishList;
+import hr.spacecontrol.uwish.fragments.Search;
+import hr.spacecontrol.uwish.objects.Event;
 
-public class DashboardActivity extends AppCompatActivity {
+public class  DashboardActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -99,35 +94,35 @@ public class DashboardActivity extends AppCompatActivity {
             //Returning the current tabs
             switch (position){
                 case 0:
-                    MyWishListTab tab1 = new MyWishListTab();
-                    return tab1;
+                    return Events.newInstance();
                 case 1:
-                    MyFriendsListTab tab2 = new MyFriendsListTab();
-                    return tab2;
+                    return MyWishList.newInstance();
                 case 2:
-                    SearchTab tab3 = new SearchTab();
-                    return tab3;
-                default:
-                    return null;
+                    return MyFriendsList.newInstance();
+                case 3:
+                    return Search.newInstance();
             }
+            return null;
         }
 
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "My wish list";
+                    return "EVENTS";
                 case 1:
-                    return "My friends list";
+                    return "MY WISHES";
                 case 2:
-                    return "Search";
+                    return "FRIENDS";
+                case 3:
+                    return "SEARCH";
             }
             return null;
         }
