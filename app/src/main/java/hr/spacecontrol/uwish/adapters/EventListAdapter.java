@@ -1,10 +1,13 @@
 package hr.spacecontrol.uwish.adapters;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -50,15 +53,20 @@ public class EventListAdapter extends BaseAdapter {
 
         TextView eventName = (TextView)v.findViewById(R.id.event_name);
         TextView eventDate = (TextView)v.findViewById(R.id.event_date);
+        Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
 
         //set text for textview
         eventName.setText(eventList.get(position).getName());
         eventDate.setText(eventList.get(position).getDate());
 
+        //set typeface for textview
+        eventName.setTypeface(lregular);
+        eventDate.setTypeface(lregular);
+
         //v.setTag(mEventList.get(position).getId());
 
-        Button deleteBtn = (Button) v.findViewById(R.id.delete_btn);
-        Button editBtn = (Button) v.findViewById(R.id.edit_btn);
+        ImageButton deleteBtn = (ImageButton) v.findViewById(R.id.delete_btn);
+        ImageButton editBtn = (ImageButton) v.findViewById(R.id.edit_btn);
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -79,4 +87,5 @@ public class EventListAdapter extends BaseAdapter {
 
         return v;
     }
+
 }
