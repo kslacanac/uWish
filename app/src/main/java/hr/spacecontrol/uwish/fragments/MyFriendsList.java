@@ -7,8 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.adapters.FriendListAdapter;
+import hr.spacecontrol.uwish.objects.Person;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +28,10 @@ import hr.spacecontrol.uwish.R;
 public class MyFriendsList extends Fragment {
 
     //private OnFragmentInteractionListener mListener;
+
+    ListView friendListView;
+    List<Person> friends;
+    FriendListAdapter friendListAdapter;
 
     public MyFriendsList() {
         // Required empty public constructor
@@ -46,10 +57,32 @@ public class MyFriendsList extends Fragment {
     }*/
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_friends_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_friends_list, container, false);
+
+        friendListView = (ListView) view.findViewById(R.id.friend_list);
+
+        friends = new ArrayList<>();
+
+        friends.add(new Person("Mate Matičar", R.drawable.friend05));
+        friends.add(new Person("Amelie Sanders", R.drawable.friend02));
+        friends.add(new Person("Donna Paulsen", R.drawable.friend01));
+        friends.add(new Person("Cassey Cho", R.drawable.friend03));
+        friends.add(new Person("Michael Ross", R.drawable.friend04));
+
+        friendListAdapter = new FriendListAdapter(getActivity().getApplicationContext(), friends);
+        friendListView.setAdapter(friendListAdapter);
+
+        friendListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Intent personDetails = new Intent(MyFriendsList.this, FriendDetailsActivity.class);
+                //startActivity(personDetails);
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -5,10 +5,13 @@
     android:background="@color/background"
     tools:context="hr.spacecontrol.uwish.fragments.MyFriendsList">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/friend_list"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:divider="#b4b1b1b1"
+        android:dividerHeight="1dp"/>
 </FrameLayout>

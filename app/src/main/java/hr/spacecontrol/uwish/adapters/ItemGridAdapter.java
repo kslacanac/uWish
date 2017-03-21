@@ -24,16 +24,6 @@ public class ItemGridAdapter extends BaseAdapter {
     private Context context;
     private List<Item> itemList;
 
-    private Integer[] itemThumbs = {
-            R.drawable.item01,
-            R.drawable.item02,
-            R.drawable.item03,
-            R.drawable.item04,
-            R.drawable.item05,
-            R.drawable.item06,
-            R.drawable.item07
-    };
-
     public ItemGridAdapter(Context context, List<Item> itemList) {
         this.context = context;
         this.itemList = itemList;
