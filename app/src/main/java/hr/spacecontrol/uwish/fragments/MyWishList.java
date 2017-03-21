@@ -7,8 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.adapters.ItemGridAdapter;
+import hr.spacecontrol.uwish.objects.Item;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +26,10 @@ import hr.spacecontrol.uwish.R;
  * create an instance of this fragment.
  */
 public class MyWishList extends Fragment {
+
+    GridView itemGridView;
+    List<Item> items;
+    ItemGridAdapter itemGridAdapter;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -46,10 +57,33 @@ public class MyWishList extends Fragment {
     }*/
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_wish_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_wish_list, container, false);
+
+        itemGridView = (GridView) view.findViewById(R.id.item_grid);
+
+        items = new ArrayList<>();
+
+        items.add(new Item("Sun glasses",R.drawable.item01));
+        items.add(new Item("Skateboard",R.drawable.item02));
+        items.add(new Item("Water bottle", R.drawable.item03));
+        items.add(new Item("Wallet", R.drawable.item04));
+        items.add(new Item("Notebook", R.drawable.item05));
+        items.add(new Item("iPhone mask", R.drawable.item06));
+        items.add(new Item("Elf cloak", R.drawable.item07));
+
+        itemGridAdapter = new ItemGridAdapter(getActivity().getApplicationContext(), items);
+        itemGridView.setAdapter(itemGridAdapter);
+
+        itemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //do something
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
