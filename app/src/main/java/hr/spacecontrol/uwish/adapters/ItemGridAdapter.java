@@ -1,10 +1,12 @@
 package hr.spacecontrol.uwish.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -59,13 +61,17 @@ public class ItemGridAdapter extends BaseAdapter {
 
         View v = View.inflate(context, R.layout.gridview_item, null);
 
+        Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
+
         ImageView imageView = (ImageView) v.findViewById(R.id.item_image);
         imageView.setImageResource(itemList.get(position).getImage());
 
         TextView itemName = (TextView)v.findViewById(R.id.item_name);
         itemName.setText(itemList.get(position).getName());
 
-        Button deleteBtn = (Button) v.findViewById(R.id.delete_btn);
+        itemName.setTypeface(lregular);
+
+        ImageButton deleteBtn = (ImageButton) v.findViewById(R.id.delete_btn);
       //  Button editBtn = (Button) v.findViewById(R.id.edit_btn);
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
