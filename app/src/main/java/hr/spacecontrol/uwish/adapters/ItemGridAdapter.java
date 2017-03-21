@@ -66,7 +66,7 @@ public class ItemGridAdapter extends BaseAdapter {
         itemName.setText(itemList.get(position).getName());
 
         Button deleteBtn = (Button) v.findViewById(R.id.delete_btn);
-        Button editBtn = (Button) v.findViewById(R.id.edit_btn);
+      //  Button editBtn = (Button) v.findViewById(R.id.edit_btn);
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,13 +77,13 @@ public class ItemGridAdapter extends BaseAdapter {
             }
         });
 
-        editBtn.setOnClickListener(new View.OnClickListener(){
+     /*   editBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //otvara activity za uredivanje itema
                 notifyDataSetChanged();
             }
-        });
+        });*/
 
         return v;
     }
