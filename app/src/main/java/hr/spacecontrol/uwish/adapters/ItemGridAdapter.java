@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class ItemGridAdapter extends BaseAdapter {
 
         ImageView imageView = (ImageView) v.findViewById(R.id.item_image);
         imageView.setImageResource(itemList.get(position).getImage());
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         TextView itemName = (TextView)v.findViewById(R.id.item_name);
         itemName.setText(itemList.get(position).getName());
