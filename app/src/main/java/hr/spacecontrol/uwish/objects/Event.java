@@ -1,5 +1,6 @@
 package hr.spacecontrol.uwish.objects;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Karmela on 17/03/2017.
  */
 
-public class Event {
+public class Event implements Serializable{
     String name;
     String date;
     String time;

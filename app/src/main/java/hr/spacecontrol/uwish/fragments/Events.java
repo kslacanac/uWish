@@ -78,8 +78,9 @@ public class Events extends Fragment {
         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent eventDetails = new Intent(Events.this, EventDetailsActivity.class);
-                //startActivity(eventDetails);
+                Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
+                intent.putExtra("event", events.get(position));
+                getActivity().startActivity(intent);
             }
         });
 
