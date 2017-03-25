@@ -6,9 +6,16 @@
     android:paddingRight="10dp"
     android:paddingBottom="5dp"
     android:paddingTop="12dp"
-    android:background="@color/background"
+    android:background="?android:attr/selectableItemBackground"
     android:weightSum="1"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/iconLeft"/>
     
     <TextView
         android:layout_width="wrap_content"

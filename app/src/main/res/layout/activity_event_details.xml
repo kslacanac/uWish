@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
     tools:context="hr.spacecontrol.uwish.activities.EventDetailsActivity">
 
     <TextView
@@ -15,24 +16,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/event_name"
-        android:textSize="25dp"
+        android:textSize="36dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/textColorPrimary"
+        android:background="@drawable/border"
+        android:paddingBottom="12dp"/>
 
     <TextView
-        android:text="Event date"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/event_date"
-        android:textSize="20dp"
-        android:layout_marginTop="13dp"
+        android:textSize="24dp"
+        android:layout_marginTop="12dp"
         android:layout_below="@+id/event_name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/textColorSecondary"/>
 
     <TextView
-        android:text="Event time"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/event_description"
@@ -42,13 +45,13 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:text="Event description"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam egestas ornare metus. Maecenas id est quis leo iaculis aliquam. Praesent ante mi, tincidunt sit amet malesuada at, sodales quis quam. Proin consequat eros ac erat condimentum, ac fermentum magna ultricies. Curabitur aliquam tortor rutrum tincidunt luctus. Vestibulum leo mi, commodo. "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/event_date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="24dp"
         android:id="@+id/event_description"
         android:textSize="15dp"/>
 

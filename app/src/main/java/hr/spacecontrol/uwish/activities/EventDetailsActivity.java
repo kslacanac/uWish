@@ -1,6 +1,7 @@
 package hr.spacecontrol.uwish.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         Event event = (Event) intent.getSerializableExtra("event");
         eventName.setText(event.getName());
         eventDate.setText(event.getDate());
+        Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+        //set typeface for textview
+        eventName.setTypeface(lregular);
+        eventDate.setTypeface(lregular);
 
     }
 

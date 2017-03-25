@@ -7,8 +7,7 @@
     android:paddingBottom="4dp"
     android:paddingLeft="4dp"
     android:paddingRight="4dp"
-    android:paddingTop="2dp"
-    android:background="@drawable/border">
+    android:paddingTop="2dp">
 
     <ImageView
         android:id="@+id/item_image"
