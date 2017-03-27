@@ -3,9 +3,10 @@ package hr.spacecontrol.uwish.activities;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import hr.spacecontrol.uwish.R;
@@ -17,6 +18,14 @@ public class EventDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
 
         TextView eventName = (TextView)findViewById(R.id.event_name);
         TextView eventDate = (TextView)findViewById(R.id.event_date);
