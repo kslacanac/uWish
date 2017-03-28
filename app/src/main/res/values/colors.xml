@@ -6,6 +6,6 @@
     <color name="background">#f5f1df</color>
     <color name="colorTabText">#ffffff</color>
     <color name="colorUnselectedTab">#cccccc</color>
-    <color name="textColorPrimary">#AFA7CC</color>
-    <color name="textColorSecondary">#bb9fc7</color>
+    <color name="textColorPrimary">#904848</color>
+    <color name="textColorSecondary">#A86048</color>
 </resources>
