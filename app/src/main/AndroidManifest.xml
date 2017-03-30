@@ -27,7 +27,14 @@
         </activity>
         <activity
             android:name=".activities.ItemDetailsActivity"
+            android:parentActivityName=".activities.DashboardActivity" />
+        <activity
+            android:name=".activities.FriendDetailsActivity"
+            android:parentActivityName=".activities.DashboardActivity"/>
+        <activity
+            android:name=".activities.ProfileActivity"
             android:parentActivityName=".activities.DashboardActivity">
+
         </activity>
     </application>
 

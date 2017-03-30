@@ -1,16 +1,22 @@
 package hr.spacecontrol.uwish.objects;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by Karmela on 17/03/2017.
  */
 
-public class Person {
+public class Person implements Serializable {
     String username;
     String password;
     String name;
     String email;
     int image;
+    PersonalInfo details;
+    List<Item> wishList;
 
+    /* CONSTRUCTORS */
     public Person() {
     }
 
@@ -22,6 +28,23 @@ public class Person {
         this.name = name;
         this.image = image;
 
+    }
+
+    /* GETTERS AND SETTERS */
+    public List<Item> getWishList() {
+        return wishList;
+    }
+
+    public void setWishList(List<Item> wishList) {
+        this.wishList = wishList;
+    }
+
+    public PersonalInfo getDetails() {
+        return details;
+    }
+
+    public void setDetails(PersonalInfo details) {
+        this.details = details;
     }
 
     public int getImage() {
@@ -62,5 +85,57 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    private class PersonalInfo {
+        private String size;
+        private String favouriteColor;
+        private String hobbies;
+        private String piercings;
+        private String other;
+
+        public PersonalInfo(){
+
+        }
+
+        public String getSize() {
+            return size;
+        }
+
+        public void setSize(String size) {
+            this.size = size;
+        }
+
+        public String getFavouriteColor() {
+            return favouriteColor;
+        }
+
+        public void setFavouriteColor(String favouriteColor) {
+            this.favouriteColor = favouriteColor;
+        }
+
+        public String getHobbies() {
+            return hobbies;
+        }
+
+        public void setHobbies(String hobbies) {
+            this.hobbies = hobbies;
+        }
+
+        public String getPiercings() {
+            return piercings;
+        }
+
+        public void setPiercings(String piercings) {
+            this.piercings = piercings;
+        }
+
+        public String getOther() {
+            return other;
+        }
+
+        public void setOther(String other) {
+            this.other = other;
+        }
     }
 }

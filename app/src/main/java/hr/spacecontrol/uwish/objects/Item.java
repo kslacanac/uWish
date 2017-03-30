@@ -1,22 +1,30 @@
 package hr.spacecontrol.uwish.objects;
 
-import android.media.Image;
-import android.widget.ImageView;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Karmela on 17/03/2017.
  */
 
-public class Item {
+public class Item implements Serializable {
     String name;
     int image;
     String description;
     String link;
+    List<String> tags;
 
     public Item(String name, int image) {
         this.name = name;
         this.image = image;
 
+    }
+
+    public Item(String name, int image, String description, String link) {
+        this.name = name;
+        this.image = image;
+        this.description = description;
+        this.link = link;
     }
 
     public Item(String name) {
@@ -57,5 +65,13 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }

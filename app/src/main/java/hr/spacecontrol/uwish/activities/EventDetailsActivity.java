@@ -21,10 +21,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
         ActionBar ab = getSupportActionBar();
-
-        // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
         TextView eventName = (TextView)findViewById(R.id.event_name);
@@ -32,6 +29,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Event event = (Event) intent.getSerializableExtra("event");
+
         eventName.setText(event.getName());
         eventDate.setText(event.getDate());
         Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");

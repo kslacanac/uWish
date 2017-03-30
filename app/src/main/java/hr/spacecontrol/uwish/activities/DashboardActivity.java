@@ -1,5 +1,6 @@
 package hr.spacecontrol.uwish.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
@@ -60,8 +61,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_event_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_list_black_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_event_black_24dp);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_group_black_24dp);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_search_black_24dp);
         changeFonts(tabLayout);
@@ -94,17 +95,22 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.action_profile:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                this.startActivity(intent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -122,9 +128,9 @@ public class DashboardActivity extends AppCompatActivity {
             //Returning the current tabs
             switch (position) {
                 case 0:
-                    return Events.newInstance();
-                case 1:
                     return MyWishList.newInstance();
+                case 1:
+                    return Events.newInstance();
                 case 2:
                     return MyFriendsList.newInstance();
                 case 3:
@@ -144,9 +150,9 @@ public class DashboardActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "EVENTS";
+                    return "WISHES";
                 case 1:
-                    return "MY WISHES";
+                    return "EVENTS";
                 case 2:
                     return "FRIENDS";
                 case 3:

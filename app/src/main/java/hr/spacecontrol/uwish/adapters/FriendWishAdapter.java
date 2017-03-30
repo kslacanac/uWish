@@ -4,10 +4,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,40 +13,33 @@ import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.objects.Item;
 
 /**
- * Created by Karmela on 19/03/2017.
+ * Created by Karmela on 30/03/2017.
  */
 
-public class ItemGridAdapter extends BaseAdapter {
+public class FriendWishAdapter extends ItemGridAdapter {
 
-    public Context context;
-    public List<Item> itemList;
-
-    public ItemGridAdapter(Context context, List<Item> itemList) {
-        this.context = context;
-        this.itemList = itemList;
+    public FriendWishAdapter(Context context, List<Item> itemList) {
+        super(context, itemList);
     }
+
     @Override
     public int getCount() {
-
-        return itemList.size();
+        return super.getCount();
     }
 
     @Override
     public Object getItem(int position) {
-
-        return itemList.get(position);
+        return super.getItem(position);
     }
 
     @Override
     public long getItemId(int position) {
-
-        return position;
+        return super.getItemId(position);
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-
-        View v = View.inflate(context, R.layout.gridview_item, null);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v = View.inflate(context, R.layout.gridview_friend_wish, null);
 
         Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
 
@@ -62,9 +51,6 @@ public class ItemGridAdapter extends BaseAdapter {
         itemName.setText(itemList.get(position).getName());
 
         itemName.setTypeface(lregular);
-
         return v;
     }
-
-
 }
