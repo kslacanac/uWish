@@ -42,18 +42,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="4dp"
+        android:padding="5dp"
         android:background="#00ffffff"
         android:src="@drawable/delete"/>
 
     <ImageButton
         android:id="@+id/edit_btn"
-        android:layout_marginTop="6dp"
+        android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/event_name"
-        android:layout_marginLeft="12dp"
+        android:layout_toLeftOf="@id/delete_btn"
         android:background="#00ffffff"
-        android:src="@drawable/ic_edit_gray_24dp"
+        android:src="@drawable/edit"
         />
 
 </RelativeLayout>

@@ -9,8 +9,8 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_profile"
+        android:icon="@drawable/friend01"
+        android:title="Username"
         android:orderInCategory="200"
-        android:title="Profile"
-        app:showAsAction="ifRoom"
-        ></item>
+        app:showAsAction="always|withText"/>
 </menu>

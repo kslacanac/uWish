@@ -1,12 +1,14 @@
 package hr.spacecontrol.uwish.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,11 +27,14 @@ public class ItemDetailsActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+        Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+
         Intent intent = getIntent();
         Item item = (Item) intent.getSerializableExtra("item");
 
         TextView name = (TextView) findViewById(R.id.item_name);
         name.setText(item.getName());
+
 
         TextView description = (TextView) findViewById(R.id.item_description);
         description.setText(item.getDescription());
@@ -40,7 +45,18 @@ public class ItemDetailsActivity extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.item_image);
         image.setImageResource(item.getImage());
 
-        Button delete = (Button) findViewById(R.id.delete_btn);
+        TextView find = (TextView) findViewById(R.id.textView);
+
+        //set typeface for textview
+
+        name.setTypeface(lregular);
+        description.setTypeface(lregular);
+        find.setTypeface(lregular);
+        link.setTypeface(lregular);
+
+
+
+        ImageButton delete = (ImageButton) findViewById(R.id.delete_btn);
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -48,7 +64,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
             }
         });
 
-        Button edit = (Button) findViewById(R.id.edit_btn);
+        ImageButton edit = (ImageButton) findViewById(R.id.edit_btn);
         edit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -57,4 +73,5 @@ public class ItemDetailsActivity extends AppCompatActivity {
         });
 
     }
+
 }
