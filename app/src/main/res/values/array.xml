@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerItems">
+        <item>Birthday</item>
+        <item>Wedding</item>
+        <item>Prom</item>
+        <item>Baby shower</item>
+        <item>Graduation</item>
+        <item>Other</item>
+    </string-array>
+</resources>

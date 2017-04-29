@@ -65,7 +65,7 @@ public class EventListAdapter extends BaseAdapter {
 
         //v.setTag(mEventList.get(position).getId());
 
-        ImageButton deleteBtn = (ImageButton) v.findViewById(R.id.delete_btn);
+        /*ImageButton deleteBtn = (ImageButton) v.findViewById(R.id.delete_btn);
         ImageButton editBtn = (ImageButton) v.findViewById(R.id.edit_btn);
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
@@ -83,7 +83,7 @@ public class EventListAdapter extends BaseAdapter {
                 //otvara activity za uredivanje eventa
                 notifyDataSetChanged();
             }
-        });
+        });*/
 
         return v;
     }

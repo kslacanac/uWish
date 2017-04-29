@@ -19,7 +19,7 @@
             android:hint="Title"
             android:maxLines="2"
             android:paddingBottom="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"/>
 
         <EditText
             android:id="@+id/etMessageBox"
@@ -33,23 +33,45 @@
             android:paddingBottom="16dp"
             android:layout_marginTop="16dp"
             android:scrollbars="none" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Date"
+            android:layout_marginLeft="4dp"
+            android:textSize="24sp"/>
 
-        <EditText
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            ></DatePicker>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Category"
+            android:layout_marginLeft="4dp"
+            android:paddingBottom="16dp"
+            android:textSize="24sp"/>
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Where to buy?"
-            android:maxLines="2"
-            android:layout_marginBottom="12dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:entries="@array/spinnerItems"
             android:paddingBottom="16dp"
-            android:layout_marginTop="16dp" />
+            android:popupBackground="#ffffff"
+            android:spinnerMode="dialog"
+            android:prompt="@string/category"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            android:layout_marginTop="12dp"
-            android:paddingBottom="55dp"
+            android:paddingBottom="65dp"
             android:orientation="vertical">
 
             <Button
@@ -58,7 +80,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorPrimary"
                 android:paddingLeft="20dp"
-                android:text="Wish it!"
+                android:text="Create event"
                 android:padding="5dp"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />

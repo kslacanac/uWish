@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#66a8a6</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#666666</color>
     <color name="colorAccent">#79896e</color>
-    <color name="background">#f5f1df</color>
+    <color name="background">#ffffff</color>
     <color name="colorTabText">#ffffff</color>
     <color name="colorUnselectedTab">#cccccc</color>
     <color name="textColorPrimary">#904848</color>
