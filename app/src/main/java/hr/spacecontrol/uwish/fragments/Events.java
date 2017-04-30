@@ -66,6 +66,8 @@ public class Events extends Fragment {
         events.add(new Event("Baby shower", "15/04/2017"));
         events.add(new Event("Kerry's birthday", "17/05/2017"));
         events.add(new Event("Prom night", "28/05/2017"));
+        events.add(new Event("Paula's graduation", "15/06/2017"));
+        events.add(new Event("My cat's birthday", "20/06/2017"));
 
         //initialize adapter
         eventListAdapter = new EventListAdapter(getActivity().getApplicationContext(), events);

@@ -20,44 +20,20 @@ import hr.spacecontrol.uwish.adapters.ItemGridAdapter;
 import hr.spacecontrol.uwish.adapters.MyWishAdapter;
 import hr.spacecontrol.uwish.objects.Item;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MyWishList.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MyWishList#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MyWishList extends Fragment {
 
     GridView itemGridView;
     List<Item> items;
     ItemGridAdapter itemGridAdapter;
 
-    //private OnFragmentInteractionListener mListener;
-
     public MyWishList() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment.
-     * @return A new instance of fragment MyWishList.
-     */
     public static MyWishList newInstance() {
         MyWishList fragment = new MyWishList();
         return fragment;
     }
-
-    /*@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,13 +44,19 @@ public class MyWishList extends Fragment {
 
         items = new ArrayList<>();
 
-        items.add(new Item("Sun glasses",R.drawable.item01, "Glasses with black glass so I can look directly into the Sun. Please.", "www.glasses.com"));
+        items.add(new Item("Sun glasses",R.drawable.item01, "Glasses with black glass so I can look directly into the Sun.", "www.glasses.com"));
         items.add(new Item("Skateboard",R.drawable.item02, "A board with wheels so I can roll around and make stupid noise.", "www.hateboard.com"));
-        items.add(new Item("Water bottle", R.drawable.item03, "BPA free bottle, no poison plis.", "www.equa.com"));
+        items.add(new Item("Water bottle", R.drawable.item03, "BPA free bottle, with cute design.", "www.equa.com"));
         items.add(new Item("Wallet", R.drawable.item04, "Leather wallet with a lot of money inside of it.", "www.wallets.com"));
-        items.add(new Item("Notebook", R.drawable.item05, "Not the stupid movie, just a regular paper notebook for me to write notes.", "www.notebooks.com"));
-        items.add(new Item("iPhone mask", R.drawable.item06, "This stupid ass iPhone mask because I totally have an iPhone.", "www.ebay.com/chingchongshop"));
-        items.add(new Item("Elf cloak", R.drawable.item07, "LOTR style Legolas motherfucking invisibility elf cloak with a big ass hoodie.", "www.lotr.com"));
+        items.add(new Item("Notebook", R.drawable.item05, "Just a regular paper notebook with lines.", "www.notebooks.com"));
+        items.add(new Item("iPhone mask", R.drawable.item06, "iPhone mask because I totally have an iPhone.", "www.ebay.com/chingchongshop"));
+        items.add(new Item("Elf cloak", R.drawable.item07, "LOTR style Legolas invisibility elf cloak with a big hoodie.", "www.lotr.com"));
+        items.add(new Item("Perfume", R.drawable.item08, "Daisy by Marc Jacobs", "www.marcjacobs.com"));
+        items.add(new Item("Bag", R.drawable.item09, "Lady shoulder bag, pinkish color.", "www.ladybags.com"));
+        items.add(new Item("Mouse", R.drawable.item10, "Wireless mouse in dark red color.", "www.mouses.com"));
+        items.add(new Item("Headphones", R.drawable.item11, "Wireless headphones in red color.", "www.headphones.com"));
+        items.add(new Item("Lipstick", R.drawable.item12, "Red lipstick by NARS", "www.nars.com"));
+        items.add(new Item("Blanket", R.drawable.item13, "Pink soft blanket.", "www.blankets.com"));
 
         itemGridAdapter = new MyWishAdapter(getActivity().getApplicationContext(), items);
         itemGridView.setAdapter(itemGridAdapter);
@@ -91,42 +73,4 @@ public class MyWishList extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    /*public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }*/
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /*public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

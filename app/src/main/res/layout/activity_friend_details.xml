@@ -53,7 +53,7 @@
         android:id="@+id/profile"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/friend05"
+        android:src="@drawable/friend02"
         app:civ_border_color="@color/colorAccent"
         android:layout_marginRight="8dp"
         android:layout_marginTop="6dp"

@@ -67,16 +67,16 @@ public class MyFriendsList extends Fragment {
         friendListView = (ListView) view.findViewById(R.id.friend_list);
 
         // Making some friends and their wish lists
-        Person Mate = new Person("Mate Matičar", R.drawable.friend05);
+        Person Amelie = new Person("Amelie Sanders", R.drawable.friend02);
         List<Item> items = new ArrayList<>();
         items.add(new Item("Sun glasses",R.drawable.item01));
         items.add(new Item("Skateboard",R.drawable.item02));
         items.add(new Item("Water bottle", R.drawable.item03));
-        Mate.setWishList(items);
+        Amelie.setWishList(items);
 
         friends = new ArrayList<>();
-        friends.add(Mate);
-        friends.add(new Person("Amelie Sanders", R.drawable.friend02));
+        friends.add(new Person("Mate Matičar", R.drawable.friend05));
+        friends.add(Amelie);
         friends.add(new Person("Donna Paulsen", R.drawable.friend01));
         friends.add(new Person("Cassey Cho", R.drawable.friend03));
         friends.add(new Person("Michael Ross", R.drawable.friend04));

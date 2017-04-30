@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".activities.DashboardActivity"
+            android:name=".activities.MainActivity"
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,22 +20,23 @@
         </activity>
         <activity
             android:name=".activities.EventDetailsActivity"
-            android:parentActivityName=".activities.DashboardActivity">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="activities.DashboardActivity" />
+                android:value="activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.ItemDetailsActivity"
-            android:parentActivityName=".activities.DashboardActivity" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.FriendDetailsActivity"
-            android:parentActivityName=".activities.DashboardActivity"/>
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.ProfileActivity"
-            android:parentActivityName=".activities.DashboardActivity">
-
-        </activity>
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.MakeAWishActivity" />
+        <activity android:name=".activities.CreateEventActivity" />
+        <activity android:name=".activities.ManagePrivacyActivity"></activity>
     </application>
 
 </manifest>

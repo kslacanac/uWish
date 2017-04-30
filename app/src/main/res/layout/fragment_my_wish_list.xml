@@ -13,8 +13,6 @@
         android:paddingRight="3dp"
         tools:context="hr.spacecontrol.uwish.fragments.MyWishList">
 
-        <!-- TODO: Update blank fragment layout -->
-
         <GridView
             android:id="@+id/item_grid"
             android:layout_width="fill_parent"
