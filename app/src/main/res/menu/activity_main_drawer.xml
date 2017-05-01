@@ -81,11 +81,11 @@
         android:id="@+id/nav_me">
             <item
                 android:id="@+id/nav_myprofile"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/ic_person_black_24dp"
                 android:title="@string/nav_myprofile" />
             <item
                 android:id="@+id/nav_mywishlist"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/ic_gift"
                 android:title="@string/nav_mywishlist" />
             <item
                 android:id="@+id/nav_makeawish"
@@ -100,11 +100,11 @@
                 android:title="@string/nav_friendlist" />
             <item
                 android:id="@+id/nav_findfriends"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_find_friends"
                 android:title="@string/nav_findfriends" />
             <item
                 android:id="@+id/nav_invitefriends"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_add_friend"
                 android:title="@string/nav_invitefriends" />
     </group>
     <group android:checkableBehavior="single"
@@ -115,17 +115,17 @@
                 android:title="@string/nav_calendar" />
             <item
                 android:id="@+id/nav_createevent"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_add_event"
                 android:title="@string/nav_createevent" />
             <item
                 android:id="@+id/nav_myevents"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_event"
                 android:title="@string/nav_myevents" />
     </group>
     <group android:id="@+id/nav_settings">
         <item
             android:id="@+id/nav_privacy"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/ic_lock"
             android:title="@string/nav_privacy" />
         <item
             android:id="@+id/nav_logout"
