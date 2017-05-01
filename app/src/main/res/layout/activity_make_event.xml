@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,9 +12,24 @@
         android:orientation="vertical"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
-        tools:context="hr.spacecontrol.uwish.activities.DashboardActivity">
+        tools:context="hr.spacecontrol.uwish.activities.CreateEventActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:titleTextColor="@android:color/white">
+
+        </android.support.v7.widget.Toolbar>
 
         <EditText
+            android:id="@+id/make_event_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Title"
@@ -22,7 +38,7 @@
             android:layout_marginTop="16dp"/>
 
         <EditText
-            android:id="@+id/etMessageBox"
+            android:id="@+id/make_event_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Description"
@@ -41,6 +57,7 @@
             android:textSize="24sp"/>
 
         <DatePicker
+            android:id="@+id/make_event_datepicker"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:datePickerMode="spinner"
@@ -55,7 +72,7 @@
             android:paddingBottom="16dp"
             android:textSize="24sp"/>
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/make_event_category_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -75,6 +92,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/create_event_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

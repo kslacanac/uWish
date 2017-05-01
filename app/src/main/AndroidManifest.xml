@@ -34,10 +34,15 @@
         <activity
             android:name=".activities.ProfileActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.MakeAWishActivity" />
-        <activity android:name=".activities.CreateEventActivity" />
-        <activity android:name=".activities.ManagePrivacyActivity"></activity>
-
+        <activity
+            android:name=".activities.MakeAWishActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.CreateEventActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.ManagePrivacyActivity"
+            android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
 </manifest>
