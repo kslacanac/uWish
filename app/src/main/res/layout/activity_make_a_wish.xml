@@ -1,65 +1,84 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_make_a_wish"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context="hr.spacecontrol.uwish.activities.MakeAWishActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
         android:orientation="vertical"
         android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        tools:context="hr.spacecontrol.uwish.activities.DashboardActivity">
+        android:paddingRight="3dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:titleTextColor="@android:color/white">
+
+        </android.support.v7.widget.Toolbar>
 
         <EditText
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="Title"
             android:maxLines="2"
-            android:paddingBottom="16dp"
-            android:layout_marginTop="16dp" />
+            android:paddingBottom="16dp" />
 
         <EditText
-            android:id="@+id/etMessageBox"
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="16dp"
             android:hint="Description"
             android:inputType="textMultiLine|textCapSentences"
             android:maxLines="2"
             android:minLines="1"
-            android:layout_marginBottom="12dp"
             android:paddingBottom="16dp"
-            android:layout_marginTop="16dp"
             android:scrollbars="none" />
 
         <EditText
+            android:id="@+id/wheretobuy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="16dp"
             android:hint="Where to buy?"
             android:maxLines="2"
-            android:layout_marginBottom="12dp"
-            android:paddingBottom="16dp"
-            android:layout_marginTop="16dp" />
+            android:paddingBottom="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
             android:layout_marginTop="12dp"
+            android:orientation="vertical"
             android:paddingBottom="55dp"
-            android:orientation="vertical">
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
 
             <Button
+                android:id="@+id/make_wish_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorPrimary"
+                android:padding="5dp"
                 android:paddingLeft="20dp"
                 android:text="Wish it!"
-                android:padding="5dp"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
         </LinearLayout>
