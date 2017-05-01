@@ -30,7 +30,6 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingBottom="64dp"
         android:scrollbarStyle="outsideInset"
         android:divider="#b4b1b1b1"
         android:dividerHeight="1dp"/>

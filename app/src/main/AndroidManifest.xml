@@ -37,6 +37,7 @@
         <activity android:name=".activities.MakeAWishActivity" />
         <activity android:name=".activities.CreateEventActivity" />
         <activity android:name=".activities.ManagePrivacyActivity"></activity>
+
     </application>
 
 </manifest>
