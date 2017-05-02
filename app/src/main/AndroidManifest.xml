@@ -20,6 +20,7 @@
         </activity>
         <activity
             android:name=".activities.EventDetailsActivity"
+            android:label="Event details"
             android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -36,13 +37,17 @@
             android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.MakeAWishActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+            android:label="Make a wish"
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.CreateEventActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+            android:label="Create event"
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.ManagePrivacyActivity"
-            android:parentActivityName=".activities.MainActivity"></activity>
+            android:label="Manage privacy"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.InviteFriendsActivity"></activity>
     </application>
 
 </manifest>

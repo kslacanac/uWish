@@ -39,7 +39,7 @@
                     android:title="@string/nav_invitefriends" />
             </menu>
         </item>
-        <item android:title="Events">
+        <item android:title="MyEvents">
             <menu>
                 <item
                     android:id="@+id/nav_calendar"

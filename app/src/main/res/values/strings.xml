@@ -26,4 +26,13 @@
     <string name="nav_myevents">My events</string>
     <string name="nav_privacy">Manage privacy</string>
     <string name="nav_logout">Log out</string>
+
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>My wish list</item>
+        <item>Friend list</item>
+        <item>Find friends</item>
+        <item>Calendar</item>
+        <item>My events</item>
+    </string-array>
 </resources>

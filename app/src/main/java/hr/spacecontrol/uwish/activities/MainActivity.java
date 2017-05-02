@@ -19,11 +19,10 @@ import android.widget.TextView;
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.fragments.Calendar;
 import hr.spacecontrol.uwish.fragments.Dashboard;
-import hr.spacecontrol.uwish.fragments.Events;
+import hr.spacecontrol.uwish.fragments.FindFriends;
+import hr.spacecontrol.uwish.fragments.MyEvents;
 import hr.spacecontrol.uwish.fragments.MyFriendsList;
 import hr.spacecontrol.uwish.fragments.MyWishList;
-import hr.spacecontrol.uwish.fragments.Search;
-import hr.spacecontrol.uwish.objects.Event;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static String CURRENT_TAG = "Dashboard";
 
+    private String[] activityTitles;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
         setUpNavigationView();
 
@@ -61,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
      * Returns respected fragment that user selected from navigation menu
      */
     private void loadHomeFragment() {
-        // selecting appropriate nav menu item
         selectNavMenu();
+        setToolbarTitle();
 
         // if user select the current navigation menu again, just close the navigation drawer
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
@@ -88,14 +91,18 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 return MyFriendsList.newInstance();
             case 3:
-                return Search.newInstance();
+                return FindFriends.newInstance();
             case 4:
                 return Calendar.newInstance();
             case 5:
-                return Events.newInstance();
+                return MyEvents.newInstance();
             default:
                 return Dashboard.newInstance();
         }
+    }
+
+    private void setToolbarTitle() {
+        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
     }
 
     private void selectNavMenu() {
@@ -132,10 +139,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_findfriends:
                         navItemIndex = 3;
-                        CURRENT_TAG = "Search";
+                        CURRENT_TAG = "FindFriends";
                         break;
                     case R.id.nav_invitefriends:
-                        //invite friends fragment or activity
+                        startActivity(new Intent(MainActivity.this, InviteFriendsActivity.class));
+                        drawer.closeDrawers();
+                        return true;
                     case R.id.nav_calendar:
                         navItemIndex = 4;
                         CURRENT_TAG = "Calendar";
@@ -150,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_privacy:
                         startActivity(new Intent(MainActivity.this, ManagePrivacyActivity.class));
+                        drawer.closeDrawers();
+                        return true;
                     case R.id.nav_logout:
                         //log out
                     default:
