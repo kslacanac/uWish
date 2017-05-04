@@ -28,7 +28,7 @@
         android:layout_below="@id/host_name"
         android:layout_marginTop="18dp"
         android:id="@+id/iconLeft"
-        android:src="@drawable/ic_prsten"
+        android:src="@drawable/ic_other_cat"
         />
     
     <TextView
