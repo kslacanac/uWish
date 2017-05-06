@@ -1,73 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/nav_dashboard" />
-    </group>
-        <item android:title="Me">
-            <menu>
-                <item
-                    android:id="@+id/nav_myprofile"
-                    android:icon="@drawable/ic_menu_camera"
-                    android:title="@string/nav_myprofile" />
-                <item
-                    android:id="@+id/nav_mywishlist"
-                    android:icon="@drawable/ic_menu_gallery"
-                    android:title="@string/nav_mywishlist" />
-                <item
-                    android:id="@+id/nav_makeawish"
-                    android:icon="@drawable/ic_menu_slideshow"
-                    android:title="@string/nav_makeawish" />
-            </menu>
-        </item>
-        <item android:title="Friends">
-            <menu>
-                <item
-                    android:id="@+id/nav_friendlist"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="@string/nav_friendlist" />
-                <item
-                    android:id="@+id/nav_findfriends"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="@string/nav_findfriends" />
-                <item
-                    android:id="@+id/nav_invitefriends"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="@string/nav_invitefriends" />
-            </menu>
-        </item>
-        <item android:title="MyEvents">
-            <menu>
-                <item
-                    android:id="@+id/nav_calendar"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="@string/nav_calendar" />
-                <item
-                    android:id="@+id/nav_createevent"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="@string/nav_createevent" />
-                <item
-                    android:id="@+id/nav_myevents"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="@string/nav_myevents" />
-            </menu>
-        </item>
-        <group>
-            <item
-                android:id="@+id/nav_privacy"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/nav_privacy" />
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/nav_logout" />
-        </group>
-
-</menu>-->
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single"
@@ -99,9 +29,9 @@
                 android:icon="@drawable/ic_group_black_24dp"
                 android:title="@string/nav_friendlist" />
             <item
-                android:id="@+id/nav_findfriends"
-                android:icon="@drawable/ic_find_friends"
-                android:title="@string/nav_findfriends" />
+                android:id="@+id/nav_friendrequests"
+                android:icon="@drawable/ic_add_friend"
+                android:title="@string/nav_friendrequests" />
             <item
                 android:id="@+id/nav_invitefriends"
                 android:icon="@drawable/ic_add_friend"
