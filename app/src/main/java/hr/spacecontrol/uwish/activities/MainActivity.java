@@ -10,16 +10,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.fragments.Calendar;
 import hr.spacecontrol.uwish.fragments.Dashboard;
-import hr.spacecontrol.uwish.fragments.FindFriends;
+import hr.spacecontrol.uwish.fragments.FriendRequests;
 import hr.spacecontrol.uwish.fragments.MyEvents;
 import hr.spacecontrol.uwish.fragments.MyFriendsList;
 import hr.spacecontrol.uwish.fragments.MyWishList;
@@ -28,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
-    private View navHeader;
-    private ImageView imgNavHeaderBg, imgProfile;
-    private TextView txtName, txtWebsite;
     private Toolbar toolbar;
 
     public static int navItemIndex = 0;
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -75,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragment = getHomeFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         fragmentTransaction.replace(R.id.fragment_container, fragment, CURRENT_TAG);
         fragmentTransaction.commit();
 
@@ -91,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 return MyFriendsList.newInstance();
             case 3:
-                return FindFriends.newInstance();
+                return FriendRequests.newInstance();
             case 4:
                 return Calendar.newInstance();
             case 5:
@@ -137,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
                         navItemIndex = 2;
                         CURRENT_TAG = "MyFriendsList";
                         break;
-                    case R.id.nav_findfriends:
+                    case R.id.nav_friendrequests:
                         navItemIndex = 3;
-                        CURRENT_TAG = "FindFriends";
+                        CURRENT_TAG = "FriendRequests";
                         break;
                     case R.id.nav_invitefriends:
                         startActivity(new Intent(MainActivity.this, InviteFriendsActivity.class));
@@ -181,7 +176,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        ActionBarDrawerToggle actionBarDrawerToggle =
+                new ActionBarDrawerToggle(this,
+                        drawer,
+                        toolbar,
+                        R.string.navigation_drawer_open,
+                        R.string.navigation_drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
@@ -193,6 +193,14 @@ public class MainActivity extends AppCompatActivity {
                 super.onDrawerOpened(drawerView);
             }
         };
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        toolbar.setNavigationIcon(R.drawable.ic_logofinal);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.LEFT);
+            }
+        });
         //Setting the actionbarToggle to drawer layout
         drawer.setDrawerListener(actionBarDrawerToggle);
         //calling sync state is necessary or else your hamburger icon wont show up
