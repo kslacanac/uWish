@@ -1,6 +1,7 @@
 package hr.spacecontrol.uwish.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -194,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
-        toolbar.setNavigationIcon(R.drawable.ic_logofinal);
+        toolbar.setNavigationIcon(R.drawable.ic_logofinal_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
