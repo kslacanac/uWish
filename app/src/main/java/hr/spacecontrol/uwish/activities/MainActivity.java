@@ -1,5 +1,20 @@
 package hr.spacecontrol.uwish.activities;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -15,6 +30,9 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.fragments.Calendar;
@@ -36,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] activityTitles;
 
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private DatabaseReference mDatabase;
+    private String mUserId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +66,38 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        //mFirebaseUser = null;
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
+        if (mFirebaseUser == null) {
+            // Not logged in, launch the Log In activity
+            loadLogInView();
+        } else {
+            mUserId = mFirebaseUser.getUid();
 
-        setUpNavigationView();
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        if (savedInstanceState == null) {
-            navItemIndex = 0;
-            CURRENT_TAG = "Dashboard";
-            loadHomeFragment();
+            activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
+
+            setUpNavigationView();
+
+            if (savedInstanceState == null) {
+                navItemIndex = 0;
+                CURRENT_TAG = "Dashboard";
+                loadHomeFragment();
+            }
         }
+    }
+
+
+    private void loadLogInView() {
+        Intent intent = new Intent(this, LogInActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     /***
@@ -159,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_logout:
                         //log out
+                        FirebaseAuth.getInstance().signOut();
+                        loadLogInView();
                     default:
                         navItemIndex = 0;
                 }

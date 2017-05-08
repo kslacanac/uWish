@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "257823860276",
+    "firebase_url": "https://uwish-fed7c.firebaseio.com",
+    "project_id": "uwish-fed7c",
+    "storage_bucket": "uwish-fed7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257823860276:android:e948990a5dabf973",
+        "android_client_info": {
+          "package_name": "hr.spacecontrol.uwish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257823860276-d5602nnk3s5mu96q0j43a8fmgl300muc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hr.spacecontrol.uwish",
+            "certificate_hash": "0791124af18661b2349e35c023859e9da26554d2"
+          }
+        },
+        {
+          "client_id": "257823860276-obdj9uhe005l8927c1fhm7dvun6g0bsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgNLW-uKEfgk6GR7bM5oSQaO29bq35Qro"
+        },
+        {
+          "current_key": "AIzaSyC8IlYXHhTGCjAWpt7azWXaEf4m8zSwWnk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257823860276-obdj9uhe005l8927c1fhm7dvun6g0bsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
