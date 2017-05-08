@@ -14,24 +14,29 @@ import hr.spacecontrol.uwish.objects.Event;
 
 public class EventDetailsActivity extends AppCompatActivity {
 
+    private TextView eventName;
+    private TextView eventDate;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        TextView eventName = (TextView)findViewById(R.id.event_name);
-        TextView eventDate = (TextView)findViewById(R.id.event_date);
+        eventName = (TextView)findViewById(R.id.event_name);
+        eventDate = (TextView)findViewById(R.id.event_date);
 
         Intent intent = getIntent();
         Event event = (Event) intent.getSerializableExtra("event");
-
+        // TODO fetch chosen event from firebase
         eventName.setText(event.getName());
         eventDate.setText(event.getDate());
+
         Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
         //set typeface for textview
         eventName.setTypeface(lregular);

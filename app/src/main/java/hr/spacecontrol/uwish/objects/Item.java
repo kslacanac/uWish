@@ -12,7 +12,7 @@ public class Item implements Serializable {
     int image;
     String description;
     String link;
-    List<String> tags;
+    List<String> tags; //for laters
 
     public Item(String name, int image) {
         this.name = name;

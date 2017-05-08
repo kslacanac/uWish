@@ -17,25 +17,31 @@ import hr.spacecontrol.uwish.objects.Person;
 
 public class FriendDetailsActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
+    private GridView itemGridView;
+    private ItemGridAdapter itemGridAdapter;
+    private TextView listTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_details);
 
         Intent intent = getIntent();
-        Person friend = (Person) intent.getSerializableExtra("friend");
+        Person friend = (Person) intent.getSerializableExtra("friend"); // gets selected friend
+        // TODO fetch friend info from firebase
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        GridView itemGridView = (GridView) findViewById(R.id.item_grid);
+        itemGridView = (GridView) findViewById(R.id.item_grid);
 
-        ItemGridAdapter itemGridAdapter = new FriendWishAdapter(getApplicationContext(), friend.getWishList());
+        itemGridAdapter = new FriendWishAdapter(getApplicationContext(), friend.getWishList());
         itemGridView.setAdapter(itemGridAdapter);
 
-        TextView listTitle = (TextView) findViewById(R.id.list_title);
+        listTitle = (TextView) findViewById(R.id.list_title);
         String title = friend.getName().concat("'s list");
         listTitle.setText(title);
     }

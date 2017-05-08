@@ -17,46 +17,52 @@ import hr.spacecontrol.uwish.objects.Item;
 
 public class ItemDetailsActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
+    private TextView name;
+    private TextView description;
+    private TextView link;
+    private ImageView image;
+    private TextView find;
+    private ImageButton delete;
+    private ImageButton edit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
         Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
 
         Intent intent = getIntent();
-        Item item = (Item) intent.getSerializableExtra("item");
+        Item item = (Item) intent.getSerializableExtra("item"); // gets selected item from list
+        // TODO fetch item from firebase to display info
 
-        TextView name = (TextView) findViewById(R.id.item_name);
+        name = (TextView) findViewById(R.id.item_name);
         name.setText(item.getName());
 
-
-        TextView description = (TextView) findViewById(R.id.item_description);
+        description = (TextView) findViewById(R.id.item_description);
         description.setText(item.getDescription());
 
-        TextView link = (TextView) findViewById(R.id.item_link);
+        link = (TextView) findViewById(R.id.item_link);
         link.setText(item.getLink());
 
-        ImageView image = (ImageView) findViewById(R.id.item_image);
+        image = (ImageView) findViewById(R.id.item_image);
         image.setImageResource(item.getImage());
 
-        TextView find = (TextView) findViewById(R.id.textView);
+        find = (TextView) findViewById(R.id.textView);
 
         //set typeface for textview
-
         name.setTypeface(lregular);
         description.setTypeface(lregular);
         find.setTypeface(lregular);
         link.setTypeface(lregular);
 
-
-
-        ImageButton delete = (ImageButton) findViewById(R.id.delete_btn);
+        delete = (ImageButton) findViewById(R.id.delete_btn);
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -64,7 +70,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton edit = (ImageButton) findViewById(R.id.edit_btn);
+        edit = (ImageButton) findViewById(R.id.edit_btn);
         edit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

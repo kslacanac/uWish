@@ -88,22 +88,41 @@ public class Person implements Serializable {
     }
 
     private class PersonalInfo {
-        private String size;
+        private String clothingSize;
+        private String shoeSize;
         private String favouriteColor;
+        private String favouriteFood;
+        private String sports;
         private String hobbies;
-        private String piercings;
+        private String interests;
         private String other;
 
         public PersonalInfo(){
 
         }
 
-        public String getSize() {
-            return size;
+        public String getClothingSize() {
+            return clothingSize;
         }
 
-        public void setSize(String size) {
-            this.size = size;
+        public void setClothingSize(String clothingSize) {
+            this.clothingSize = clothingSize;
+        }
+
+        public String getShoeSize() {
+            return shoeSize;
+        }
+
+        public void setShoeSize(String shoeSize) {
+            this.shoeSize = shoeSize;
+        }
+
+        public String getFavouriteFood() {
+            return favouriteFood;
+        }
+
+        public void setFavouriteFood(String favouriteFood) {
+            this.favouriteFood = favouriteFood;
         }
 
         public String getFavouriteColor() {
@@ -114,20 +133,28 @@ public class Person implements Serializable {
             this.favouriteColor = favouriteColor;
         }
 
+        public String getSports() {
+            return sports;
+        }
+
+        public void setSports(String sports) {
+            this.sports = sports;
+        }
+
+        public String getInterests() {
+            return interests;
+        }
+
+        public void setInterests(String interests) {
+            this.interests = interests;
+        }
+
         public String getHobbies() {
             return hobbies;
         }
 
         public void setHobbies(String hobbies) {
             this.hobbies = hobbies;
-        }
-
-        public String getPiercings() {
-            return piercings;
-        }
-
-        public void setPiercings(String piercings) {
-            this.piercings = piercings;
         }
 
         public String getOther() {
