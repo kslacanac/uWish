@@ -118,16 +118,29 @@
 
         </LinearLayout>
 
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_or"
-            android:layout_gravity="center_horizontal"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:layout_gravity="center_horizontal">
 
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/fb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#416BC1"
+                android:text="FaceBook"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+        </FrameLayout>
 
     </RelativeLayout>
 
