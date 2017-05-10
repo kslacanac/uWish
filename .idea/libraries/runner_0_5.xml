@@ -4,12 +4,12 @@
       <root url="jar://$USER_HOME$/.android/build-cache/39cc1eaaf757d95a2acb7338c7ad2d09a4271b3c/output/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/432adc1a82b9a8328f5fab96b76aab99e34fa35a/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/432adc1a82b9a8328f5fab96b76aab99e34fa35a/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/f4358c74da0768c2b772efaf9f73d38bfe872f2c/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/f4358c74da0768c2b772efaf9f73d38bfe872f2c/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/test/runner/0.5/runner-0.5-sources.jar!/" />
+      <root url="jar://$USER_HOME$/AppData/Local/Android/Sdk/extras/android/m2repository/com/android/support/test/runner/0.5/runner-0.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

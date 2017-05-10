@@ -30,7 +30,7 @@
                 android:title="@string/nav_friendlist" />
             <item
                 android:id="@+id/nav_friendrequests"
-                android:icon="@drawable/ic_add_friend"
+                android:icon="@drawable/ic_friend_request"
                 android:title="@string/nav_friendrequests" />
             <item
                 android:id="@+id/nav_invitefriends"
@@ -59,7 +59,7 @@
             android:title="@string/nav_privacy" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="@string/nav_logout" />
     </group>
 
