@@ -11,13 +11,27 @@
     >
 
 
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/friend01"
+        app:civ_border_color="@color/text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        app:civ_border_width="1dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/host_name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/profile_image"
         android:textSize="20sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="12dp"
         android:textColor="@color/text"
         android:text="Amelie created an event!"/>
 

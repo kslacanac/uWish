@@ -54,7 +54,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/friend02"
-        app:civ_border_color="@color/colorAccent"
+        app:civ_border_color="@color/text"
         android:layout_marginRight="8dp"
         android:layout_marginTop="6dp"
         android:layout_alignParentRight="true"

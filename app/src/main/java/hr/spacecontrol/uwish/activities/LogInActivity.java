@@ -5,6 +5,7 @@ package hr.spacecontrol.uwish.activities;
  */
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -43,7 +44,7 @@ public class LogInActivity extends AppCompatActivity {
     protected EditText emailEditText;
     protected EditText passwordEditText;
     protected Button logInButton;
-    protected TextView signUpTextView;
+    protected Button signUpTextView;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -119,10 +120,17 @@ public class LogInActivity extends AppCompatActivity {
 
 
 
-        signUpTextView = (TextView) findViewById(R.id.signUpText);
+        signUpTextView = (Button) findViewById(R.id.signUpText);
         emailEditText = (EditText) findViewById(R.id.emailField);
         passwordEditText = (EditText) findViewById(R.id.passwordField);
         logInButton = (Button) findViewById(R.id.loginButton);
+
+        Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+        //set typeface for textview
+        signUpTextView.setTypeface(lregular);
+        emailEditText.setTypeface(lregular);
+        passwordEditText.setTypeface(lregular);
+        logInButton.setTypeface(lregular);
 
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
