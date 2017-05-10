@@ -1,164 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_profile"
+    android:id="@+id/viewswitcher"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
+    android:layout_height="wrap_content"
     tools:context="hr.spacecontrol.uwish.activities.ProfileActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ToolbarColoredBackArrow"
-        app:titleTextColor="@android:color/white">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/my_toolbar"
-        android:id="@+id/container_profile">
+        <LinearLayout
+            android:id="@+id/container_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
-        <ImageView
-            android:id="@+id/imageView"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/my_toolbar"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/borderfull"
+                app:srcCompat="@drawable/friend01" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="Username/Name"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="32dp" />
+
+            <Button
+                android:id="@+id/editProfileBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.82"
+                android:text="Edit" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/container_profile"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/divider" />
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/my_toolbar"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/borderfull"
-            app:srcCompat="@drawable/friend01" />
+            android:layout_below="@id/divider"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:stretchColumns="1">
 
-        <TextView
-            android:id="@+id/name"
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/title_clothing_size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Clothing size"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/title_shoe_size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Shoe size"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/clothingSize"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="12dp"
+                    android:text="M"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/shoeSize"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="12dp"
+                    android:text="39"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/title_color"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Favourite color"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/title_food"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Favourite food"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="12dp"
+                    android:text="Tennis, Dancing, Coin collecting"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/food"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="12dp"
+                    android:text="Ears"
+                    android:textAlignment="center"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/title_sports"
+                    android:text="Sports"/>
+                <TextView
+                    android:id="@+id/title_hobbies"
+                    android:text="Hobbies"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/sports"
+                    android:text="bla"/>
+                <TextView
+                    android:id="@+id/hobbies"
+                    android:text="bla"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/title_interests"
+                    android:text="Interests"/>
+                <TextView
+                    android:id="@+id/title_other"
+                    android:text="Other"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/interests"
+                    android:text="bla"/>
+                <TextView
+                    android:id="@+id/other"
+                    android:text="bla"/>
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Username/Name"
-            android:layout_marginLeft="16dp"
-            android:textSize="32dp"
-            android:textColor="@color/textColorPrimary"/>
+            android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/editImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="wrap_content"
-        android:background="@drawable/divider"
-        android:id="@+id/divider"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_height="1dp"
-        android:layout_below="@id/container_profile" />
-
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/divider"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:stretchColumns="1">
-        <TableRow>
-            <TextView
-                android:text="T-Shirt size"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/title_size"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/textColorPrimary"/>
-            <TextView
-                android:text="Favourite color"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/title_color"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/textColorPrimary"/>
-        </TableRow>
+                android:hint="Name"/>
 
-        <TableRow>
-            <TextView
-                android:text="M"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <EditText
+                android:id="@+id/editClothingSize"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/size"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:paddingBottom="12dp"
-                android:textColor="@color/textColorSecondary"/>
-            <TextView
-                android:text="Blue"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:hint="Clothing size"/>
+
+            <EditText
+                android:id="@+id/editShoeSize"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/color"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:paddingBottom="12dp"
-                android:textColor="@color/textColorSecondary"/>
-        </TableRow>
+                android:hint="Shoe size"/>
 
-        <TableRow>
-            <TextView
-                android:text="Hobbies"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <EditText
+                android:id="@+id/editColor"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/title_hobbies"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/textColorPrimary"/>
-            <TextView
-                android:text="Piercings"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:hint="Favourite color"/>
+
+            <EditText
+                android:id="@+id/editFood"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:id="@+id/title_piercings"
-                android:textAlignment="center"
-                android:textColor="@color/textColorPrimary"/>
-        </TableRow>
+                android:hint="Favourite food"/>
 
-        <TableRow>
-
-            <TextView
-                android:text="Tennis, Dancing, Coin collecting"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <EditText
+                android:id="@+id/editSports"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/hobbies"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:paddingBottom="12dp"
-                android:textColor="@color/textColorSecondary"/>
-            <TextView
-                android:text="Ears"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:hint="Sports"/>
+
+            <EditText
+                android:id="@+id/editHobbies"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/piercings"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:paddingBottom="12dp"
-                android:textColor="@color/textColorSecondary"/>
-        </TableRow>
-    </TableLayout>
+                android:hint="Hobbies"/>
 
+            <EditText
+                android:id="@+id/editInterests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Interests"/>
 
+            <EditText
+                android:id="@+id/editOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Other"/>
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/saveChangesBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ViewSwitcher>
+    

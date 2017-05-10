@@ -8,12 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.adapters.FriendWishAdapter;
 import hr.spacecontrol.uwish.adapters.ItemGridAdapter;
-import hr.spacecontrol.uwish.objects.Person;
+import hr.spacecontrol.uwish.objects.User;
 
 public class FriendDetailsActivity extends AppCompatActivity {
 
@@ -28,7 +26,7 @@ public class FriendDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_friend_details);
 
         Intent intent = getIntent();
-        Person friend = (Person) intent.getSerializableExtra("friend"); // gets selected friend
+        User friend = (User) intent.getSerializableExtra("friend"); // gets selected friend
         // TODO fetch friend info from firebase
 
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);

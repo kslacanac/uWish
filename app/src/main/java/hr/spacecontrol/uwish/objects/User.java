@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Karmela on 17/03/2017.
  */
 
-public class Person implements Serializable {
+public class User implements Serializable {
     String username;
     String password;
     String name;
@@ -17,14 +17,25 @@ public class Person implements Serializable {
     List<Item> wishList;
 
     /* CONSTRUCTORS */
-    public Person() {
+    public User() {
     }
 
-    public Person(String name) {
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String name) {
         this.name = name;
     }
 
-    public Person(String name, int image) {
+    public User(String name, int image) {
         this.name = name;
         this.image = image;
 
@@ -87,7 +98,7 @@ public class Person implements Serializable {
         this.email = email;
     }
 
-    private class PersonalInfo {
+    public class PersonalInfo {
         private String clothingSize;
         private String shoeSize;
         private String favouriteColor;

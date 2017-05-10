@@ -1,7 +1,5 @@
 package hr.spacecontrol.uwish.activities;
 
-import android.animation.LayoutTransition;
-import android.app.ActionBar;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -12,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,13 +17,13 @@ import java.util.List;
 
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.adapters.FriendListAdapter;
-import hr.spacecontrol.uwish.objects.Person;
+import hr.spacecontrol.uwish.objects.User;
 
 public class SearchableActivity extends ListActivity {
 
     ListView listView;
     FriendListAdapter listAdapter;
-    List<Person> searchResults;
+    List<User> searchResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

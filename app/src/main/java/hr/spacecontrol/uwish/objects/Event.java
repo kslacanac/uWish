@@ -1,7 +1,6 @@
 package hr.spacecontrol.uwish.objects;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ public class Event implements Serializable{
     String location;
     String category;
     String username; //of the person who created the event
-    List<Person> invitedPeople;
+    List<User> invitedPeople;
 
     public Event() {
         //empty constructor
@@ -83,11 +82,11 @@ public class Event implements Serializable{
         this.category = category;
     }
 
-    public List<Person> getInvitedPeople() {
+    public List<User> getInvitedPeople() {
         return invitedPeople;
     }
 
-    public void setInvitedPeople(List<Person> invitedPeople) {
+    public void setInvitedPeople(List<User> invitedPeople) {
         this.invitedPeople = invitedPeople;
     }
 

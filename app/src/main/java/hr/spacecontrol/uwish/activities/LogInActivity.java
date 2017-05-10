@@ -23,7 +23,6 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -34,8 +33,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.objects.User;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -48,6 +50,7 @@ public class LogInActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mDatabase;
 
     /* The login button for Facebook */
     private LoginButton loginButton;
@@ -82,21 +85,20 @@ public class LogInActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 Log.d("", "facebook:onSuccess:" + loginResult);
-                System.out.println("uspjesno");
             }
 
             @Override
             public void onCancel() {
                 Log.d("TAG", "facebook:onCancel");
-                System.out.println("kenselano");
             }
 
             @Override
             public void onError(FacebookException error) {
                 Log.d("TAG", "facebook:onError", error);
-                System.out.println("errorrrrrr!!");
             }
         });
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -106,19 +108,21 @@ public class LogInActivity extends AppCompatActivity {
 
                     Log.d("", "onAuthStateChanged:signed_in:" + user.getUid());
 
-                    //Intent intent = new Intent(LogInActivity.this, ActivityFacebookUser.class);
-                    Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                     String email = user.getEmail();
                     String name = user.getDisplayName();
+                    String uid = user.getUid();
+                    User person = new User(name,email);
+                    mDatabase.child("Users").child(uid).setValue(person);
+
+                    Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                     startActivity(intent);
+
                     finish();
                 } else {
                     Log.d("TG", "SIGNED OUT");
                 }
             }
         };
-
-
 
         signUpTextView = (Button) findViewById(R.id.signUpText);
         emailEditText = (EditText) findViewById(R.id.emailField);
@@ -143,11 +147,8 @@ public class LogInActivity extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-
-                email = email.trim();
-                password = password.trim();
+                final String email = emailEditText.getText().toString().trim();
+                final String password = passwordEditText.getText().toString().trim();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
@@ -166,6 +167,7 @@ public class LogInActivity extends AppCompatActivity {
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
+
                                     } else {
                                         AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
                                         builder.setMessage(task.getException().getMessage())
