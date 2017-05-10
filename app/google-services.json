@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "257823860276-4jq927vqfaugtj1ag7qspuo1i0mg1dbk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hr.spacecontrol.uwish",
+            "certificate_hash": "b08c3488b15febc6c46deba7b5a998c834bdb36b"
+          }
+        },
+        {
           "client_id": "257823860276-d5602nnk3s5mu96q0j43a8fmgl300muc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
