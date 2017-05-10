@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import hr.spacecontrol.uwish.R;
-import hr.spacecontrol.uwish.objects.Person;
+import hr.spacecontrol.uwish.objects.User;
 
 /**
  * Created by Karmela on 21/03/2017.
@@ -19,9 +19,9 @@ import hr.spacecontrol.uwish.objects.Person;
 public class FriendListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Person> friendList;
+    private List<User> friendList;
 
-    public FriendListAdapter(Context context, List<Person> friendList) {
+    public FriendListAdapter(Context context, List<User> friendList) {
         this.context = context;
         this.friendList = friendList;
     }

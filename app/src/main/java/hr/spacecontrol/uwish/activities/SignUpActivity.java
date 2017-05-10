@@ -18,15 +18,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.objects.User;
 
 public class SignUpActivity extends AppCompatActivity {
 
     protected EditText passwordEditText;
     protected EditText emailEditText;
     protected Button signUpButton;
+    protected EditText nameEditText;
+
     private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +41,18 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        passwordEditText = (EditText)findViewById(R.id.passwordField);
-        emailEditText = (EditText)findViewById(R.id.emailField);
-        signUpButton = (Button)findViewById(R.id.signupButton);
+        passwordEditText = (EditText) findViewById(R.id.passwordField);
+        emailEditText = (EditText) findViewById(R.id.emailField);
+        signUpButton = (Button) findViewById(R.id.signupButton);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password = passwordEditText.getText().toString();
-                String email = emailEditText.getText().toString();
-
-                password = password.trim();
-                email = email.trim();
+                final String password = passwordEditText.getText().toString().trim();
+                final String email = emailEditText.getText().toString().trim();
+                final String name = nameEditText.getText().toString().trim();
 
                 if (password.isEmpty() || email.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
@@ -62,6 +67,10 @@ public class SignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        String uid = mFirebaseAuth.getCurrentUser().getUid();
+                                        User user = new User(name,email,password);
+                                        mDatabase.child("Users").child(uid).setValue(user);
+
                                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
