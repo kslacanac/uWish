@@ -26,15 +26,16 @@
 
         <LinearLayout
             android:id="@+id/container_profile"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/my_toolbar"
             android:weightSum="1">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/my_toolbar"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/borderfull"
@@ -54,7 +55,7 @@
                 android:id="@+id/editProfileBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="0.82"
                 android:text="Edit" />
 
@@ -211,9 +212,12 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kurac"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
