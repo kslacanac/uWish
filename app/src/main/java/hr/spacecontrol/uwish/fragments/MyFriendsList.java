@@ -45,21 +45,6 @@ public class MyFriendsList extends Fragment {
 
         friendListView = (ListView) view.findViewById(R.id.friend_list);
 
-        // Making some friends and their wish lists
-        User Amelie = new User("Amelie Sanders", R.drawable.friend02);
-        List<Item> items = new ArrayList<>();
-        items.add(new Item("Sun glasses",R.drawable.item01));
-        items.add(new Item("Skateboard",R.drawable.item02));
-        items.add(new Item("Water bottle", R.drawable.item03));
-        Amelie.setWishList(items);
-
-        friends = new ArrayList<>();
-        friends.add(new User("Mate Matičar", R.drawable.friend05));
-        friends.add(Amelie);
-        friends.add(new User("Donna Paulsen", R.drawable.friend01));
-        friends.add(new User("Cassey Cho", R.drawable.friend03));
-        friends.add(new User("Michael Ross", R.drawable.friend04));
-
         friendListAdapter = new FriendListAdapter(getActivity().getApplicationContext(), friends);
         friendListView.setAdapter(friendListAdapter);
 

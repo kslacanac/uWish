@@ -12,6 +12,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.objects.Item;
 
@@ -39,8 +45,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
 
         Intent intent = getIntent();
-        Item item = (Item) intent.getSerializableExtra("item"); // gets selected item from list
-        // TODO fetch item from firebase to display info
+        Item item = (Item) intent.getSerializableExtra("item");
 
         name = (TextView) findViewById(R.id.item_name);
         name.setText(item.getName());
@@ -52,7 +57,12 @@ public class ItemDetailsActivity extends AppCompatActivity {
         link.setText(item.getLink());
 
         image = (ImageView) findViewById(R.id.item_image);
-        image.setImageResource(item.getImage());
+        if (item.getImageUri() == null) {
+            StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(item.getImage());
+            Glide.with(ItemDetailsActivity.this).using(new FirebaseImageLoader()).load(reference).into(image);
+        } else {
+            Picasso.with(this).load(item.getImageUri()).into(image);
+        }
 
         find = (TextView) findViewById(R.id.textView);
 

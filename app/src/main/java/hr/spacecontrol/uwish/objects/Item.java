@@ -1,5 +1,7 @@
 package hr.spacecontrol.uwish.objects;
 
+import android.net.Uri;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,26 +11,22 @@ import java.util.List;
 
 public class Item implements Serializable {
     String name;
-    int image;
+    String image;
+    String imageUri;
     String description;
     String link;
-    List<String> tags; //for laters
+    String groups;
+    //List<String> tags;
 
-    public Item(String name, int image) {
+    public Item(String name) {
         this.name = name;
-        this.image = image;
-
     }
 
-    public Item(String name, int image, String description, String link) {
+    public Item(String name, String image, String description, String link) {
         this.name = name;
         this.image = image;
         this.description = description;
         this.link = link;
-    }
-
-    public Item(String name) {
-        this.name = name;
     }
 
     public Item() {
@@ -43,11 +41,19 @@ public class Item implements Serializable {
         this.name = name;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -67,11 +73,11 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public List<String> getTags() {
-        return tags;
+    public String getGroups() {
+        return groups;
     }
 
-    public void setTags(List<String> tags) {
-        this.tags = tags;
+    public void setGroups(String groups) {
+        this.groups = groups;
     }
 }

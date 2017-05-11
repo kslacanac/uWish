@@ -11,6 +11,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import hr.spacecontrol.uwish.R;
@@ -55,7 +62,15 @@ public class ItemGridAdapter extends BaseAdapter {
         Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
 
         ImageView imageView = (ImageView) v.findViewById(R.id.item_image);
-        imageView.setImageResource(itemList.get(position).getImage());
+
+        Item selectedItem = itemList.get(position);
+        if (selectedItem.getImageUri() == null) {
+            StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(itemList.get(position).getImage());
+            Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
+        } else {
+            Picasso.with(v.getContext()).load(selectedItem.getImageUri()).into(imageView);
+        }
+
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         TextView itemName = (TextView)v.findViewById(R.id.item_name);
