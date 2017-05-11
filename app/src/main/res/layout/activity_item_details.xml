@@ -8,135 +8,239 @@
     android:background="@color/background"
     tools:context="hr.spacecontrol.uwish.activities.ItemDetailsActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <ViewSwitcher
+        android:id="@+id/viewswitcher"
         android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:titleTextColor="@android:color/white"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:theme="@style/ToolbarColoredBackArrow"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:layout_height="wrap_content">
 
-    </android.support.v7.widget.Toolbar>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/my_toolbar"
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:titleTextColor="@android:color/white"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:theme="@style/ToolbarColoredBackArrow"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/item01"
-        android:id="@+id/item_image"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/my_toolbar"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/item01"
+                android:id="@+id/item_image"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/my_toolbar"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"/>
 
-    <TextView
-        android:text="Item name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/item_image"
-        android:id="@+id/item_name"
-        android:layout_marginBottom="8dp"
-        android:textSize="28sp"
-        android:textColor="@color/textColorPrimary"/>
-    <View
-        android:layout_width="wrap_content"
-        android:background="@drawable/divider"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_height="1dp"
-        android:layout_below="@id/item_name" />
+            <TextView
+                android:text="Item name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/item_image"
+                android:id="@+id/item_name"
+                android:layout_marginBottom="8dp"
+                android:textSize="28sp"
+                android:textColor="@color/textColorPrimary"/>
+            <View
+                android:layout_width="wrap_content"
+                android:background="@drawable/divider"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/item_name" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/desc"
-        android:text="Description"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textSize="22dp"
-        android:textColor="@color/textColorPrimary"
-        android:layout_below="@id/item_name"/>
-    <TextView
-        android:text="Item description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_description"
-        android:layout_below="@id/desc"
-        android:layout_marginTop="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:textSize="14dp"
-        android:textColor="@color/textColorSecondary"/>
-
-
-    <TextView
-        android:text="You can find this item @"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_below="@id/item_description"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:textSize="18dp"
-        android:textColor="@color/textColorSecondary"/>
-
-    <TextView
-        android:text="www.example.com"
-        android:id="@+id/item_link"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:autoLink="web"
-        android:layout_below="@id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:textSize="18dp"
-        android:textColorLink="@color/colorAccent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/desc"
+                android:text="Description"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:textSize="22dp"
+                android:textColor="@color/textColorPrimary"
+                android:layout_below="@id/item_name"/>
+            <TextView
+                android:text="Item description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_description"
+                android:layout_below="@id/desc"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/textColorSecondary"/>
 
 
+            <TextView
+                android:text="You can find this item @"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:layout_below="@id/item_description"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:textSize="18dp"
+                android:textColor="@color/textColorSecondary"/>
 
-    <ImageButton
-        android:src="@drawable/ic_delete_white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/delete_btn"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:elevation="5dp"
-        android:padding="7dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="4dp"
-        android:background="@android:color/transparent"/>
-
-    <ImageButton
-        android:src="@drawable/ic_edit_white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/edit_btn"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/delete_btn"
-        android:layout_marginTop="6dp"
-        android:elevation="5dp"
-        android:padding="7dp"
-        android:background="@android:color/transparent"/>
+            <TextView
+                android:text="www.example.com"
+                android:id="@+id/item_link"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:autoLink="web"
+                android:layout_below="@id/textView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:textSize="18dp"
+                android:textColorLink="@color/colorAccent"/>
 
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_link"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/textColorPrimary"
-        android:text="Recieved" />
+
+            <ImageButton
+                android:src="@drawable/ic_delete_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_btn"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:elevation="5dp"
+                android:padding="7dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="4dp"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:src="@drawable/ic_edit_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_btn"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/delete_btn"
+                android:layout_marginTop="6dp"
+                android:elevation="5dp"
+                android:padding="7dp"
+                android:background="@android:color/transparent"/>
 
 
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_link"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textColorPrimary"
+                android:text="Recieved" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Title"
+                    android:maxLines="2"
+                    android:paddingBottom="16dp" />
+
+                <EditText
+                    android:id="@+id/editDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="Description"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="2"
+                    android:minLines="1"
+                    android:paddingBottom="16dp"
+                    android:scrollbars="none" />
+
+                <EditText
+                    android:id="@+id/editLink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="Where to buy?"
+                    android:maxLines="2"
+                    android:paddingBottom="16dp" />
+
+                <MultiAutoCompleteTextView
+                    android:id="@+id/editGroups"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Who can see this item?"/>
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_gift"></ImageView>
+                <Button
+                    android:id="@+id/galleryBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Upload from gallery"
+                    android:layout_gravity="center"></Button>
+                <EditText
+                    android:id="@+id/editUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Image URL"/>
+                <Button
+                    android:id="@+id/urlBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload from URL"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="55dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp">
+
+                    <Button
+                        android:id="@+id/saveChangesBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/colorPrimary"
+                        android:padding="5dp"
+                        android:paddingLeft="20dp"
+                        android:text="Save changes"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ViewSwitcher>
 </RelativeLayout>

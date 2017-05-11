@@ -10,6 +10,7 @@ import java.util.List;
  */
 
 public class Item implements Serializable {
+    String key;
     String name;
     String image;
     String imageUri;
@@ -31,6 +32,14 @@ public class Item implements Serializable {
 
     public Item() {
         //empty constructor
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getName() {

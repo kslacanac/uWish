@@ -88,7 +88,8 @@
             <EditText
                 android:id="@+id/url"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Image URL"/>
             <Button
                 android:id="@+id/urlBtn"
                 android:layout_width="wrap_content"

@@ -123,6 +123,7 @@ public class MakeAWishActivity extends AppCompatActivity {
                     item.setImage(selectedImage.getLastPathSegment().toString());
                 } else item.setImageUri(imageUrl.getText().toString());
                 String key = generateKey(10);
+                item.setKey(key);
                 mDatabase.child("Wishlist").child(key).setValue(item);
                 openItemDetailActivity(item);
             }
