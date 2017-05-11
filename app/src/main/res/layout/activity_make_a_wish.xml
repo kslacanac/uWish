@@ -66,6 +66,12 @@
                 android:maxLines="2"
                 android:paddingBottom="16dp" />
 
+            <MultiAutoCompleteTextView
+                android:id="@+id/groups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Who can see this item?"/>
+
             <ImageView
                 android:id="@+id/imgView"
                 android:layout_width="150dp"

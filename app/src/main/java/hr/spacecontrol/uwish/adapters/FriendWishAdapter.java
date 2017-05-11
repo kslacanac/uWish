@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import hr.spacecontrol.uwish.R;
@@ -44,7 +47,7 @@ public class FriendWishAdapter extends ItemGridAdapter {
         Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
 
         ImageView imageView = (ImageView) v.findViewById(R.id.item_image);
-        imageView.setImageResource(itemList.get(position).getImage());
+        Glide.with(v.getContext()).load(itemList.get(position).getImage()).into(imageView);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         TextView itemName = (TextView)v.findViewById(R.id.item_name);

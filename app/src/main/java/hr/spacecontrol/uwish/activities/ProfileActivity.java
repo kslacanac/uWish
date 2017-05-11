@@ -66,8 +66,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        Toolbar firstToolbar = (Toolbar) findViewById(R.id.firstToolbar);
+        setSupportActionBar(firstToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
@@ -157,14 +157,24 @@ public class ProfileActivity extends AppCompatActivity {
     private void showEditableData() {
         editImage.setImageResource(user.getImage());
         editName.setText(user.getName());
-        if (user.getDetails().getClothingSize() != null) editClothingSize.setText(user.getDetails().getClothingSize());
-        if (user.getDetails().getShoeSize() != null) editShoeSize.setText(user.getDetails().getShoeSize());
-        if (user.getDetails().getFavouriteColor() != null) editFavColor.setText(user.getDetails().getFavouriteColor());
-        if (user.getDetails().getFavouriteFood() != null) editFavFood.setText(user.getDetails().getFavouriteFood());
-        if (user.getDetails().getSports() != null) editSports.setText(user.getDetails().getSports());
-        if (user.getDetails().getHobbies() != null) editHobbies.setText(user.getDetails().getHobbies());
-        if (user.getDetails().getInterests() != null) editInterests.setText(user.getDetails().getInterests());
-        if (user.getDetails().getOther() != null) editOther.setText(user.getDetails().getOther());
+        if (user.getDetails() != null) {
+            if (user.getDetails().getClothingSize() != null)
+                editClothingSize.setText(user.getDetails().getClothingSize());
+            if (user.getDetails().getShoeSize() != null)
+                editShoeSize.setText(user.getDetails().getShoeSize());
+            if (user.getDetails().getFavouriteColor() != null)
+                editFavColor.setText(user.getDetails().getFavouriteColor());
+            if (user.getDetails().getFavouriteFood() != null)
+                editFavFood.setText(user.getDetails().getFavouriteFood());
+            if (user.getDetails().getSports() != null)
+                editSports.setText(user.getDetails().getSports());
+            if (user.getDetails().getHobbies() != null)
+                editHobbies.setText(user.getDetails().getHobbies());
+            if (user.getDetails().getInterests() != null)
+                editInterests.setText(user.getDetails().getInterests());
+            if (user.getDetails().getOther() != null)
+                editOther.setText(user.getDetails().getOther());
+        }
     }
 
     private void saveChanges() {

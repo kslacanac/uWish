@@ -53,6 +53,7 @@ public class LogInActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     /* The login button for Facebook */
+    private Button fb;
     private LoginButton loginButton;
     /* Used to track user logging in/out off Facebook */
     private AccessTokenTracker mFacebookAccessTokenTracker;
@@ -71,6 +72,8 @@ public class LogInActivity extends AppCompatActivity {
         }
         //mFirebaseAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
+
+        fb = (Button)findViewById(R.id.fb);
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "public_profile");
         /*mFacebookAccessTokenTracker = new AccessTokenTracker() {
@@ -95,6 +98,13 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onError(FacebookException error) {
                 Log.d("TAG", "facebook:onError", error);
+            }
+        });
+
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginButton.performClick();
             }
         });
 
