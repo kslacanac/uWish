@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.LogInActivity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -17,19 +21,35 @@
             android:src="@drawable/cover1" />
     </FrameLayout>
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/logo_stack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/logo_180"
-        android:paddingTop="42dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"/>
+        android:paddingBottom="48dp"
+        android:paddingTop="42dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:src="@mipmap/logo_signin" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/logo"
+            android:src="@drawable/uwish" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="36dp"
+        android:layout_below="@id/logo_stack"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -50,7 +70,6 @@
             android:id="@+id/passwordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/emailField"
             android:layout_below="@+id/emailField"
             android:layout_marginBottom="24dp"
             android:background="@drawable/rounded_corners"
@@ -65,7 +84,7 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/button"
             android:padding="12dp"
-            android:text="@string/login_button_label"
+            android:text="@string/title_activity_login"
             android:textColor="#ffffff"
             android:textSize="16dp"
             android:textStyle="bold" />
@@ -145,3 +164,4 @@
     </RelativeLayout>
 
 </RelativeLayout>
+    </ScrollView>
