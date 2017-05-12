@@ -21,7 +21,18 @@
             android:src="@drawable/cover1" />
     </FrameLayout>
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/logo_signin"
+        android:paddingBottom="48dp"
+        android:paddingTop="42dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <!--<RelativeLayout
         android:id="@+id/logo_stack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,12 +55,12 @@
             android:layout_toRightOf="@id/logo"
             android:src="@drawable/uwish" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logo_stack"
+        android:layout_below="@id/logo"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -155,9 +166,10 @@
                 android:id="@+id/fb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#416BC1"
-                android:text="FaceBook"
+                android:background="@drawable/button_facebook"
+                android:text="Sign in with facebook"
                 android:textColor="#ffffff"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </FrameLayout>
 

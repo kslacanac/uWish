@@ -145,6 +145,7 @@ public class LogInActivity extends AppCompatActivity {
         emailEditText.setTypeface(lregular);
         passwordEditText.setTypeface(lregular);
         logInButton.setTypeface(lregular);
+        fb.setTypeface(lregular);
 
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
