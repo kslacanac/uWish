@@ -8,6 +8,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -19,8 +28,12 @@ import hr.spacecontrol.uwish.objects.Event;
  */
 
 public class MyEventListAdapter extends BaseAdapter {
+
     private Context context;
     private List<Event> eventList;
+
+    DatabaseReference mDatabase;
+    FirebaseUser firebaseUser;
 
     public MyEventListAdapter(Context context, List<Event> eventList) {
         this.context = context;
@@ -47,6 +60,9 @@ public class MyEventListAdapter extends BaseAdapter {
 
         View v = View.inflate(context, R.layout.listview_myevent, null);
 
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(firebaseUser.getUid());
+
         ImageView icon = (ImageView)v.findViewById(R.id.iconLeft);
         TextView eventName = (TextView)v.findViewById(R.id.event_name);
         TextView eventDate = (TextView)v.findViewById(R.id.event_date);
@@ -68,9 +84,16 @@ public class MyEventListAdapter extends BaseAdapter {
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //brise event iz liste
-                eventList.remove(position);
-                notifyDataSetChanged();
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        mDatabase.child(eventList.get(position).getKey()).removeValue();
+                        notifyDataSetChanged();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
+                Toast.makeText(v.getContext(), "Event deleted", Toast.LENGTH_LONG);
             }
         });
 

@@ -2,6 +2,7 @@ package hr.spacecontrol.uwish.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -64,6 +65,12 @@ public class ItemGridAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) v.findViewById(R.id.item_image);
 
         Item selectedItem = itemList.get(position);
+
+        if (selectedItem.isReceived()) {
+            Drawable highlight = v.getResources().getDrawable(R.drawable.borderfull);
+            imageView.setBackground(highlight);
+        }
+
         if (selectedItem.getImageUri() == null || selectedItem.getImageUri().equals("")) {
             if (selectedItem.getImage() != null) {
                 StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(selectedItem.getImage());

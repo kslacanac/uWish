@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -13,6 +14,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -57,6 +60,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private TextView find;
     private ImageButton delete;
     private ImageButton edit;
+    private CheckBox checkBox;
 
     private EditText editName;
     private EditText editDescription;
@@ -100,6 +104,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         link = (TextView) findViewById(R.id.item_link);
         link.setText(item.getLink());
         find = (TextView)findViewById(R.id.textView);
+        checkBox = (CheckBox)findViewById(R.id.checkBox);
         //set typeface for textview
         name.setTypeface(lregular);
         description.setTypeface(lregular);
@@ -114,6 +119,21 @@ public class ItemDetailsActivity extends AppCompatActivity {
             }
         } else Picasso.with(this).load(item.getImageUri()).into(image);
 
+        if (item.isReceived()) {
+            checkBox.setChecked(true);
+        }
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    //Drawable highlight = getResources().getDrawable(R.drawable.borderfull);
+                    //image.setBackground(highlight);
+                    item.setReceived(true);
+                    mDatabase.child(item.getKey()).child("received").setValue(item.isReceived());
+                }
+            }
+        });
 
         delete = (ImageButton) findViewById(R.id.delete_btn);
         delete.setOnClickListener(new View.OnClickListener(){

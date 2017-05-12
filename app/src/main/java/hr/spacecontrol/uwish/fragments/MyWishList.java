@@ -52,7 +52,9 @@ public class MyWishList extends Fragment {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("Wishlist");
+
         itemGridView = (GridView) view.findViewById(R.id.item_grid);
+
         items = new ArrayList<>();
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override

@@ -15,6 +15,7 @@ public class Event implements Serializable{
     String location;
     String category;
     String username; //of the person who created the event
+    String key;
     List<User> invitedPeople;
 
     public Event() {
@@ -24,6 +25,14 @@ public class Event implements Serializable{
     public Event(String name, String date) {
         this.name = name;
         this.date = date;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getUsername() {
