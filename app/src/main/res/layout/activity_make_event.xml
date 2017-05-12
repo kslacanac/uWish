@@ -1,64 +1,75 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="hr.spacecontrol.uwish.activities.CreateEventActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:orientation="vertical"
-        tools:context="hr.spacecontrol.uwish.activities.CreateEventActivity">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentTop="true"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ToolbarColoredBackArrow"
-            app:titleTextColor="@android:color/white">
+    </android.support.v7.widget.Toolbar>
 
-        </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingRight="16dp"
+            android:paddingBottom="24dp">
 
             <EditText
                 android:id="@+id/make_event_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
                 android:hint="Title"
-                android:maxLines="2"
-                android:paddingBottom="16dp" />
+                android:lines="1"
+                android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/make_event_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
                 android:hint="Description"
                 android:inputType="textMultiLine|textCapSentences"
                 android:maxLines="2"
                 android:minLines="1"
-                android:paddingBottom="16dp"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:textSize="22sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
+                android:hint="Time"
+                android:inputType="time"
+                android:lines="1"
+                android:textSize="22sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
+                android:layout_marginTop="16dp"
                 android:text="Date"
                 android:textSize="24sp" />
 
@@ -66,19 +77,15 @@
                 android:id="@+id/make_event_datepicker"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
                 android:calendarViewShown="false"
-                android:datePickerMode="spinner"></DatePicker>
-
-            <TimePicker
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/timePicker" />
+                android:datePickerMode="spinner" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
-                android:paddingBottom="16dp"
+                android:layout_marginTop="16dp"
                 android:text="Category"
                 android:textSize="24sp" />
 
@@ -88,32 +95,26 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="12dp"
                 android:entries="@array/spinnerItems"
                 android:paddingBottom="20dp"
                 android:popupBackground="#ffffff"
                 android:prompt="@string/category"
                 android:spinnerMode="dialog" />
 
-            <LinearLayout
+            <Button
+                android:id="@+id/create_event_btn"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingBottom="65dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp">
-
-                <Button
-                    android:id="@+id/create_event_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimary"
-                    android:padding="5dp"
-                    android:paddingLeft="20dp"
-                    android:text="Create event"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button"
+                android:padding="12dp"
+                android:text="Create event"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:textStyle="bold" />
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
+

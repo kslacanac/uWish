@@ -51,7 +51,6 @@ public class CreateEventActivity extends AppCompatActivity {
         title = (EditText)findViewById(R.id.make_event_title);
         description = (EditText)findViewById(R.id.make_event_description);
         datePicker = (DatePicker)findViewById(R.id.make_event_datepicker);
-        timePicker = (TimePicker)findViewById(R.id.timePicker);
         category = (Spinner)findViewById(R.id.make_event_category_spinner);
         createBtn = (Button)findViewById(R.id.create_event_btn);
 
