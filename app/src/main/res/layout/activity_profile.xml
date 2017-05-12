@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="6dp"
-                        android:text="Username/Name"
+                        android:text=""
                         android:textColor="@color/textColorPrimary"
                         android:textSize="28dp" />
                 </LinearLayout>
@@ -432,22 +432,417 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp">
 
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp">
+                    <ImageView
+                        android:id="@+id/editImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="175dp"
+                        android:adjustViewBounds="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/friend01"
+                        android:layout_weight="1"
+                        />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:layout_gravity="center_vertical"
+                        android:text="Change photo"
+                        android:background="@drawable/button"
+                        android:padding="10dp"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Name"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Name" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Clothing size"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editClothingSize"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Clothing size" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Shoe size"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editShoeSize"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Shoe size" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Favourite color"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editColor"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Favourite color" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Favourite food"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editFood"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Favourite food" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Hobbies"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editHobbies"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Hobbies" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Sports"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editSports"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Sports" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Interests"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editInterests"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Interests" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_weight="1"
+                            android:layout_marginTop="4dp"
+                            android:text="Other"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/editOther"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_corners_edit"
+                            android:textSize="14sp"
+                            android:layout_weight="1.5"
+                            android:lines="1"
+                            android:hint="Other" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/saveChangesBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/button"
+                        android:padding="12dp"
+                        android:text="Save changes"
+                        android:layout_marginTop="12dp"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <!--<LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24dp"
+                        android:textColor="@color/textColorPrimary"
+                        android:text="Profile image: "/>
 
                     <ImageView
                         android:id="@+id/editImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
-                    <EditText
-                        android:id="@+id/editName"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="24dp"
+                        android:text="Name: "/>
+
+                    <EditText
+                        android:id="@+id/editName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_corners_edit"
                         android:hint="Name" />
 
                     <EditText
@@ -503,7 +898,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Save" />
-                </LinearLayout>
+                </LinearLayout>-->
             </RelativeLayout>
 
         </ViewSwitcher>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  res/drawable/edittext_rounded_corners.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" android:state_focused="true">
+        <shape>
+            <solid android:color="#ffffff"/>
+            <stroke
+                android:width="1dp"
+                android:color="#98b539" />
+            <corners
+                android:radius="5dp" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="true" android:state_focused="false">
+        <shape>
+            <solid android:color="#ffffff"/>
+            <stroke
+                android:width="1dp"
+                android:color="#98b539" />
+            <corners
+                android:radius="5dp" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="false" android:state_focused="true">
+        <shape>
+            <solid android:color="#ffffff"/>
+            <stroke
+                android:width="1dp"
+                android:color="#98b539" />
+            <corners
+                android:radius="5dp" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="false" android:state_focused="false">
+        <shape>
+            <stroke
+                android:width="1dp"
+                android:color="@color/textColorPrimary" />
+            <gradient
+                android:startColor="#ffffff"
+                android:centerColor="#FFFFFF"
+                android:endColor="#FFFFFF"
+                android:angle="270"
+                />
+            <corners
+                android:radius="5dp" />
+        </shape>
+    </item>
+
+    <item android:state_enabled="true">
+        <shape>
+            <solid android:color="@color/textColorPrimary"/>
+            <padding
+                android:left="8dp"
+                android:top="8dp"
+                android:right="8dp"
+                android:bottom="8dp"
+                />
+        </shape>
+    </item>
+
+</selector>
