@@ -1,122 +1,180 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_make_a_wish"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:orientation="vertical"
     tools:context="hr.spacecontrol.uwish.activities.MakeAWishActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="@android:color/white">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentTop="true"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ToolbarColoredBackArrow"
-            app:titleTextColor="@android:color/white">
+    </android.support.v7.widget.Toolbar>
 
-        </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingRight="16dp"
+            android:layout_marginBottom="28dp">
 
             <EditText
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
                 android:hint="Title"
                 android:maxLines="2"
-                android:paddingBottom="16dp" />
+                android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
                 android:hint="Description"
                 android:inputType="textMultiLine|textCapSentences"
                 android:maxLines="2"
                 android:minLines="1"
-                android:paddingBottom="16dp"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/wheretobuy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
                 android:hint="Where to buy?"
                 android:maxLines="2"
-                android:paddingBottom="16dp" />
+                android:textSize="22sp" />
 
             <MultiAutoCompleteTextView
                 android:id="@+id/groups"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Who can see this item?"/>
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
+                android:hint="Who can see this item?"
+                android:textSize="22sp" />
 
             <ImageView
                 android:id="@+id/imgView"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_gift"></ImageView>
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/gift_image" />
+
             <Button
                 android:id="@+id/galleryBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button"
+                android:padding="12dp"
                 android:text="Upload from gallery"
-                android:layout_gravity="center"></Button>
-            <EditText
-                android:id="@+id/url"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Image URL"/>
-            <Button
-                android:id="@+id/urlBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload from URL"/>
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/text_or"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:orientation="vertical"
-                android:paddingBottom="55dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/signUpText"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/textColorPrimary" />
 
                 <Button
-                    android:id="@+id/make_wish_btn"
-                    android:layout_width="match_parent"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/colorPrimary"
-                    android:padding="5dp"
-                    android:paddingLeft="20dp"
-                    android:text="Wish it!"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp" />
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:clickable="false"
+                    android:text="OR"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="25dp" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/textColorPrimary" />
+
             </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_corners_edit"
+                android:hint="Image URL"
+                android:textSize="22sp" />
+
+            <Button
+                android:id="@+id/urlBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button"
+                android:padding="12dp"
+                android:text="Upload from URL"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/divider" />
+
+            <Button
+                android:id="@+id/make_wish_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button"
+                android:padding="12dp"
+                android:text="Wish it!"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
