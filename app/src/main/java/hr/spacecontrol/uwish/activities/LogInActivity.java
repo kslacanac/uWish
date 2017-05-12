@@ -118,11 +118,8 @@ public class LogInActivity extends AppCompatActivity {
 
                     Log.d("", "onAuthStateChanged:signed_in:" + user.getUid());
 
-                    String email = user.getEmail();
-                    String name = user.getDisplayName();
-                    String uid = user.getUid();
-                    User person = new User(name,email);
-                    mDatabase.child("Users").child(uid).setValue(person);
+                    mDatabase.child("Users").child(user.getUid()).child("email").setValue(user.getEmail());
+                    mDatabase.child("Users").child(user.getUid()).child("name").setValue(user.getDisplayName());
 
                     Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                     startActivity(intent);

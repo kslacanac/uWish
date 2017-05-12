@@ -1,6 +1,7 @@
 package hr.spacecontrol.uwish.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -39,6 +40,7 @@ public class MyWishAdapter extends ItemGridAdapter {
                 notifyDataSetChanged();
             }
         });*/
+
         return v;
     }
 

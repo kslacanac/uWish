@@ -10,13 +10,15 @@ import java.util.List;
  */
 
 public class Item implements Serializable {
-    String key;
-    String name;
-    String image;
-    String imageUri;
-    String description;
-    String link;
-    String groups;
+    private String key;
+    private String name;
+    private String image;
+    private String imageUri;
+    private String description;
+    private String link;
+    private String groups;
+    private boolean received;
+    private boolean reserved;
     //List<String> tags;
 
     public Item(String name) {
@@ -31,7 +33,6 @@ public class Item implements Serializable {
     }
 
     public Item() {
-        //empty constructor
     }
 
     public String getKey() {
@@ -88,5 +89,21 @@ public class Item implements Serializable {
 
     public void setGroups(String groups) {
         this.groups = groups;
+    }
+
+    public boolean isReserved() {
+        return reserved;
+    }
+
+    public void setReserved(boolean reserved) {
+        this.reserved = reserved;
+    }
+
+    public boolean isReceived() {
+        return received;
+    }
+
+    public void setReceived(boolean received) {
+        this.received = received;
     }
 }

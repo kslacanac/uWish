@@ -9,6 +9,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +32,9 @@ public class MyEvents extends Fragment {
     ListView eventListView;
     List<Event> events;
     MyEventListAdapter eventListAdapter;
+
+    DatabaseReference mDatabase;
+    FirebaseUser firebaseUser;
 
     public MyEvents() {
         // Required empty public constructor
@@ -40,22 +52,29 @@ public class MyEvents extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //set layout to view
         View view = inflater.inflate(R.layout.fragment_my_events, container, false);
-        //set id to ListView
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(firebaseUser.getUid());
+
         eventListView = (ListView) view.findViewById(R.id.event_list);
 
         events = new ArrayList<>();
-        //add some data to list
-        events.add(new Event("Mom's Birthday", "Monday, 20/03/2017"));
-        events.add(new Event("Uncle's Wedding", "Saturday, 25/03/2017"));
-        events.add(new Event("Baby shower", "15/04/2017"));
-        events.add(new Event("Kerry's birthday", "17/05/2017"));
-        events.add(new Event("Prom night", "28/05/2017"));
-        events.add(new Event("Paula's graduation", "15/06/2017"));
-        events.add(new Event("My cat's birthday", "20/06/2017"));
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                events.removeAll(events);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    events.add(snapshot.getValue(Event.class));
+                    eventListAdapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        //initialize adapter
+            }
+        });
+
         eventListAdapter = new MyEventListAdapter(getActivity().getApplicationContext(), events);
         eventListView.setAdapter(eventListAdapter);
 
