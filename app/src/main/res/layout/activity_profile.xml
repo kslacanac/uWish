@@ -2,297 +2,510 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="hr.spacecontrol.uwish.activities.ProfileActivity">
 
-<android.support.v7.widget.Toolbar
-    android:id="@+id/firstToolbar"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:layout_alignParentTop="true"
-    android:background="@color/colorPrimary"
-    android:elevation="4dp"
-    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:theme="@style/ToolbarColoredBackArrow"
-    app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/firstToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
 
-<ViewSwitcher
-    android:id="@+id/viewswitcher"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
+        android:layout_below="@id/firstToolbar">
 
-        <LinearLayout
-            android:id="@+id/container_profile"
-            android:orientation="vertical"
+        <ViewSwitcher
+            android:id="@+id/viewswitcher"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/my_toolbar"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/borderfull"
-                app:srcCompat="@drawable/friend01" />
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="Username/Name"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="32dp" />
-
-            <Button
-                android:id="@+id/editProfileBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.82"
-                android:text="Edit" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_below="@id/container_profile"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/divider" />
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/divider"
-            android:layout_marginTop="8dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:stretchColumns="1">
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/title_clothing_size"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Clothing size"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/title_shoe_size"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Shoe size"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/clothingSize"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="12dp"
-                    android:text="M"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/shoeSize"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="12dp"
-                    android:text="39"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="16sp" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/title_color"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Favourite color"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/title_food"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Favourite food"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/color"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="12dp"
-                    android:text="Tennis, Dancing, Coin collecting"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/food"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="12dp"
-                    android:text="Ears"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="16sp" />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:id="@+id/title_sports"
-                    android:text="Sports"/>
-                <TextView
-                    android:id="@+id/title_hobbies"
-                    android:text="Hobbies"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/sports"
-                    android:text="bla"/>
-                <TextView
-                    android:id="@+id/hobbies"
-                    android:text="bla"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/title_interests"
-                    android:text="Interests"/>
-                <TextView
-                    android:id="@+id/title_other"
-                    android:text="Other"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/interests"
-                    android:text="bla"/>
-                <TextView
-                    android:id="@+id/other"
-                    android:text="bla"/>
-            </TableRow>
-        </TableLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="kurac"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/editImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background">
 
-            <EditText
-                android:id="@+id/editName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Name"/>
 
-            <EditText
-                android:id="@+id/editClothingSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Clothing size"/>
+                <LinearLayout
+                    android:id="@+id/container_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/my_toolbar"
+                    android:background="@drawable/gradient"
+                    android:orientation="vertical"
+                    android:paddingBottom="20dp"
+                    android:weightSum="1">
 
-            <EditText
-                android:id="@+id/editShoeSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Shoe size"/>
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/imageView"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/friend01"
+                        app:civ_border_color="@color/text"
+                        app:civ_border_width="5dp" />
 
-            <EditText
-                android:id="@+id/editColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Favourite color"/>
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="6dp"
+                        android:text="Username/Name"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="28dp" />
+                </LinearLayout>
 
-            <EditText
-                android:id="@+id/editFood"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Favourite food"/>
+                <LinearLayout
+                    android:id="@+id/detail_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/container_profile"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
 
-            <EditText
-                android:id="@+id/editSports"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Sports"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
 
-            <EditText
-                android:id="@+id/editHobbies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Hobbies"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_t_shirt_outline" />
 
-            <EditText
-                android:id="@+id/editInterests"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Interests"/>
+                        <TextView
+                            android:id="@+id/title_clothing_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Clothing size"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editOther"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Other"/>
+                        <TextView
+                            android:id="@+id/clothingSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="M"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/saveChangesBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Save" />
-        </LinearLayout>
-    </RelativeLayout>
 
-</ViewSwitcher>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_female_shoe_outline" />
+
+                        <TextView
+                            android:id="@+id/title_shoe_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Shoe size"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/shoeSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="42"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_eye_dropper" />
+
+                        <TextView
+                            android:id="@+id/title_color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Favorite color"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Indigo"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_cutlery" />
+
+                        <TextView
+                            android:id="@+id/title_food"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Favorite food"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/food"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Pizza"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_hobbies" />
+
+                        <TextView
+                            android:id="@+id/title_hobbies"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Hobbies"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/hobbies"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Reading"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_sports" />
+
+                        <TextView
+                            android:id="@+id/title_sports"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Sports"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/sports"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Football"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_interests" />
+
+                        <TextView
+                            android:id="@+id/title_interests"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Interests"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/interests"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Playing guitar"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/divider" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/ic_other_info" />
+
+                        <TextView
+                            android:id="@+id/title_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Other"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="4dp"
+                            android:text="Astronomy"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/detail_section"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <Button
+                        android:id="@+id/editProfileBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/button"
+                        android:padding="12dp"
+                        android:text="Edit"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/editImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/editName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Name" />
+
+                    <EditText
+                        android:id="@+id/editClothingSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Clothing size" />
+
+                    <EditText
+                        android:id="@+id/editShoeSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Shoe size" />
+
+                    <EditText
+                        android:id="@+id/editColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Favourite color" />
+
+                    <EditText
+                        android:id="@+id/editFood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Favourite food" />
+
+                    <EditText
+                        android:id="@+id/editSports"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Sports" />
+
+                    <EditText
+                        android:id="@+id/editHobbies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Hobbies" />
+
+                    <EditText
+                        android:id="@+id/editInterests"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Interests" />
+
+                    <EditText
+                        android:id="@+id/editOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Other" />
+
+                    <Button
+                        android:id="@+id/saveChangesBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Save" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </ViewSwitcher>
+    </ScrollView>
 </RelativeLayout>

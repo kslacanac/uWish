@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_item_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="hr.spacecontrol.uwish.activities.ItemDetailsActivity">
 
-    <RelativeLayout
-        android:id="@+id/activity_item_details"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/my_toolbar"
+        android:layout_height="match_parent">
 
         <ViewSwitcher
             android:id="@+id/viewswitcher"
@@ -21,26 +34,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/my_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_alignParentTop="true"
-                    android:background="@color/colorPrimary"
-                    android:elevation="4dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/ToolbarColoredBackArrow"
-                    app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
 
                 <ImageView
                     android:id="@+id/item_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/my_toolbar"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginTop="12dp"
                     app:srcCompat="@drawable/item01" />
 
                 <TextView
@@ -250,6 +250,5 @@
                 </LinearLayout>
             </RelativeLayout>
         </ViewSwitcher>
-    </RelativeLayout>
-
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>
