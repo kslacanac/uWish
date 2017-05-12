@@ -83,6 +83,7 @@ public class MakeAWishActivity extends AppCompatActivity {
         urlUploadBtn = (Button)findViewById(R.id.urlBtn);
         imageUrl = (EditText)findViewById(R.id.url);
 
+        // TODO get list from user's friend groups
         String[] autoCompleteList = {"Everyone", "Work people", "Family", "Best friends"};
         ArrayAdapter<String> autoCompleteAdapter = new ArrayAdapter<String>(this, R.layout.autocomplete_list, autoCompleteList);
         groups.setAdapter(autoCompleteAdapter);
@@ -101,7 +102,7 @@ public class MakeAWishActivity extends AppCompatActivity {
         urlUploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(imageUrl.getText() == null) {
+                if(imageUrl.getText() == null || imageUrl.getText().toString().equals("")) {
                     Toast.makeText(MakeAWishActivity.this, "Please enter image URL", Toast.LENGTH_LONG);
                 } else {
                     Picasso.with(getApplicationContext()).load(imageUrl.getText().toString()).into(imageView);
@@ -117,10 +118,12 @@ public class MakeAWishActivity extends AppCompatActivity {
                 item.setDescription(description.getText().toString());
                 item.setLink(whereToBuy.getText().toString());
                 item.setGroups(groups.getText().toString());
-                if (imageUrl.getText() == null) {
-                    filePath = mStorage.child("Wishes").child(selectedImage.getLastPathSegment());
-                    filePath.putFile(selectedImage);
-                    item.setImage(selectedImage.getLastPathSegment().toString());
+                if (imageUrl.getText() == null || imageUrl.getText().toString().equals("")) {
+                    if (selectedImage != null) {
+                        filePath = mStorage.child("Wishes").child(selectedImage.getLastPathSegment());
+                        filePath.putFile(selectedImage);
+                        item.setImage(selectedImage.getLastPathSegment().toString());
+                    }
                 } else item.setImageUri(imageUrl.getText().toString());
                 String key = generateKey(10);
                 item.setKey(key);
@@ -169,5 +172,6 @@ public class MakeAWishActivity extends AppCompatActivity {
         Intent intent = new Intent(MakeAWishActivity.this, ItemDetailsActivity.class);
         intent.putExtra("item", item);
         startActivity(intent);
+        finish();
     }
 }

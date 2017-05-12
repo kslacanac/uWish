@@ -15,6 +15,8 @@ public class User implements Serializable {
     int image;
     PersonalInfo details;
     List<Item> wishList;
+    List<User> friendList;
+    List<Event> eventList;
 
     /* CONSTRUCTORS */
     public User() {

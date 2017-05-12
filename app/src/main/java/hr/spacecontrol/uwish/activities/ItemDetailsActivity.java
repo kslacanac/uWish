@@ -37,6 +37,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.fragments.MyWishList;
 import hr.spacecontrol.uwish.objects.Item;
 
 public class ItemDetailsActivity extends AppCompatActivity {
@@ -105,22 +106,14 @@ public class ItemDetailsActivity extends AppCompatActivity {
         find.setTypeface(lregular);
         link.setTypeface(lregular);
 
-        editName = (EditText)findViewById(R.id.editName);
-        editDescription = (EditText)findViewById(R.id.editDescription);
-        editLink = (EditText)findViewById(R.id.editLink);
-        editGroups = (MultiAutoCompleteTextView)findViewById(R.id.editGroups);
-        editImage = (ImageView)findViewById(R.id.editImage);
-        editUrl = (EditText)findViewById(R.id.editUrl);
-        galleryBtn = (Button)findViewById(R.id.galleryBtn);
-        urlBtn = (Button)findViewById(R.id.urlBtn);
-
         image = (ImageView) findViewById(R.id.item_image);
-        if (item.getImageUri() == "" || item.getImage() != null) {
-            StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(item.getImage());
-            Glide.with(ItemDetailsActivity.this).using(new FirebaseImageLoader()).load(reference).into(image);
-        } else {
-            Picasso.with(this).load(item.getImageUri()).into(image);
-        }
+        if (item.getImageUri() == null || item.getImageUri().toString().equals("")) {
+            if (item.getImage() != null) {
+                StorageReference reference = mStorage.child("Wishes").child(item.getImage());
+                Glide.with(ItemDetailsActivity.this).using(new FirebaseImageLoader()).load(reference).into(image);
+            }
+        } else Picasso.with(this).load(item.getImageUri()).into(image);
+
 
         delete = (ImageButton) findViewById(R.id.delete_btn);
         delete.setOnClickListener(new View.OnClickListener(){
@@ -130,6 +123,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         dataSnapshot.getRef().removeValue();
+                        if (item.getImage() != null) mStorage.child("Wishes").child(item.getImage()).delete();
+                        finish();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -143,10 +138,19 @@ public class ItemDetailsActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-            viewSwitcher.getNextView();
+            viewSwitcher.showNext();
                 showEditableData();
             }
         });
+
+        editName = (EditText)findViewById(R.id.editName);
+        editDescription = (EditText)findViewById(R.id.editDescription);
+        editLink = (EditText)findViewById(R.id.editLink);
+        editGroups = (MultiAutoCompleteTextView)findViewById(R.id.editGroups);
+        editImage = (ImageView)findViewById(R.id.editImage);
+        editUrl = (EditText)findViewById(R.id.editUrl);
+        galleryBtn = (Button)findViewById(R.id.galleryBtn);
+        urlBtn = (Button)findViewById(R.id.urlBtn);
 
         saveChangesBtn = (Button)findViewById(R.id.saveChangesBtn);
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {
@@ -160,9 +164,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create intent to Open Image applications like Gallery, Google Photos
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                // Start the Intent
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
             }
         });
@@ -170,7 +172,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         urlBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editUrl.getText() == null) {
+                if(editUrl.getText() == null || editUrl.getText().toString().equals("")) {
                     Toast.makeText(ItemDetailsActivity.this, "Please enter image URL", Toast.LENGTH_LONG);
                 } else {
                     Picasso.with(getApplicationContext()).load(editUrl.getText().toString()).into(editImage);
@@ -183,19 +185,14 @@ public class ItemDetailsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            // When an Image is picked
             if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-                // Get the Image from data
                 selectedImage = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
-                // Get the cursor
                 Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                // Move to first row
                 cursor.moveToFirst();
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String imgDecodableString = cursor.getString(columnIndex);
                 cursor.close();
-                // Set the Image in ImageView after decoding the String
                 editImage.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
             } else {
                 Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
@@ -208,13 +205,15 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private void showEditableData() {
         editName.setText(item.getName());
         editDescription.setText(item.getDescription());
-        editLink.setText(item.getDescription());
-        if (item.getImageUri() == "" || item.getImage() != null) {
-            StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(item.getImage());
-            Glide.with(ItemDetailsActivity.this).using(new FirebaseImageLoader()).load(reference).into(image);
+        editLink.setText(item.getLink());
+        if (item.getImageUri() == null || item.getImageUri().equals("")) {
+            if (item.getImage() != null) {
+                StorageReference reference = mStorage.child("Wishes").child(item.getImage());
+                Glide.with(ItemDetailsActivity.this).using(new FirebaseImageLoader()).load(reference).into(editImage);
+            }
         } else {
             editUrl.setText(item.getImageUri());
-            Picasso.with(this).load(item.getImageUri()).into(image);
+            Picasso.with(getApplicationContext()).load(item.getImageUri()).into(editImage);
         }
         //TODO MultiAutoCompleteTextView edit
     }
@@ -223,12 +222,14 @@ public class ItemDetailsActivity extends AppCompatActivity {
         item.setName(editName.getText().toString());
         item.setDescription(editDescription.getText().toString());
         item.setLink(editLink.getText().toString());
-        if (editUrl.getText().toString() == "") {
-            filePath = mStorage.child("Wishes").child(selectedImage.getLastPathSegment());
-            filePath.putFile(selectedImage);
-            item.setImage(selectedImage.getLastPathSegment().toString());
+        if (editUrl.getText().toString().equals("") || editUrl.getText() == null) {
+            if (selectedImage != null) {
+                filePath = mStorage.child("Wishes").child(selectedImage.getLastPathSegment());
+                filePath.putFile(selectedImage);
+                item.setImage(selectedImage.getLastPathSegment().toString());
+            }
         } else item.setImageUri(editUrl.getText().toString());
-        mDatabase.child("Wishlist").child(item.getKey()).setValue(item);
+        mDatabase.child(item.getKey()).setValue(item);
     }
 
 }

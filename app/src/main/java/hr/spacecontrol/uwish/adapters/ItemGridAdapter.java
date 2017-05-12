@@ -64,9 +64,11 @@ public class ItemGridAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) v.findViewById(R.id.item_image);
 
         Item selectedItem = itemList.get(position);
-        if (selectedItem.getImage() != null || selectedItem.getImageUri() == "") {
-            StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(selectedItem.getImage());
-            Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
+        if (selectedItem.getImageUri() == null || selectedItem.getImageUri().equals("")) {
+            if (selectedItem.getImage() != null) {
+                StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(selectedItem.getImage());
+                Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
+            }
         } else {
             Picasso.with(v.getContext()).load(selectedItem.getImageUri()).into(imageView);
         }

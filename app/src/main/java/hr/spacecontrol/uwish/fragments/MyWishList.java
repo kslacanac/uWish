@@ -52,22 +52,25 @@ public class MyWishList extends Fragment {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("Wishlist");
-        items = new ArrayList<>();
         itemGridView = (GridView) view.findViewById(R.id.item_grid);
+        items = new ArrayList<>();
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                items.removeAll(items);
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     items.add(snapshot.getValue(Item.class));
+                    itemGridAdapter.notifyDataSetChanged();
                 }
-                itemGridAdapter = new MyWishAdapter(getActivity().getApplicationContext(), items);
-                itemGridView.setAdapter(itemGridAdapter);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
+
+        itemGridAdapter = new MyWishAdapter(getActivity().getApplicationContext(), items);
+        itemGridView.setAdapter(itemGridAdapter);
 
         itemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
