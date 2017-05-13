@@ -81,6 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         String uid = mFirebaseAuth.getCurrentUser().getUid();
                                         User user = new User(name,email,password);
+                                        user.setUID(uid);
                                         mDatabase.child("Users").child(uid).setValue(user);
 
                                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);

@@ -1,4 +1,5 @@
 package hr.spacecontrol.uwish.activities;
+import com.google.firebase.auth.FacebookAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -75,6 +76,21 @@ public class MainActivity extends AppCompatActivity {
         //mFirebaseUser = null;
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference friendRequests = mDatabase.child("Users").child(mFirebaseUser.getUid()).child("FriendRequests");
+        friendRequests.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getChildrenCount() != 0){
+                    navigationView.getMenu().getItem(R.id.nav_friendrequests).setActionView(R.layout.menu_dot);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity
@@ -111,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadHomeFragment() {
         selectNavMenu();
         setToolbarTitle();
+
 
         // if user select the current navigation menu again, just close the navigation drawer
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
@@ -207,7 +224,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_logout:
                         //log out
+
                         FirebaseAuth.getInstance().signOut();
+                        mFirebaseAuth.signOut();
                         loadLogInView();
                     default:
                         navItemIndex = 0;

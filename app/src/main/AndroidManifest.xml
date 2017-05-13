@@ -75,7 +75,9 @@
         <activity
             android:name=".activities.InviteFriendsActivity"
             android:label="Invite friends"
-            android:parentActivityName=".activities.MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity">
+
+        </activity>
         <activity
             android:name=".activities.SearchableActivity"
             android:label="Find friends"

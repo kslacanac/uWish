@@ -21,6 +21,18 @@
         app:civ_border_color="@color/text"
         app:civ_border_width="2dp" />
 
+    <ImageButton
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_done_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/declineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/com_facebook_close" />
+
     <TextView
         android:id="@+id/friend_name"
         android:layout_width="match_parent"
