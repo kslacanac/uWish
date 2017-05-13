@@ -7,6 +7,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 import hr.spacecontrol.uwish.R;
@@ -46,7 +51,8 @@ public class FriendListAdapter extends BaseAdapter {
         View v = View.inflate(context, R.layout.listview_friend, null);
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
-        imageView.setImageResource(friendList.get(position).getImage());
+        StorageReference reference = FirebaseStorage.getInstance().getReference().child("Profiles").child(friendList.get(position).getImage());
+        Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
 
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());

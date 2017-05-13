@@ -12,7 +12,7 @@ public class User implements Serializable {
     String password;
     String name;
     String email;
-    int image;
+    String image;
     PersonalInfo details;
     List<Item> wishList;
     List<User> friendList;
@@ -37,12 +37,6 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public User(String name, int image) {
-        this.name = name;
-        this.image = image;
-
-    }
-
     /* GETTERS AND SETTERS */
     public List<Item> getWishList() {
         return wishList;
@@ -60,11 +54,11 @@ public class User implements Serializable {
         this.details = details;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -100,7 +94,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public class PersonalInfo {
+    public static class PersonalInfo {
         private String clothingSize;
         private String shoeSize;
         private String favouriteColor;
