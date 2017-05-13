@@ -1,7 +1,11 @@
 package hr.spacecontrol.uwish.activities;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +28,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
@@ -32,6 +41,9 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private DatabaseReference mDatabase;
+    private StorageReference mStorage;
+    private StorageReference filePath;
+    private Uri selectedImage;
 
     private User user;
 
@@ -60,6 +72,9 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText editHobbies;
     private EditText editInterests;
     private EditText editOther;
+    private Button editImageBtn;
+
+    private static int RESULT_LOAD_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
+        mStorage = FirebaseStorage.getInstance().getReference().child("Profiles");
 
         viewSwitcher = (ViewSwitcher)findViewById(R.id.viewswitcher);
         editProfileBtn = (Button)findViewById(R.id.editProfileBtn);
@@ -100,18 +116,16 @@ public class ProfileActivity extends AppCompatActivity {
         editHobbies = (EditText) findViewById(R.id.editHobbies);
         editInterests = (EditText) findViewById(R.id.editInterests);
         editOther = (EditText) findViewById(R.id.editOther);
+        editImageBtn = (Button) findViewById(R.id.editImageBtn);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(User.class);
-                showUserData(user);
+                showUserData();
             }
-
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
 
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
@@ -125,15 +139,53 @@ public class ProfileActivity extends AppCompatActivity {
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewSwitcher.showPrevious();
                 saveChanges();
+                viewSwitcher.showPrevious();
+                //showUserData();
+            }
+        });
+
+        editImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
             }
         });
 
     }
 
-    private void showUserData(User user) {
-        imageView.setImageResource(user.getImage());
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            // When an Image is picked
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+                // Get the Image from data
+                selectedImage = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                // Get the cursor
+                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                // Move to first row
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String imgDecodableString = cursor.getString(columnIndex);
+                cursor.close();
+                // Set the Image in ImageView after decoding the String
+                editImage.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString));
+            } else {
+                Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void showUserData() {
+        if (user.getImage() != null) {
+            filePath = mStorage.child(user.getImage().toString());
+            Glide.with(ProfileActivity.this).using(new FirebaseImageLoader()).load(filePath).into(imageView);
+        }
         name.setText(user.getName());
         if (user.getDetails() != null) {
             if (user.getDetails().getClothingSize() != null)
@@ -155,7 +207,10 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void showEditableData() {
-        editImage.setImageResource(user.getImage());
+        if (user.getImage() != null) {
+            filePath = mStorage.child(user.getImage().toString());
+            Glide.with(ProfileActivity.this).using(new FirebaseImageLoader()).load(filePath).into(editImage);
+        }
         editName.setText(user.getName());
         if (user.getDetails() != null) {
             if (user.getDetails().getClothingSize() != null)
@@ -178,16 +233,26 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void saveChanges() {
-        user.setName(editName.getText().toString());
-        user.getDetails().setClothingSize(editClothingSize.getText().toString());
-        user.getDetails().setShoeSize(editShoeSize.getText().toString());
-        user.getDetails().setFavouriteColor(editFavColor.getText().toString());
-        user.getDetails().setFavouriteFood(editFavFood.getText().toString());
-        user.getDetails().setSports(editSports.getText().toString());
-        user.getDetails().setHobbies(editHobbies.getText().toString());
-        user.getDetails().setInterests(editInterests.getText().toString());
-        user.getDetails().setOther(editOther.getText().toString());
+        if (selectedImage != null) {
+            filePath = mStorage.child(selectedImage.getLastPathSegment());
+            filePath.putFile(selectedImage);
+            user.setImage(selectedImage.getLastPathSegment().toString());
+        }
+        String name = editName.getText().toString();
+        user.setName(name);
+        User.PersonalInfo personalInfo = new User.PersonalInfo();
+        personalInfo.setClothingSize(editClothingSize.getText().toString());
+        personalInfo.setShoeSize(editShoeSize.getText().toString());
+        personalInfo.setFavouriteColor(editFavColor.getText().toString());
+        personalInfo.setFavouriteFood(editFavFood.getText().toString());
+        personalInfo.setSports(editSports.getText().toString());
+        personalInfo.setHobbies(editHobbies.getText().toString());
+        personalInfo.setInterests(editInterests.getText().toString());
+        personalInfo.setOther(editOther.getText().toString());
+        user.setDetails(personalInfo);
 
-        mDatabase.setValue(user);
+        mDatabase.child("details").setValue(personalInfo);
+        mDatabase.child("name").setValue(name);
+        mDatabase.child("image").setValue(user.getImage());
     }
 }

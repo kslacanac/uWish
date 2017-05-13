@@ -51,7 +51,6 @@
                         android:layout_height="150dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="12dp"
-                        android:src="@drawable/friend01"
                         app:civ_border_color="@color/text"
                         app:civ_border_width="5dp" />
 
@@ -456,10 +455,10 @@
                         android:layout_height="175dp"
                         android:adjustViewBounds="true"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/friend01"
                         android:layout_weight="1"
                         />
                     <Button
+                        android:id="@+id/editImageBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"

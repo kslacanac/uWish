@@ -12,7 +12,10 @@ public class User implements Serializable {
     String password;
     String name;
     String email;
+<<<<<<< HEAD
     String UID;
+=======
+>>>>>>> 5723ef195669b172a2c5d3c6bc5ede0f9343f284
     String image;
     PersonalInfo details;
     List<Item> wishList;
@@ -38,7 +41,10 @@ public class User implements Serializable {
         this.name = name;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5723ef195669b172a2c5d3c6bc5ede0f9343f284
     /* GETTERS AND SETTERS */
     public List<Item> getWishList() {
         return wishList;
