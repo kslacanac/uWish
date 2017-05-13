@@ -71,6 +71,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 android:text="Date"
+                android:id="@+id/dateString"
                 android:textSize="24sp" />
 
             <DatePicker
@@ -86,6 +87,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="16dp"
+                android:id="@+id/categoryString"
                 android:text="Category"
                 android:textSize="24sp" />
 

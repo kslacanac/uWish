@@ -1,8 +1,10 @@
 package hr.spacecontrol.uwish.activities;
 
 import android.content.Intent;
+
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -119,6 +121,9 @@ public class ProfileActivity extends AppCompatActivity {
         editOther = (EditText) findViewById(R.id.editOther);
         editImageBtn = (Button) findViewById(R.id.editImageBtn);
 
+        Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -153,6 +158,29 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
             }
         });
+
+        name.setTypeface(lregular);
+        clothingSize.setTypeface(lregular);
+        shoeSize.setTypeface(lregular);
+        favColor.setTypeface(lregular);
+        favFood.setTypeface(lregular);
+        sports.setTypeface(lregular);
+        hobbies.setTypeface(lregular);
+        interests.setTypeface(lregular);
+        other.setTypeface(lregular);
+        editName.setTypeface(lregular);
+        editClothingSize.setTypeface(lregular);
+        editShoeSize.setTypeface(lregular);
+        editFavColor.setTypeface(lregular);
+        editFavFood.setTypeface(lregular);
+        editSports.setTypeface(lregular);
+        editInterests.setTypeface(lregular);
+        editOther.setTypeface(lregular);
+        editHobbies.setTypeface(lregular);
+        saveChangesBtn.setTypeface(lregular);
+        editProfileBtn.setTypeface(lregular);
+        editImageBtn.setTypeface(lregular);
+
 
     }
 

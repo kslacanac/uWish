@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -74,6 +75,7 @@ public class MakeAWishActivity extends AppCompatActivity {
         mStorage = FirebaseStorage.getInstance().getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
+        Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
 
         title = (EditText)findViewById(R.id.title);
         description = (EditText)findViewById(R.id.description);
@@ -84,6 +86,15 @@ public class MakeAWishActivity extends AppCompatActivity {
         galleryUploadBtn = (Button)findViewById(R.id.galleryBtn);
         urlUploadBtn = (Button)findViewById(R.id.urlBtn);
         imageUrl = (EditText)findViewById(R.id.url);
+
+        title.setTypeface(lregular);
+        description.setTypeface(lregular);
+        whereToBuy.setTypeface(lregular);
+        groups.setTypeface(lregular);
+        makeWishBtn.setTypeface(lregular);
+        galleryUploadBtn.setTypeface(lregular);
+        urlUploadBtn.setTypeface(lregular);
+        imageUrl.setTypeface(lregular);
 
         // TODO get list from user's friend groups
         String[] autoCompleteList = {"Everyone", "Work people", "Family", "Best friends"};

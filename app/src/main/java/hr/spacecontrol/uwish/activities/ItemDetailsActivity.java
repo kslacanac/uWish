@@ -58,8 +58,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private TextView link;
     private ImageView image;
     private TextView find;
-    private ImageButton delete;
-    private ImageButton edit;
+    private Button delete;
+    private Button edit;
     private CheckBox checkBox;
 
     private EditText editName;
@@ -105,11 +105,8 @@ public class ItemDetailsActivity extends AppCompatActivity {
         link.setText(item.getLink());
         find = (TextView)findViewById(R.id.textView);
         checkBox = (CheckBox)findViewById(R.id.checkBox);
-        //set typeface for textview
-        name.setTypeface(lregular);
-        description.setTypeface(lregular);
-        find.setTypeface(lregular);
-        link.setTypeface(lregular);
+
+        viewSwitcher.setMeasureAllChildren(false);
 
         image = (ImageView) findViewById(R.id.item_image);
         if (item.getImageUri() == null || item.getImageUri().toString().equals("")) {
@@ -127,15 +124,14 @@ public class ItemDetailsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    //Drawable highlight = getResources().getDrawable(R.drawable.borderfull);
+                    //Drawable highlight = getResources().getDrawable(R.drawable.border_recieved);
                     //image.setBackground(highlight);
                     item.setReceived(true);
                     mDatabase.child(item.getKey()).child("received").setValue(item.isReceived());
                 }
             }
         });
-
-        delete = (ImageButton) findViewById(R.id.delete_btn);
+        delete = (Button) findViewById(R.id.delete_btn);
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -154,7 +150,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
             }
         });
 
-        edit = (ImageButton) findViewById(R.id.edit_btn);
+        edit = (Button) findViewById(R.id.edit_btn);
         edit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -171,6 +167,7 @@ public class ItemDetailsActivity extends AppCompatActivity {
         editUrl = (EditText)findViewById(R.id.editUrl);
         galleryBtn = (Button)findViewById(R.id.galleryBtn);
         urlBtn = (Button)findViewById(R.id.urlBtn);
+
 
         saveChangesBtn = (Button)findViewById(R.id.saveChangesBtn);
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {
@@ -199,6 +196,24 @@ public class ItemDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //set typeface for textview
+        name.setTypeface(lregular);
+        description.setTypeface(lregular);
+        find.setTypeface(lregular);
+        link.setTypeface(lregular);
+        editName.setTypeface(lregular);
+        editDescription.setTypeface(lregular);
+        editLink.setTypeface(lregular);
+        editGroups.setTypeface(lregular);
+        editUrl.setTypeface(lregular);
+        galleryBtn.setTypeface(lregular);
+        urlBtn.setTypeface(lregular);
+        saveChangesBtn.setTypeface(lregular);
+        checkBox.setTypeface(lregular);
+        edit.setTypeface(lregular);
+        delete.setTypeface(lregular);
+
 
     }
     @Override

@@ -117,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference().child(mFirebaseUser.getUid());
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 975b8d2d83349cf95a686fb75c4c9776c8a13d05
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity
             loadLogInView();
