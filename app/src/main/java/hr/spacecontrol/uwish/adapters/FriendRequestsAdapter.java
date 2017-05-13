@@ -102,9 +102,10 @@ public class FriendRequestsAdapter extends BaseAdapter{
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        User friend = friendList.get(position);
                         FirebaseDatabase.getInstance().getReference().child("Friends").child(firebaseUser.getUid())
-                                .child(friendList.get(position).getUID()).setValue(true);
-                        mDatabase.child(friendList.get(position).getUID()).removeValue();
+                                .child(friend.getUID()).setValue(friend);
+                        mDatabase.child(friend.getUID()).removeValue();
                         notifyDataSetChanged();
                     }
                     @Override
