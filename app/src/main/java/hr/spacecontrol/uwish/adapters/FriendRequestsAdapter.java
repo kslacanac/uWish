@@ -38,8 +38,10 @@ public class FriendRequestsAdapter extends BaseAdapter{
    // private ImageButton acceptButton;
    // private ImageButton declineButton;
     DatabaseReference mDatabase;
+    DatabaseReference fDatabase;
     FirebaseUser firebaseUser;
     User friend;
+    User myself;
 
     public FriendRequestsAdapter(Context context, List<User> friendList) {
         this.context = context;
@@ -68,6 +70,7 @@ public class FriendRequestsAdapter extends BaseAdapter{
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid())
                 .child("FriendRequests");
+        fDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
         //imageView.setImageResource(friendList.get(position).getImage());
@@ -99,6 +102,11 @@ public class FriendRequestsAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 friend = friendList.get(position);
+                myself = new User();
+                myself.setUID(firebaseUser.getUid());
+                myself.setEmail(firebaseUser.getEmail());
+                myself.setName(firebaseUser.getDisplayName());
+
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -108,8 +116,8 @@ public class FriendRequestsAdapter extends BaseAdapter{
                   //      } catch (Exception e) {
                             //e.printStackTrace();
                    //     }
-                        FirebaseDatabase.getInstance().getReference().child("Friends").child(firebaseUser.getUid())
-                                .child(friend.getUID()).setValue(friend);
+                        fDatabase.child(firebaseUser.getUid()).child(friend.getUID()).setValue(friend);
+                        fDatabase.child(friend.getUID()).child(firebaseUser.getUid()).setValue(myself);
                         mDatabase.child(friend.getUID()).removeValue();
                         notifyDataSetChanged();
                     }
