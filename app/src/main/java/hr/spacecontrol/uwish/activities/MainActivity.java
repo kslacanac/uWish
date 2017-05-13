@@ -1,4 +1,6 @@
 package hr.spacecontrol.uwish.activities;
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -18,7 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
+
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -32,6 +38,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -40,6 +47,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.fragments.Calendar;
@@ -48,6 +57,7 @@ import hr.spacecontrol.uwish.fragments.FriendRequests;
 import hr.spacecontrol.uwish.fragments.MyEvents;
 import hr.spacecontrol.uwish.fragments.MyFriendsList;
 import hr.spacecontrol.uwish.fragments.MyWishList;
+import hr.spacecontrol.uwish.objects.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +75,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
+    private StorageReference mStorage;
     private String mUserId;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +87,12 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         //mFirebaseUser = null;
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(mFirebaseUser.getUid());
 
 
 
@@ -283,6 +298,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        /*ImageButton imageButton = (ImageButton) menu.findItem(R.id.action_profile).getActionView();
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+        mStorage = FirebaseStorage.getInstance().getReference().child("Profiles").child(user.getImage());
+        Glide.with(MainActivity.this).using(new FirebaseImageLoader()).load(mStorage).into(imageButton);*/
         return true;
     }
 
