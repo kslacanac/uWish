@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -34,6 +35,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private Toolbar toolbar;
+    private TextView toolbar_title;
 
     public static int navItemIndex = 0;
 
@@ -75,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         //mFirebaseUser = null;
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
 
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity

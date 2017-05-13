@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.objects.Event;
 
@@ -18,6 +20,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private TextView eventName;
     private TextView eventDate;
     private TextView eventDescription;
+    private TextView about;
     private ImageView categoryImage;
     private Toolbar toolbar;
 
@@ -35,6 +38,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventDate = (TextView)findViewById(R.id.event_date);
         eventDescription = (TextView)findViewById(R.id.event_description);
         categoryImage = (ImageView)findViewById(R.id.categoryImage);
+        about = (TextView)findViewById(R.id.about);
 
         Intent intent = getIntent();
         Event event = (Event) intent.getSerializableExtra("event");
@@ -59,6 +63,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         //set typeface for textview
         eventName.setTypeface(lregular);
         eventDate.setTypeface(lregular);
+        eventDescription.setTypeface(lregular);
+        about.setTypeface(lregular);
 
     }
 

@@ -67,7 +67,7 @@ public class ItemGridAdapter extends BaseAdapter {
         Item selectedItem = itemList.get(position);
 
         if (selectedItem.isReceived()) {
-            Drawable highlight = v.getResources().getDrawable(R.drawable.borderfull);
+            Drawable highlight = v.getResources().getDrawable(R.drawable.border_recieved);
             imageView.setBackground(highlight);
         }
 

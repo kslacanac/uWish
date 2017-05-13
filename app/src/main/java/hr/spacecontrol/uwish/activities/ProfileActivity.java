@@ -1,6 +1,7 @@
 package hr.spacecontrol.uwish.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ViewSwitcher viewSwitcher;
     private Button editProfileBtn;
     private Button saveChangesBtn;
+    private Button changePhoto;
 
     private ImageView imageView;
     private TextView name;
@@ -78,6 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
         viewSwitcher = (ViewSwitcher)findViewById(R.id.viewswitcher);
         editProfileBtn = (Button)findViewById(R.id.editProfileBtn);
         saveChangesBtn = (Button)findViewById(R.id.saveChangesBtn);
+        changePhoto = (Button)findViewById(R.id.changePhoto);
 
         imageView = (ImageView)findViewById(R.id.imageView);
         name = (TextView)findViewById(R.id.name);
@@ -100,6 +103,9 @@ public class ProfileActivity extends AppCompatActivity {
         editHobbies = (EditText) findViewById(R.id.editHobbies);
         editInterests = (EditText) findViewById(R.id.editInterests);
         editOther = (EditText) findViewById(R.id.editOther);
+
+        Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -129,6 +135,29 @@ public class ProfileActivity extends AppCompatActivity {
                 saveChanges();
             }
         });
+
+        name.setTypeface(lregular);
+        clothingSize.setTypeface(lregular);
+        shoeSize.setTypeface(lregular);
+        favColor.setTypeface(lregular);
+        favFood.setTypeface(lregular);
+        sports.setTypeface(lregular);
+        hobbies.setTypeface(lregular);
+        interests.setTypeface(lregular);
+        other.setTypeface(lregular);
+        editName.setTypeface(lregular);
+        editClothingSize.setTypeface(lregular);
+        editShoeSize.setTypeface(lregular);
+        editFavColor.setTypeface(lregular);
+        editFavFood.setTypeface(lregular);
+        editSports.setTypeface(lregular);
+        editInterests.setTypeface(lregular);
+        editOther.setTypeface(lregular);
+        editHobbies.setTypeface(lregular);
+        saveChangesBtn.setTypeface(lregular);
+        editProfileBtn.setTypeface(lregular);
+        changePhoto.setTypeface(lregular);
+
 
     }
 
