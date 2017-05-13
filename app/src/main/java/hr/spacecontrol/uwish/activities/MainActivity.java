@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference friendRequests = mDatabase.child("Users").child(mFirebaseUser.getUid()).child("FriendRequests");
+        /*DatabaseReference friendRequests = mDatabase.child("Users").child(mFirebaseUser.getUid()).child("FriendRequests");
         friendRequests.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(mFirebaseUser.getUid());
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(mFirebaseUser.getUid());*/
 
 
         if (mFirebaseUser == null) {

@@ -67,6 +67,7 @@ public class CreateEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Event event = new Event();
+                event.setUid(firebaseUser.getUid());
                 event.setName(title.getText().toString());
                 event.setDescription(description.getText().toString());
                 String date = String.valueOf(datePicker.getDayOfMonth()).concat("/")

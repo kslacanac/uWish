@@ -104,10 +104,8 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="M"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
-
 
                     </RelativeLayout>
 
@@ -146,7 +144,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="42"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
 
@@ -188,7 +185,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="Indigo"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
 
@@ -230,7 +226,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="Pizza"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
 
@@ -272,7 +267,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="Reading"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
 
@@ -314,7 +308,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="Football"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
 
@@ -356,7 +349,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="Playing guitar"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
                     </RelativeLayout>
@@ -396,7 +388,6 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_marginTop="4dp"
-                            android:text="Astronomy"
                             android:textColor="@color/textColorPrimary"
                             android:textSize="18sp" />
 
@@ -456,6 +447,7 @@
                         android:adjustViewBounds="true"
                         android:layout_centerInParent="true"
                         android:layout_weight="1"
+                        android:src="@drawable/default_user"
                         />
                     <Button
                         android:id="@+id/editImageBtn"
