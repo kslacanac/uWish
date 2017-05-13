@@ -2,6 +2,7 @@ package hr.spacecontrol.uwish.adapters;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +71,8 @@ public class EventListAdapter extends BaseAdapter {
         final ImageView imageView = (ImageView)v.findViewById(R.id.profile_image);
         final TextView hostName = (TextView)v.findViewById(R.id.host_name);
         ImageView iconLeft = (ImageView)v.findViewById(R.id.iconLeft);
+        final ImageButton acceptBtn = (ImageButton)v.findViewById(R.id.accept_btn);
+        final ImageButton declineBtn = (ImageButton)v.findViewById(R.id.reject_btn);
 
         Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
 
@@ -107,27 +110,21 @@ public class EventListAdapter extends BaseAdapter {
         eventName.setTypeface(lregular);
         eventDate.setTypeface(lregular);
 
-        //v.setTag(mEventList.get(position).getId());
-
-        /*ImageButton deleteBtn = (ImageButton) v.findViewById(R.id.delete_btn);
-        ImageButton editBtn = (ImageButton) v.findViewById(R.id.edit_btn);
-
-        deleteBtn.setOnClickListener(new View.OnClickListener(){
+        acceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //brise event iz liste
-                eventList.remove(position);
-                notifyDataSetChanged();
+                acceptBtn.setBackgroundColor(Color.GREEN);
+                declineBtn.setBackgroundColor(Color.WHITE);
             }
         });
 
-        editBtn.setOnClickListener(new View.OnClickListener(){
+        declineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //otvara activity za uredivanje eventa
-                notifyDataSetChanged();
+                declineBtn.setBackgroundColor(Color.RED);
+                acceptBtn.setBackgroundColor(Color.WHITE);
             }
-        });*/
+        });
 
         return v;
     }

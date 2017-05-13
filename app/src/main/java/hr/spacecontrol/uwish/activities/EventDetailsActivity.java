@@ -23,8 +23,6 @@ public class EventDetailsActivity extends AppCompatActivity {
     private TextView eventDescription;
     private TextView about;
     private ImageView categoryImage;
-    private Button editBtn;
-    private Button deleteBtn;
     private Toolbar toolbar;
 
     @Override
@@ -42,8 +40,6 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventDescription = (TextView)findViewById(R.id.event_description);
         categoryImage = (ImageView)findViewById(R.id.categoryImage);
         about = (TextView)findViewById(R.id.about);
-        editBtn = (Button)findViewById(R.id.edit_btn);
-        deleteBtn = (Button)findViewById(R.id.delete_btn);
 
         Intent intent = getIntent();
         Event event = (Event) intent.getSerializableExtra("event");

@@ -30,7 +30,7 @@ public class CreateEventActivity extends AppCompatActivity {
     private EditText title;
     private EditText description;
     private DatePicker datePicker;
-    private TimePicker timePicker;
+    private EditText time;
     private Spinner category;
     private Button createBtn;
     private Toolbar toolbar;
@@ -62,6 +62,7 @@ public class CreateEventActivity extends AppCompatActivity {
         createBtn = (Button)findViewById(R.id.create_event_btn);
         dateString = (TextView)findViewById(R.id.dateString);
         categoryString = (TextView) findViewById(R.id.categoryString);
+        time = (EditText)findViewById(R.id.editTime);
 
         createBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -74,7 +75,7 @@ public class CreateEventActivity extends AppCompatActivity {
                         .concat(String.valueOf(datePicker.getMonth())).concat("/")
                         .concat(String.valueOf(datePicker.getYear()));
                 event.setDate(date);
-                //event.setTime(timePicker.getHour().concat(":").concat(timePicker.getMinute()));
+                event.setTime(time.getText().toString());
                 event.setCategory(category.getSelectedItem().toString());
                 String key = mDatabase.push().getKey();
                 event.setKey(key);
@@ -82,7 +83,6 @@ public class CreateEventActivity extends AppCompatActivity {
                 showEventDetailsActivity(event);
             }
         });
-
 
         title.setTypeface(lregular);
         description.setTypeface(lregular);

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class User implements Serializable {
     String UID;
     String image;
     PersonalInfo details;
-    List<Item> wishList;
+    HashMap<String,Item> Wishlist;
     List<User> friendList;
     List<Event> eventList;
 
@@ -43,12 +44,12 @@ public class User implements Serializable {
 
 
     /* GETTERS AND SETTERS */
-    public List<Item> getWishList() {
-        return wishList;
+    public HashMap<String,Item> getWishlist() {
+        return Wishlist;
     }
 
-    public void setWishList(List<Item> wishList) {
-        this.wishList = wishList;
+    public void setWishlist(HashMap<String,Item> Wishlist) {
+        this.Wishlist = Wishlist;
     }
 
     public PersonalInfo getDetails() {

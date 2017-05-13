@@ -5,12 +5,19 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.adapters.FriendWishAdapter;
 import hr.spacecontrol.uwish.adapters.ItemGridAdapter;
+import hr.spacecontrol.uwish.objects.Item;
 import hr.spacecontrol.uwish.objects.User;
 
 public class FriendDetailsActivity extends AppCompatActivity {
@@ -38,11 +45,22 @@ public class FriendDetailsActivity extends AppCompatActivity {
 
         itemGridView = (GridView) findViewById(R.id.item_grid);
 
-        itemGridAdapter = new FriendWishAdapter(getApplicationContext(), friend.getWishList());
+        Collection<Item> collection = friend.getWishlist().values();
+        final List<Item> wishes = new ArrayList<>(collection);
+        itemGridAdapter = new FriendWishAdapter(getApplicationContext(), wishes);
         itemGridView.setAdapter(itemGridAdapter);
 
         listTitle = (TextView) findViewById(R.id.list_title);
         String title = friend.getName().concat("'s list");
         listTitle.setText(title);
+
+        itemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(FriendDetailsActivity.this, ItemDetailsActivity.class);
+                intent.putExtra("item", wishes.get(position));
+                startActivity(intent);
+            }
+        });
     }
 }
