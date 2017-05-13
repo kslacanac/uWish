@@ -20,13 +20,15 @@ public class FriendDetailsActivity extends AppCompatActivity {
     private ItemGridAdapter itemGridAdapter;
     private TextView listTitle;
 
+    private User friend;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_details);
 
         Intent intent = getIntent();
-        User friend = (User) intent.getSerializableExtra("friend"); // gets selected friend
+        friend = (User) intent.getSerializableExtra("friend"); // gets selected friend
         // TODO fetch friend info from firebase
 
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);

@@ -1,10 +1,10 @@
 package hr.spacecontrol.uwish.activities;
-<<<<<<< HEAD
+
 import com.google.firebase.auth.FacebookAuthCredential;
-=======
+
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
->>>>>>> 5723ef195669b172a2c5d3c6bc5ede0f9343f284
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -92,14 +92,14 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         //mFirebaseUser = null;
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-<<<<<<< HEAD
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference friendRequests = mDatabase.child("Users").child(mFirebaseUser.getUid()).child("FriendRequests");
         friendRequests.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildrenCount() != 0){
-                    navigationView.getMenu().getItem(R.id.nav_friendrequests).setActionView(R.layout.menu_dot);
+                    navigationView.getMenu().getItem(5).setActionView(R.layout.menu_dot);
                 }
 
             }
@@ -109,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-=======
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child(mFirebaseUser.getUid());
->>>>>>> 5723ef195669b172a2c5d3c6bc5ede0f9343f284
+
 
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity

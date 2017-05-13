@@ -59,6 +59,7 @@ public class FriendListAdapter extends BaseAdapter {
         StorageReference reference = FirebaseStorage.getInstance().getReference().child("Profiles").child(friendList.get(position).getImage());
         Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
 
+
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
 

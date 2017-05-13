@@ -32,10 +32,10 @@ public class MyFriendsList extends Fragment {
     ListView friendListView;
     List<User> friends;
     FriendListAdapter friendListAdapter;
-
+    User friend;
     DatabaseReference mDatabase;
     FirebaseUser firebaseUser;
-
+    Intent intent;
     public MyFriendsList() {
         // Required empty public constructor
     }
@@ -81,9 +81,25 @@ public class MyFriendsList extends Fragment {
         friendListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), FriendDetailsActivity.class);
-                intent.putExtra("friend", friends.get(position));
-                getActivity().startActivity(intent);
+                intent = new Intent(getActivity(), FriendDetailsActivity.class);
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users")
+                        .child(friends.get(position).getUID());
+                //friend = new User();
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        friend = dataSnapshot.getValue(User.class);
+                        intent.putExtra("friend", friend);
+
+                        getActivity().startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
 

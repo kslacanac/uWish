@@ -34,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 import org.w3c.dom.Text;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.objects.PersonalInfo;
 import hr.spacecontrol.uwish.objects.User;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -240,7 +241,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         String name = editName.getText().toString();
         user.setName(name);
-        User.PersonalInfo personalInfo = new User.PersonalInfo();
+        PersonalInfo personalInfo = new PersonalInfo();
         personalInfo.setClothingSize(editClothingSize.getText().toString());
         personalInfo.setShoeSize(editShoeSize.getText().toString());
         personalInfo.setFavouriteColor(editFavColor.getText().toString());
