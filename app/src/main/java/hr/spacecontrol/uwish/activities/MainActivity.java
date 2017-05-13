@@ -91,36 +91,37 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         mFirebaseAuth = FirebaseAuth.getInstance();
         //mFirebaseUser = null;
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        /*DatabaseReference friendRequests = mDatabase.child("Users").child(mFirebaseUser.getUid()).child("FriendRequests");
-        friendRequests.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getChildrenCount() != 0){
-                    navigationView.getMenu().getItem(5).setActionView(R.layout.menu_dot);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(mFirebaseUser.getUid());*/
-
 
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity
             loadLogInView();
         } else {
+
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference friendRequests = mDatabase.child("Users").child(mFirebaseUser.getUid()).child("FriendRequests");
+            ValueEventListener valueEventListener = friendRequests.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.getChildrenCount() != 0) {
+                        navigationView.getMenu().getItem(5).setActionView(R.layout.menu_dot);
+
+                    } else {
+                        navigationView.getMenu().getItem(5).setActionView(null);
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            mDatabase = FirebaseDatabase.getInstance().getReference().child(mFirebaseUser.getUid());
+
             mUserId = mFirebaseUser.getUid();
 
             drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

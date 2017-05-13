@@ -39,7 +39,7 @@ public class FriendRequestsAdapter extends BaseAdapter{
    // private ImageButton declineButton;
     DatabaseReference mDatabase;
     FirebaseUser firebaseUser;
-
+    User friend;
 
     public FriendRequestsAdapter(Context context, List<User> friendList) {
         this.context = context;
@@ -98,11 +98,16 @@ public class FriendRequestsAdapter extends BaseAdapter{
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //friendList.get(position).getUID();
+                friend = friendList.get(position);
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        User friend = friendList.get(position);
+              //          User friend = null;
+                //        try {
+                 //           friend = friendList.get(position);
+                  //      } catch (Exception e) {
+                            //e.printStackTrace();
+                   //     }
                         FirebaseDatabase.getInstance().getReference().child("Friends").child(firebaseUser.getUid())
                                 .child(friend.getUID()).setValue(friend);
                         mDatabase.child(friend.getUID()).removeValue();
