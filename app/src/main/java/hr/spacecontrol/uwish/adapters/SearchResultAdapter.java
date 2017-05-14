@@ -89,15 +89,7 @@ public class SearchResultAdapter extends BaseAdapter{
                 userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        //          User friend = null;
-                        //        try {
-                        //           friend = friendList.get(position);
-                        //      } catch (Exception e) {
-                        //e.printStackTrace();
-                        //     }
-                        friendDatabase.child(firebaseUser.getUid()).child(friend.getUID()).setValue(friend);
-                        userDatabase.child(friend.getUID()).child(firebaseUser.getUid()).setValue(myself);
-                        friendDatabase.child(friend.getUID()).removeValue();
+                        userDatabase.child(friend.getUID()).child("FriendRequests").child(myself.getUID()).setValue(myself);
                         notifyDataSetChanged();
                     }
                     @Override

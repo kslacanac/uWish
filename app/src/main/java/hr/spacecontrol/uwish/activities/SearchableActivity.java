@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,6 +15,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +36,18 @@ public class SearchableActivity extends ListActivity {
     ListView listView;
     FriendListAdapter listAdapter;
     List<User> searchResults;
+    FirebaseUser firebaseUser;
+    DatabaseReference friendsDB;
+    DatabaseReference usersDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchable);
+/*
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        friendsDB = FirebaseDatabase.getInstance().getReference().child("Friends");
+        usersDB = FirebaseDatabase.getInstance().getReference().child("Users");*/
 
         listView = (ListView)findViewById(R.id.list);
 
@@ -44,19 +61,41 @@ public class SearchableActivity extends ListActivity {
 
     public void doFriendSearch(String query) {
         // do the search and fill the searchResults list
-        searchResults = new ArrayList<>();
+        //searchResults = new ArrayList<>();
+        /*usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usersDB.child(friend.getUID()).child("FriendRequests").child(myself.getUID()).setValue(myself);
+
+                listAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });*/
+
+
+        User miro = new User("miro", "miro@gmail.com");
+        miro.setUID("29132138912dasd");
+        miro.setImage("9603");
+        searchResults.add(miro);
 
         listAdapter = new FriendListAdapter(getApplicationContext(), searchResults);
         listView.setAdapter(listAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Intent intent = new Intent(SearchableActivity.this, SearchResultActivity.class);
+        intent.putExtra("friends", query);
+        //intent.putParcelableArrayListExtra("friends", (ArrayList<? extends Parcelable>) searchResults);
+        startActivity(intent);
+
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(SearchableActivity.this, SearchResultActivity.class);
-                intent.putExtra("friends", searchResults.get(position));
+                intent.putExtra("friends", (Parcelable) searchResults);
+                //intent.putParcelableArrayListExtra("friends", (ArrayList<? extends Parcelable>) searchResults);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override
@@ -72,6 +111,23 @@ public class SearchableActivity extends ListActivity {
         // Assumes current activity is the searchable activity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        //searchView.setOnQueryTextListener(this);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Intent intent = new Intent(SearchableActivity.this, SearchResultActivity.class);
+                intent.putExtra("friends", s);
+                //intent.putParcelableArrayListExtra("friends", (ArrayList<? extends Parcelable>) searchResults);
+                startActivity(intent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
 
         return true;
     }

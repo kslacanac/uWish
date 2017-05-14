@@ -94,7 +94,7 @@ public class EventListAdapter extends BaseAdapter {
             iconLeft.setImageResource(R.drawable.ic_graduation_cat);
         else iconLeft.setImageResource(R.drawable.ic_other_cat);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(eventList.get(position).getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
