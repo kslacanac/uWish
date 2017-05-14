@@ -2,12 +2,16 @@ package hr.spacecontrol.uwish.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -46,12 +50,28 @@ public class FriendWishAdapter extends ItemGridAdapter {
 
         Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
 
+        Item selectedItem = itemList.get(position);
+
         ImageView imageView = (ImageView) v.findViewById(R.id.item_image);
-        Glide.with(v.getContext()).load(itemList.get(position).getImage()).into(imageView);
+
+        if (selectedItem.isReceived()) {
+            Drawable highlight = v.getResources().getDrawable(R.drawable.border_recieved);
+            imageView.setBackground(highlight);
+        } else if (selectedItem.isReserved()) {
+            Drawable highlight = v.getResources().getDrawable(R.drawable.border_reserved);
+            imageView.setBackground(highlight);
+        }
+
+        if (selectedItem.getImageUri() == null || selectedItem.getImageUri().equals("")) {
+            if (selectedItem.getImage() != null) {
+                StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(selectedItem.getImage());
+                Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
+            }
+        }
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         TextView itemName = (TextView)v.findViewById(R.id.item_name);
-        itemName.setText(itemList.get(position).getName());
+        itemName.setText(selectedItem.getName());
 
         itemName.setTypeface(lregular);
         return v;

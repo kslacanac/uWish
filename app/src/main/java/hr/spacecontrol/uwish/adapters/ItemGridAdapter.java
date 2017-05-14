@@ -39,7 +39,7 @@ public class ItemGridAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-
+        if(itemList==null) return 0;
         return itemList.size();
     }
 

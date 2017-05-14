@@ -16,7 +16,7 @@
         android:layout_height="90dp"
         android:layout_gravity="center_horizontal"
         android:paddingTop="3dp"
-        android:src="@drawable/item01" />
+        android:src="@drawable/gift_image" />
 
     <TextView
         android:id="@+id/item_name"

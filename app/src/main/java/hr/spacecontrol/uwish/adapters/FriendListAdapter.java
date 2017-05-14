@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class FriendListAdapter extends BaseAdapter {
 
     private Context context;
     private List<User> friendList;
+    private ImageButton acceptButton;
+    private ImageButton declineButton;
 
     public FriendListAdapter(Context context, List<User> friendList) {
         this.context = context;
@@ -32,6 +35,7 @@ public class FriendListAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
+        if(friendList == null) return 0;
         return friendList.size();
     }
 
@@ -51,12 +55,18 @@ public class FriendListAdapter extends BaseAdapter {
         View v = View.inflate(context, R.layout.listview_friend, null);
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
+
         StorageReference reference = FirebaseStorage.getInstance().getReference().child("Profiles").child(friendList.get(position).getImage());
         Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
+
 
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
 
+        ImageButton acceptButton = (ImageButton) v.findViewById(R.id.acceptButton);
+        acceptButton.setVisibility(View.INVISIBLE);
+        ImageButton declineButton = (ImageButton) v.findViewById(R.id.declineButton);
+        declineButton.setVisibility(View.INVISIBLE);
         return v;
     }
 }
