@@ -13,13 +13,13 @@ import java.util.List;
 
 public class User implements Serializable {
     String username;
-    String password;
-    String name;
-    String email;
-    String UID;
-    String image;
-    PersonalInfo details;
-    HashMap<String,Item> Wishlist;
+    private String password;
+    private String name;
+    private String email;
+    private String UID;
+    private String image;
+    private PersonalInfo details;
+    private HashMap<String,Item> Wishlist;
     List<User> friendList;
     List<Event> eventList;
 

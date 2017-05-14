@@ -4,6 +4,8 @@ import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -73,5 +75,19 @@ public class SearchableActivity extends ListActivity {
 
         return true;
     }
+
+  /*  public Cursor query(Uri uri, String[] projection, String selection,
+                        String[] selectionArgs, String sortOrder) {
+        if (selectionArgs != null && selectionArgs.length > 0 && selectionArgs[0].length() > 0) {
+            // the entered text can be found in selectionArgs[0]
+            // return a cursor with appropriate data
+            return;
+        }
+        else {
+            // user hasn’t entered anything
+            // thus return a default cursor
+            return;
+        }
+    }*/
 
 }
