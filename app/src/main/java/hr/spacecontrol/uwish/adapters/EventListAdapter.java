@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -68,6 +69,7 @@ public class EventListAdapter extends BaseAdapter {
 
         TextView eventName = (TextView)v.findViewById(R.id.event_name);
         TextView eventDate = (TextView)v.findViewById(R.id.event_date);
+        final TextView eventStatus = (TextView)v.findViewById(R.id.event_status);
         final ImageView imageView = (ImageView)v.findViewById(R.id.profile_image);
         final TextView hostName = (TextView)v.findViewById(R.id.host_name);
         ImageView iconLeft = (ImageView)v.findViewById(R.id.iconLeft);
@@ -113,16 +115,20 @@ public class EventListAdapter extends BaseAdapter {
         acceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                acceptBtn.setBackgroundColor(Color.GREEN);
+                Drawable green = v.getResources().getDrawable(R.drawable.highlight_green);
+                acceptBtn.setBackground(green);
                 declineBtn.setBackgroundColor(Color.WHITE);
+                eventStatus.setText("Attending");
             }
         });
 
         declineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                declineBtn.setBackgroundColor(Color.RED);
+                Drawable red = v.getResources().getDrawable(R.drawable.highlight_red);
+                declineBtn.setBackground(red);
                 acceptBtn.setBackgroundColor(Color.WHITE);
+                eventStatus.setText("Not attending");
             }
         });
 
