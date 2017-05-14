@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import hr.spacecontrol.uwish.R;
@@ -69,24 +70,13 @@ public class Dashboard extends Fragment {
         friendsDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                events.removeAll(events);
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     friendUid.add(snapshot.getKey());
                 }
                 for (String uid : friendUid) {
                     eventsDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(uid);
-                    eventsDatabase.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            events.removeAll(events);
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                events.add(snapshot.getValue(Event.class));
-                            }
-                            eventListAdapter = new EventListAdapter(getActivity().getApplicationContext(), events);
-                            eventListView.setAdapter(eventListAdapter);
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {}
-                    });
+                    dohvatiEventove(uid);
                 }
             }
             @Override
@@ -103,6 +93,21 @@ public class Dashboard extends Fragment {
         });
 
         return view;
+    }
+
+    private void dohvatiEventove(String uid) {
+        eventsDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    events.add(snapshot.getValue(Event.class));
+                }
+                eventListAdapter = new EventListAdapter(getActivity().getApplicationContext(), events);
+                eventListView.setAdapter(eventListAdapter);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
     }
 
 }
