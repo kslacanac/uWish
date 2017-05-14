@@ -52,8 +52,8 @@ public class SearchableActivity extends ListActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SearchableActivity.this, FriendDetailsActivity.class);
-                intent.putExtra("friend", searchResults.get(position));
+                Intent intent = new Intent(SearchableActivity.this, SearchResultActivity.class);
+                intent.putExtra("friends", searchResults.get(position));
                 startActivity(intent);
             }
         });

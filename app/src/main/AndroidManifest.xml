@@ -87,6 +87,8 @@
         <activity android:name=".activities.LogInActivity" />
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".activities.FriendWishActivity"
+            android:parentActivityName=".activities.FriendDetailsActivity"></activity>
+        <activity android:name=".activities.SearchResultActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
