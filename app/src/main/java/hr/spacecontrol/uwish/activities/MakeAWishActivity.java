@@ -140,6 +140,7 @@ public class MakeAWishActivity extends AppCompatActivity {
                 } else item.setImageUri(imageUrl.getText().toString());
                 String key = generateKey(10);
                 item.setKey(key);
+                item.setUid(firebaseUser.getUid());
                 mDatabase.child("Wishlist").child(key).setValue(item);
                 openItemDetailActivity(item);
             }

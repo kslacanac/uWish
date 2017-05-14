@@ -16,7 +16,6 @@
         android:id="@+id/profile_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/friend01"
         app:civ_border_color="@color/text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"

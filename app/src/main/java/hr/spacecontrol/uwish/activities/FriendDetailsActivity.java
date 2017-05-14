@@ -24,7 +24,7 @@ public class FriendDetailsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private GridView itemGridView;
-    private ItemGridAdapter itemGridAdapter;
+    private FriendWishAdapter itemGridAdapter;
     private TextView listTitle;
 
     private User friend;
@@ -51,13 +51,13 @@ public class FriendDetailsActivity extends AppCompatActivity {
         itemGridView.setAdapter(itemGridAdapter);
 
         listTitle = (TextView) findViewById(R.id.list_title);
-        String title = friend.getName().concat("'s list");
+        String title = friend.getName();
         listTitle.setText(title);
 
         itemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(FriendDetailsActivity.this, ItemDetailsActivity.class);
+                Intent intent = new Intent(FriendDetailsActivity.this, FriendWishActivity.class);
                 intent.putExtra("item", wishes.get(position));
                 startActivity(intent);
             }

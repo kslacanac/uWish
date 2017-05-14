@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Item implements Serializable {
     private String key;
+    private String uid;
     private String name;
     private String image;
     private String imageUri;
@@ -41,6 +42,14 @@ public class Item implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {
