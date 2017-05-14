@@ -99,6 +99,7 @@ public class FriendDetailsActivity extends AppCompatActivity {
         hobbies.setTypeface(lregular);
         interests.setTypeface(lregular);
         other.setTypeface(lregular);
+        wishlistBtn.setTypeface(lregular);
 
         showUserData();
 
