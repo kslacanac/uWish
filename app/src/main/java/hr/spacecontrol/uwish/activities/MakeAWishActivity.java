@@ -40,6 +40,7 @@ import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.objects.Item;
 
 import static android.app.Activity.RESULT_OK;
+import static hr.spacecontrol.uwish.R.id.or_button;
 
 public class MakeAWishActivity extends AppCompatActivity {
 

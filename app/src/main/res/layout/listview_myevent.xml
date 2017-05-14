@@ -17,13 +17,48 @@
         android:layout_alignParentLeft="true"
         android:id="@+id/iconLeft"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_name"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/event_name"
         android:text="Name"
         android:textSize="24sp"
-        android:textColor="@color/textColorPrimary" />
+        android:textColor="@color/textColorPrimary"
+        android:layout_weight="1.7"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            >
+
+        <ImageButton
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dp"
+            android:padding="5dp"
+            android:background="#00ffffff"
+            android:src="@drawable/delete"/>
+
+        <ImageButton
+            android:id="@+id/edit_btn"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/delete_btn"
+            android:background="#00ffffff"
+            android:src="@drawable/edit"
+            />
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,27 +68,9 @@
         android:textSize="16sp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_below="@id/event_name"
+        android:layout_below="@id/container_name"
         android:textColor="@color/textColorSecondary" />
 
-    <ImageButton
-        android:id="@+id/delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="4dp"
-        android:padding="5dp"
-        android:background="#00ffffff"
-        android:src="@drawable/delete"/>
 
-    <ImageButton
-        android:id="@+id/edit_btn"
-        android:padding="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/delete_btn"
-        android:background="#00ffffff"
-        android:src="@drawable/edit"
-        />
 
 </RelativeLayout>

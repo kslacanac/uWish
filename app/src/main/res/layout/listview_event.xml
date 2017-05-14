@@ -20,7 +20,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="8dp"
-        app:civ_border_width="1dp" />
+        app:civ_border_width="2dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,9 +28,7 @@
         android:id="@+id/host_name"
         android:layout_toRightOf="@id/profile_image"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="12dp"
         android:textColor="@color/text"
         android:text="Amelie created an event!"/>
 
@@ -39,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/host_name"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/iconLeft"
         android:src="@drawable/ic_other_cat"
         />
@@ -88,7 +86,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/event_date"
         android:padding="5dp"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="#00000000"
         android:src="@drawable/ic_done_black_24dp"/>
     <ImageButton
         android:id="@+id/reject_btn"
@@ -97,8 +95,20 @@
         android:layout_toLeftOf="@id/accept_btn"
         android:layout_below="@id/event_date"
         android:padding="5dp"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="#00000000"
         android:src="@drawable/ic_close_black_24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_status"
+        android:text=""
+        android:textSize="16sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="4dp"
+        android:layout_toLeftOf="@id/reject_btn"
+        android:layout_below="@id/event_date"
+        android:textColor="@color/textColorSecondary" />
 
     <!--<ImageButton
         android:id="@+id/delete_btn"

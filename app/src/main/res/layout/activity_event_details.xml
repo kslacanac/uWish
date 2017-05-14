@@ -112,6 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/about"
                     android:layout_marginTop="12dp"
+                    android:paddingLeft="4dp"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam egestas ornare metus."
                     android:textColor="@color/textColorPrimary"
                     android:textSize="18dp" />

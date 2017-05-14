@@ -58,12 +58,25 @@
                     android:textColor="@color/textColorPrimary"
                     android:textSize="36sp" />
 
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:text="Recieved"
+                    android:textSize="20sp"
+                    android:textColor="@color/textColorPrimary" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
-                    android:layout_below="@id/item_name">
+                    android:layout_below="@id/checkBox">
 
                     <View
                         android:layout_width="wrap_content"
@@ -117,21 +130,10 @@
                         android:textSize="24sp" />
 
 
-                    <CheckBox
-                        android:id="@+id/checkBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/item_link"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="16dp"
-                        android:text="Recieved"
-                        android:textSize="20sp"
-                        android:textColor="@color/textColorPrimary" />
-
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="1dp"
-                        android:layout_below="@id/checkBox"
+                        android:layout_below="@id/item_link"
                         android:layout_marginTop="8dp"
                         android:id="@+id/divider1"
                         android:background="@drawable/divider" />
@@ -258,6 +260,7 @@
                     <Button
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
+                        android:id="@+id/button_or"
                         android:layout_weight="1"
                         android:background="@null"
                         android:clickable="false"
