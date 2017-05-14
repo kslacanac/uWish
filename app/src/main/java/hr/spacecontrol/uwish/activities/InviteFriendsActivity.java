@@ -1,7 +1,9 @@
 package hr.spacecontrol.uwish.activities;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,13 +18,15 @@ public class InviteFriendsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_invite_friends);
 
-
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        setContentView(R.layout.activity_invite_friends);
         Button invite = (Button)findViewById(R.id.button);
 
         invite.setOnClickListener(new View.OnClickListener() {
