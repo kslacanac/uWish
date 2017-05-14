@@ -49,12 +49,23 @@
             android:textColor="@color/textColorPrimary"
             android:textSize="36sp" />
 
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="Reserve this item!"
+                android:textSize="20sp"
+                android:textColor="@color/textColorPrimary" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_below="@id/item_name">
+            android:layout_below="@id/checkBox">
 
             <View
                 android:layout_width="wrap_content"
@@ -107,17 +118,6 @@
                 android:textColorLink="@color/text"
                 android:textSize="24sp" />
 
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/item_link"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
-                android:text="Reserve this item!"
-                android:textSize="20sp"
-                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:id="@+id/reserved_received"

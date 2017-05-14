@@ -18,6 +18,8 @@ import java.util.List;
 import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.objects.User;
 
+import static hr.spacecontrol.uwish.R.id.imageView;
+
 /**
  * Created by Karmela on 21/03/2017.
  */
