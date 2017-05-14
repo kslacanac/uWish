@@ -75,7 +75,7 @@
         <activity
             android:name=".activities.InviteFriendsActivity"
             android:label="Invite friends"
-            android:parentActivityName=".activities.MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.SearchableActivity"
             android:label="Find friends"
@@ -86,10 +86,14 @@
         </activity>
         <activity android:name=".activities.LogInActivity" />
         <activity android:name=".activities.SignUpActivity" />
-        <activity android:name=".activities.FriendWishActivity"
-            android:parentActivityName=".activities.FriendDetailsActivity"></activity>
-        <activity android:name=".activities.SearchResultActivity"
-            android:parentActivityName=".activities.MainActivity"></activity>
+        <activity
+            android:name=".activities.FriendWishActivity"
+            android:parentActivityName=".activities.FriendWishlistActivity" />
+        <activity
+            android:name=".activities.SearchResultActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.FriendWishlistActivity"
+            android:parentActivityName=".activities.FriendWishlistActivity"></activity>
     </application>
 
 </manifest>
