@@ -95,7 +95,7 @@ public class SearchResultAdapter extends BaseAdapter{
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
                 });
-                Toast.makeText(v.getContext(), "Friend request sent!", Toast.LENGTH_LONG);
+                Toast.makeText(v.getContext(), "Friend request sent!", Toast.LENGTH_LONG).show();
             }
         });
 

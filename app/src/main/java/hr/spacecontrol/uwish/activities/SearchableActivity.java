@@ -53,7 +53,7 @@ public class SearchableActivity extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(SearchableActivity.this, SearchResultActivity.class);
-                intent.putExtra("friend", searchResults.get(position));
+                intent.putExtra("friends", searchResults.get(position));
                 startActivity(intent);
             }
         });
