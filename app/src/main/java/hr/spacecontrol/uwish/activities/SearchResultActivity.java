@@ -30,9 +30,11 @@ public class SearchResultActivity extends AppCompatActivity {
 
     ListView listView;
     FirebaseUser firebaseUser;
-    DatabaseReference mDatabase;
+    DatabaseReference friendsDB;
+    DatabaseReference usersDB;
     FriendListAdapter listAdapter;
     List<User> searchResults;
+    String query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class SearchResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_results);
 
         Intent intent = getIntent();
-        searchResults = (List<User>) (intent.getSerializableExtra("friends"));
+        query = (String) (intent.getSerializableExtra("friends"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
@@ -48,7 +50,24 @@ public class SearchResultActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        friendsDB = FirebaseDatabase.getInstance().getReference().child("Friends");
+        usersDB = FirebaseDatabase.getInstance().getReference().child("Users");
+
+           /*usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usersDB.child(friend.getUID()).child("FriendRequests").child(myself.getUID()).setValue(myself);
+
+                listAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });*/
+
+        User miro = new User("miro", "miro@gmail.com");
+        miro.setUID("29132138912dasd");
+        miro.setImage("9603");
+        searchResults.add(miro);
 
         listView = (ListView) findViewById(R.id.friend_list);
         listAdapter = new FriendListAdapter(this, searchResults);
