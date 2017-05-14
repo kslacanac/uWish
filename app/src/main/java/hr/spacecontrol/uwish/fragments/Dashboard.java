@@ -37,6 +37,8 @@ public class Dashboard extends Fragment {
     List<String> friendUid;
     EventListAdapter eventListAdapter;
     ListView eventListView;
+    TextView welcomeText;
+    View view;
 
     public Dashboard() {
         // Required empty public constructor
@@ -54,7 +56,7 @@ public class Dashboard extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         eventListView = (ListView) view.findViewById(R.id.event_list);
 

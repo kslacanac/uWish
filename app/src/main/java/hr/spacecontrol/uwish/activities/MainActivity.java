@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             // Not logged in, launch the Log In activity
             loadLogInView();
         } else {
-
             mDatabase = FirebaseDatabase.getInstance().getReference();
             DatabaseReference friendRequests = mDatabase.child("Users").child(mFirebaseUser.getUid()).child("FriendRequests");
             ValueEventListener valueEventListener = friendRequests.addValueEventListener(new ValueEventListener() {
@@ -323,17 +322,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        /*ImageButton imageButton = (ImageButton) menu.findItem(R.id.action_profile).getActionView();
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                user = dataSnapshot.getValue(User.class);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-        mStorage = FirebaseStorage.getInstance().getReference().child("Profiles").child(user.getImage());
-        Glide.with(MainActivity.this).using(new FirebaseImageLoader()).load(mStorage).into(imageButton);*/
         return true;
     }
 
@@ -346,18 +334,6 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
-        } else if(id == R.id.action_profile) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Logged in as: ".concat(mFirebaseUser.getDisplayName().toString()))
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
             return true;
         }
 

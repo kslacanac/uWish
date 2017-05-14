@@ -67,7 +67,7 @@ public class FriendWishAdapter extends ItemGridAdapter {
                 StorageReference reference = FirebaseStorage.getInstance().getReference().child("Wishes").child(selectedItem.getImage());
                 Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(reference).into(imageView);
             }
-        }
+        } else imageView.setImageResource(R.drawable.gift_image);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         TextView itemName = (TextView)v.findViewById(R.id.item_name);
