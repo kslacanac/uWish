@@ -15,6 +15,9 @@ import com.facebook.share.widget.AppInviteDialog;
 
 import hr.spacecontrol.uwish.R;
 
+import static hr.spacecontrol.uwish.R.id.emailField;
+import static hr.spacecontrol.uwish.R.id.mailButton;
+
 public class InviteFriendsActivity extends AppCompatActivity {
 
     @Override
@@ -32,8 +35,9 @@ public class InviteFriendsActivity extends AppCompatActivity {
         Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
 
         Button invite = (Button)findViewById(R.id.button);
-
         TextView text = (TextView)findViewById(R.id.textView);
+        Button mailButton = (Button)findViewById(R.id.mailButton);
+        TextView emailField = (TextView)findViewById(R.id.emailField);
 
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +61,7 @@ public class InviteFriendsActivity extends AppCompatActivity {
 
         invite.setTypeface(lregular);
         text.setTypeface(lregular);
+        mailButton.setTypeface(lregular);
+        emailField.setTypeface(lregular);
     }
 }

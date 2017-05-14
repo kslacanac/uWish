@@ -19,21 +19,36 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ToolbarColoredBackArrow"
-        app:titleTextColor="@android:color/white">
-    </android.support.v7.widget.Toolbar>
+        app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
 
-
-    <TextView
-        android:id="@+id/list_title"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/profile_stack"
+        android:orientation="horizontal"
         android:layout_below="@id/my_toolbar"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="8dp"
-        android:text="Friend's list"
-        android:textAlignment="center"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="28dp" />
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/friend02"
+            app:civ_border_color="@color/text"
+            app:civ_border_width="2dp"
+            android:layout_marginRight="4dp"/>
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_toolbar"
+            android:text="Friend's list"
+            android:textAlignment="center"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="28dp" />
+
+    </LinearLayout>
 
     <GridView
         android:id="@+id/item_grid"
@@ -41,26 +56,14 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/list_title"
+        android:layout_below="@id/profile_stack"
+        android:layout_marginTop="16dp"
         android:columnWidth="105dp"
         android:gravity="center"
         android:horizontalSpacing="3dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:verticalSpacing="3dp" />
-
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/friend02"
-        app:civ_border_color="@color/text"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="6dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:elevation="6dp"
-        app:civ_border_width="2dp"/>
 
 
 </RelativeLayout>

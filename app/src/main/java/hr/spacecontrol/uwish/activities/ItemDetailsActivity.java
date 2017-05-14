@@ -71,7 +71,6 @@ public class ItemDetailsActivity extends AppCompatActivity {
     private Button urlBtn;
     private EditText editUrl;
     private Button saveChangesBtn;
-
     private static int RESULT_LOAD_IMAGE = 1;
     private Uri selectedImage;
     private StorageReference filePath;
@@ -213,7 +212,6 @@ public class ItemDetailsActivity extends AppCompatActivity {
         checkBox.setTypeface(lregular);
         edit.setTypeface(lregular);
         delete.setTypeface(lregular);
-
 
     }
     @Override
