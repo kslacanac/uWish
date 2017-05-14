@@ -39,6 +39,7 @@ public class FriendRequestsAdapter extends BaseAdapter{
    // private ImageButton declineButton;
     DatabaseReference mDatabase;
     DatabaseReference fDatabase;
+    DatabaseReference myselfDB;
     FirebaseUser firebaseUser;
     User friend;
     User myself;
@@ -71,6 +72,7 @@ public class FriendRequestsAdapter extends BaseAdapter{
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid())
                 .child("FriendRequests");
         fDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+        myselfDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("image");
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
         //imageView.setImageResource(friendList.get(position).getImage());
@@ -106,6 +108,16 @@ public class FriendRequestsAdapter extends BaseAdapter{
                 myself.setUID(firebaseUser.getUid());
                 myself.setEmail(firebaseUser.getEmail());
                 myself.setName(firebaseUser.getDisplayName());
+                myselfDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        myself.setImage(dataSnapshot.getValue().toString());
+                        notifyDataSetChanged();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
+
 
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
