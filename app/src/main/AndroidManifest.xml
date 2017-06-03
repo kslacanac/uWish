@@ -88,7 +88,7 @@
         <activity android:name=".activities.SignUpActivity" />
         <activity
             android:name=".activities.FriendWishActivity"
-            android:parentActivityName=".activities.FriendDetailsActivity" />
+            android:parentActivityName=".activities.FriendWishlistActivity" />
         <activity
             android:name=".activities.SearchResultActivity"
             android:parentActivityName=".activities.MainActivity" />
