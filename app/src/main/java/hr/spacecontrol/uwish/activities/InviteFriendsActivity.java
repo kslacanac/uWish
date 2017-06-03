@@ -1,6 +1,8 @@
 package hr.spacecontrol.uwish.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.AppInviteContent;
 import com.facebook.share.widget.AppInviteDialog;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import hr.spacecontrol.uwish.R;
 
@@ -19,7 +23,7 @@ import static hr.spacecontrol.uwish.R.id.emailField;
 import static hr.spacecontrol.uwish.R.id.mailButton;
 
 public class InviteFriendsActivity extends AppCompatActivity {
-
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,8 @@ public class InviteFriendsActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         Typeface lregular = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
@@ -37,7 +43,7 @@ public class InviteFriendsActivity extends AppCompatActivity {
         Button invite = (Button)findViewById(R.id.button);
         TextView text = (TextView)findViewById(R.id.textView);
         Button mailButton = (Button)findViewById(R.id.mailButton);
-        TextView emailField = (TextView)findViewById(R.id.emailField);
+        final TextView emailField = (TextView)findViewById(R.id.emailField);
 
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,5 +69,18 @@ public class InviteFriendsActivity extends AppCompatActivity {
         text.setTypeface(lregular);
         mailButton.setTypeface(lregular);
         emailField.setTypeface(lregular);
+        mailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:" + emailField.getText())); // only email apps should handle this
+                intent.putExtra(Intent.EXTRA_EMAIL, user.getEmail());
+                intent.putExtra(Intent.EXTRA_TEXT, "Come and join me on uWish app!");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Invite to uWish app!");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -31,6 +32,8 @@ import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.adapters.FriendListAdapter;
 import hr.spacecontrol.uwish.objects.User;
 
+import static com.google.android.gms.R.id.toolbar;
+
 public class SearchableActivity extends ListActivity {
 
     ListView listView;
@@ -44,6 +47,7 @@ public class SearchableActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchable);
+
 /*
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         friendsDB = FirebaseDatabase.getInstance().getReference().child("Friends");
@@ -57,6 +61,9 @@ public class SearchableActivity extends ListActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doFriendSearch(query);
         }
+
+
+
     }
 
     public void doFriendSearch(String query) {

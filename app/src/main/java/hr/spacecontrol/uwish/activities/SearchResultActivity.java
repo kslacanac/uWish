@@ -12,13 +12,17 @@ import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import hr.spacecontrol.uwish.R;
+import hr.spacecontrol.uwish.adapters.AddFriendAdapter;
 import hr.spacecontrol.uwish.adapters.FriendListAdapter;
 import hr.spacecontrol.uwish.objects.User;
 
@@ -31,9 +35,10 @@ public class SearchResultActivity extends AppCompatActivity {
     ListView listView;
     FirebaseUser firebaseUser;
     DatabaseReference friendsDB;
-    DatabaseReference usersDB;
-    FriendListAdapter listAdapter;
+    DatabaseReference usersDB, resultsDB;
+    AddFriendAdapter listAdapter;
     List<User> searchResults;
+    List<String> users, friends, results;
     String query;
 
     @Override
@@ -41,37 +46,88 @@ public class SearchResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
 
+        listView = (ListView) findViewById(R.id.friend_list);
+
         Intent intent = getIntent();
         query = (String) (intent.getSerializableExtra("friends"));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        searchResults = new ArrayList<>();
+        users = new ArrayList<>();
+        friends = new ArrayList<>();
+        results = new ArrayList<>();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        friendsDB = FirebaseDatabase.getInstance().getReference().child("Friends");
+        friendsDB = FirebaseDatabase.getInstance().getReference().child("Friends").child(firebaseUser.getUid());
         usersDB = FirebaseDatabase.getInstance().getReference().child("Users");
-
-           /*usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
+        resultsDB = FirebaseDatabase.getInstance().getReference().child("Users");
+           usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                usersDB.child(friend.getUID()).child("FriendRequests").child(myself.getUID()).setValue(myself);
 
-                listAdapter.notifyDataSetChanged();
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    users.add(dataSnapshot1.getKey());
+                }
+
+  //              listAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {}
-        });*/
+        });
 
+        friendsDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    friends.add(dataSnapshot1.getKey());
+                }
+
+//                listAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+
+
+
+        resultsDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(String user : users){
+                    if(!user.equals(firebaseUser.getUid()) || !friends.contains(user))
+                        results.add(user);
+                }
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    if(results != null && snapshot != null && query != null) {
+                        User userClass = snapshot.getValue(User.class);
+                        if (results.contains(snapshot.getKey()) && userClass.getName().contains(query)) {
+
+                            searchResults.add(userClass);
+                        }
+                    }
+                }
+
+                listAdapter = new AddFriendAdapter(SearchResultActivity.this, searchResults);
+                listView.setAdapter(listAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        /*
         User miro = new User("miro", "miro@gmail.com");
         miro.setUID("29132138912dasd");
         miro.setImage("9603");
-        searchResults.add(miro);
+        searchResults.add(miro);*/
 
-        listView = (ListView) findViewById(R.id.friend_list);
-        listAdapter = new FriendListAdapter(this, searchResults);
-        listView.setAdapter(listAdapter);
+
 
     }
 }
