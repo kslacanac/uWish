@@ -25,7 +25,7 @@ public class FriendWishlistActivity extends AppCompatActivity {
     private GridView itemGridView;
     private FriendWishAdapter itemGridAdapter;
 
-    private User friend;
+    private static User friend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
