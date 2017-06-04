@@ -15,8 +15,8 @@
         android:id="@+id/friend_image" />-->
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/friend_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/default_user"
         app:civ_border_color="@color/text"
         app:civ_border_width="2dp" />
@@ -32,7 +32,7 @@
         android:text="Friend name"
         android:layout_centerVertical="true"
         android:textColor="@color/textColorPrimary"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/addButton"

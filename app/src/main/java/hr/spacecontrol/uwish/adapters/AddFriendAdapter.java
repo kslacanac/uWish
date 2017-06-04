@@ -18,6 +18,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -68,6 +70,12 @@ public class AddFriendAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        myselfDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("image");
+        usersDB = FirebaseDatabase.getInstance().getReference().child("Users");
+
+        getMyself();
+
         View v = View.inflate(context, R.layout.listview_addfriend, null);
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
@@ -79,23 +87,6 @@ public class AddFriendAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        myselfDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("image");
-        usersDB = FirebaseDatabase.getInstance().getReference().child("Users");
-
-        myself = new User();
-        myself.setUID(firebaseUser.getUid());
-        myself.setEmail(firebaseUser.getEmail());
-        myself.setName(firebaseUser.getDisplayName());
-        myselfDB.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                myself.setImage(dataSnapshot.getValue().toString());
-                notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
 
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
@@ -109,5 +100,22 @@ public class AddFriendAdapter extends BaseAdapter {
             }
         });
         return v;
+    }
+
+    public void getMyself(){
+        myself = new User();
+        myself.setUID(firebaseUser.getUid());
+        myself.setEmail(firebaseUser.getEmail());
+        myself.setName(firebaseUser.getDisplayName());
+
+        myselfDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                myself.setImage(dataSnapshot.getValue().toString());
+                notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
     }
 }
