@@ -99,13 +99,15 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(String user : users){
-                    if(!user.equals(firebaseUser.getUid()) || !friends.contains(user))
-                        results.add(user);
+                    if(user.equals(firebaseUser.getUid()) || friends.contains(user))
+                        continue;
+                    results.add(user);
                 }
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     if(results != null && snapshot != null && query != null) {
                         User userClass = snapshot.getValue(User.class);
-                        if (results.contains(snapshot.getKey()) && userClass.getName().contains(query)) {
+                        if (results.contains(snapshot.getKey()) && userClass.getName().toLowerCase()
+                                .contains(query.toLowerCase())) {
 
                             searchResults.add(userClass);
                         }

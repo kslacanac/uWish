@@ -76,8 +76,12 @@ public class FriendRequestsAdapter extends BaseAdapter{
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
         //imageView.setImageResource(friendList.get(position).getImage());
-        StorageReference ref = FirebaseStorage.getInstance().getReference().child("Profiles").child(friendList.get(position).getImage());
-        Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(ref).into(imageView);
+        try {
+            StorageReference ref = FirebaseStorage.getInstance().getReference().child("Profiles").child(friendList.get(position).getImage());
+            Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(ref).into(imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
@@ -111,8 +115,10 @@ public class FriendRequestsAdapter extends BaseAdapter{
                 myselfDB.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        myself.setImage(dataSnapshot.getValue().toString());
-                        notifyDataSetChanged();
+                        if(dataSnapshot.getValue() != null) {
+                            myself.setImage(dataSnapshot.getValue().toString());
+                            notifyDataSetChanged();
+                        }
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
