@@ -20,20 +20,34 @@
         android:src="@drawable/default_user"
         app:civ_border_color="@color/text"
         app:civ_border_width="2dp" />
-
-    <ImageButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_add_friend" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/friend_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:text="Friend name"
+        android:layout_centerVertical="true"
         android:textColor="@color/textColorPrimary"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add friend"
+        android:padding="12dp"
+        android:background="@drawable/button"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:textColor="#ffffff"
+        android:textSize="16dp"
+        android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+
 </LinearLayout>

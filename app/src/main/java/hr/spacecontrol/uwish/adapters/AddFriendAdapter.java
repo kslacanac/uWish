@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ public class AddFriendAdapter extends BaseAdapter {
 
     private Context context;
     private List<User> friendList;
-    private ImageButton addButton;
+    private Button addButton;
     private FirebaseUser firebaseUser;
     private DatabaseReference myselfDB;
     private DatabaseReference usersDB;
@@ -99,7 +100,7 @@ public class AddFriendAdapter extends BaseAdapter {
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
 
-        ImageButton addButton = (ImageButton) v.findViewById(R.id.addButton);
+        Button addButton = (Button) v.findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
