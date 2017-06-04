@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -25,7 +26,7 @@ public class FriendWishlistActivity extends AppCompatActivity {
     private GridView itemGridView;
     private FriendWishAdapter itemGridAdapter;
 
-    private User friend;
+    private static User friend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +55,14 @@ public class FriendWishlistActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return(super.onOptionsItemSelected(item));
     }
 }
