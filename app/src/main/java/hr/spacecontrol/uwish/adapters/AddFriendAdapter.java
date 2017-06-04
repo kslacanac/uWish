@@ -1,6 +1,7 @@
 package hr.spacecontrol.uwish.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -87,11 +88,16 @@ public class AddFriendAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
+        Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
+
 
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
 
         Button addButton = (Button) v.findViewById(R.id.addButton);
+
+        addButton.setTypeface(lregular);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
