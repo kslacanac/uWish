@@ -72,7 +72,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 event.setName(title.getText().toString());
                 event.setDescription(description.getText().toString());
                 String date = String.valueOf(datePicker.getDayOfMonth()).concat("/")
-                        .concat(String.valueOf(datePicker.getMonth())).concat("/")
+                        .concat(String.valueOf(datePicker.getMonth()+1)).concat("/")
                         .concat(String.valueOf(datePicker.getYear()));
                 event.setDate(date);
                 event.setTime(time.getText().toString());

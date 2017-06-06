@@ -95,12 +95,13 @@ public class FriendRequestsAdapter extends BaseAdapter{
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         mDatabase.child(friendList.get(position).getUID()).removeValue();
+                        friendList.remove(position);
                         notifyDataSetChanged();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
                 });
-                Toast.makeText(v.getContext(), "You declined the friend request", Toast.LENGTH_LONG);
+                Toast.makeText(v.getContext(), "You declined the friend request", Toast.LENGTH_LONG).show();
             }
         });
         ImageButton acceptButton = (ImageButton) v.findViewById(R.id.acceptButton);
@@ -137,12 +138,13 @@ public class FriendRequestsAdapter extends BaseAdapter{
                         fDatabase.child(firebaseUser.getUid()).child(friend.getUID()).setValue(friend);
                         fDatabase.child(friend.getUID()).child(firebaseUser.getUid()).setValue(myself);
                         mDatabase.child(friend.getUID()).removeValue();
+                        friendList.remove(position);
                         notifyDataSetChanged();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
                 });
-                Toast.makeText(v.getContext(), "You accepted the friend request", Toast.LENGTH_LONG);
+                Toast.makeText(v.getContext(), "You accepted the friend request", Toast.LENGTH_LONG).show();
             }
         });
 

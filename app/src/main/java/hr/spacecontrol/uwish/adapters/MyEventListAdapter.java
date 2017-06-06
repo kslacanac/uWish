@@ -88,12 +88,13 @@ public class MyEventListAdapter extends BaseAdapter {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         mDatabase.child(eventList.get(position).getKey()).removeValue();
+                        eventList.remove(position);
                         notifyDataSetChanged();
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
                 });
-                Toast.makeText(v.getContext(), "Event deleted", Toast.LENGTH_LONG);
+                Toast.makeText(v.getContext(), "Event deleted", Toast.LENGTH_LONG).show();
             }
         });
 

@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -102,6 +103,12 @@ public class Dashboard extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     events.add(snapshot.getValue(Event.class));
                 }
+                Collections.sort(events, new Comparator<Event>() {
+                    @Override
+                    public int compare(Event o1, Event o2) {
+                        return o1.getDate().compareTo(o2.getDate());
+                    }
+                });
                 eventListAdapter = new EventListAdapter(getActivity().getApplicationContext(), events);
                 eventListView.setAdapter(eventListAdapter);
             }
