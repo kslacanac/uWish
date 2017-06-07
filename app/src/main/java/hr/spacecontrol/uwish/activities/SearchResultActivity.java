@@ -65,15 +65,13 @@ public class SearchResultActivity extends AppCompatActivity {
         friendsDB = FirebaseDatabase.getInstance().getReference().child("Friends").child(firebaseUser.getUid());
         usersDB = FirebaseDatabase.getInstance().getReference().child("Users");
         resultsDB = FirebaseDatabase.getInstance().getReference().child("Users");
-           usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     users.add(dataSnapshot1.getKey());
                 }
-
-  //              listAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {}
@@ -82,18 +80,13 @@ public class SearchResultActivity extends AppCompatActivity {
         friendsDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     friends.add(dataSnapshot1.getKey());
                 }
-
-//                listAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
-
-
 
         resultsDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -106,30 +99,17 @@ public class SearchResultActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     if(results != null && snapshot != null && query != null) {
                         User userClass = snapshot.getValue(User.class);
-                        if (results.contains(snapshot.getKey()) && userClass.getName().toLowerCase()
-                                .contains(query.toLowerCase())) {
-
+                        if (results.contains(snapshot.getKey())
+                                && userClass.getName().toLowerCase().contains(query.toLowerCase())) {
                             searchResults.add(userClass);
                         }
                     }
                 }
-
                 listAdapter = new AddFriendAdapter(SearchResultActivity.this, searchResults);
                 listView.setAdapter(listAdapter);
             }
-
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
-        /*
-        User miro = new User("miro", "miro@gmail.com");
-        miro.setUID("29132138912dasd");
-        miro.setImage("9603");
-        searchResults.add(miro);*/
-
-
-
     }
 }

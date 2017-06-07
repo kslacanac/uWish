@@ -27,6 +27,7 @@ public class FriendWishlistActivity extends AppCompatActivity {
     private FriendWishAdapter itemGridAdapter;
 
     private static User friend;
+    List<Item> wishes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +43,21 @@ public class FriendWishlistActivity extends AppCompatActivity {
         friend = (User) intent.getSerializableExtra("friend");
 
         itemGridView = (GridView) findViewById(R.id.item_grid);
-        Collection<Item> collection = friend.getWishlist().values();
-        final List<Item> wishes = new ArrayList<>(collection);
-        itemGridAdapter = new FriendWishAdapter(getApplicationContext(), wishes);
-        itemGridView.setAdapter(itemGridAdapter);
-
-        itemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(FriendWishlistActivity.this, FriendWishActivity.class);
-                intent.putExtra("item", wishes.get(position));
-                startActivity(intent);
-            }
-        });
+        Collection<Item> collection;
+        if (friend.getWishlist() != null) {
+            collection = friend.getWishlist().values();
+            wishes = new ArrayList<>(collection);
+            itemGridAdapter = new FriendWishAdapter(getApplicationContext(), wishes);
+            itemGridView.setAdapter(itemGridAdapter);
+            itemGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(FriendWishlistActivity.this, FriendWishActivity.class);
+                    intent.putExtra("item", wishes.get(position));
+                    startActivity(intent);
+                }
+            });
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

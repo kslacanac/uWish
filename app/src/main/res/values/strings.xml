@@ -37,7 +37,7 @@
     <string name="name_hint">Name</string>
     <string name="email_hint">Email</string>
     <string name="sign_up_button_label">Sign Up</string>
-    <string name="signup_error_message">Please make sure you enter an email address and password!</string>
+    <string name="signup_error_message">Please make sure you enter a name, email address and password!</string>
     <string name="signup_error_title">Error!</string>
     <string name="signup_success">Account successfully created! You can now Login.</string>
     <string name="login_error_message">Please make sure you enter an email address and password!</string>

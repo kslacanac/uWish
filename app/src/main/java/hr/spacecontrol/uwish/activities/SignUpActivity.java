@@ -66,7 +66,7 @@ public class SignUpActivity extends AppCompatActivity {
                 final String email = emailEditText.getText().toString().trim();
                 final String name = nameEditText.getText().toString().trim();
 
-                if (password.isEmpty() || email.isEmpty()) {
+                if (password.isEmpty() || email.isEmpty() || name.isEmpty()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                     builder.setMessage(R.string.signup_error_message)
                             .setTitle(R.string.signup_error_title)
@@ -82,6 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         String uid = mFirebaseAuth.getCurrentUser().getUid();
                                         User user = new User(name,email,password);
                                         user.setUID(uid);
+                                        user.setImage("default_user.png");
                                         mDatabase.child("Users").child(uid).setValue(user);
 
                                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);

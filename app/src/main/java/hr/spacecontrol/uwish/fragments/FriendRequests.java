@@ -34,9 +34,8 @@ import hr.spacecontrol.uwish.objects.User;
 
 public class FriendRequests extends Fragment {
 
-    ListView friendRequestsListView;
-    List<User> friendRequests;
-
+    List<User> requests;
+    ListView requestListView;
 
     DatabaseReference mDatabase;
     FirebaseUser firebaseUser;
@@ -64,9 +63,9 @@ public class FriendRequests extends Fragment {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("FriendRequests");
 
-        ListView requestListView = (ListView) view.findViewById(R.id.friend_list);
+        requestListView = (ListView) view.findViewById(R.id.friend_list);
 
-        final List<User> requests = new ArrayList<>();
+        requests = new ArrayList<>();
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -74,22 +73,14 @@ public class FriendRequests extends Fragment {
                 requests.removeAll(requests);
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     requests.add(snapshot.getValue(User.class));
-                    friendRequestsAdapter.notifyDataSetChanged();
+                    //friendRequestsAdapter.notifyDataSetChanged();
                 }
+                friendRequestsAdapter = new FriendRequestsAdapter(getActivity().getApplicationContext(), requests);
+                requestListView.setAdapter(friendRequestsAdapter);
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
-
-        //events.add(new Event("Mom's Birthday", "Monday, 20/03/2017"));
-
-
-
-        //initialize adapter
-        friendRequestsAdapter = new FriendRequestsAdapter(getActivity().getApplicationContext(), requests);
-        requestListView.setAdapter(friendRequestsAdapter);
 
         return view;
     }

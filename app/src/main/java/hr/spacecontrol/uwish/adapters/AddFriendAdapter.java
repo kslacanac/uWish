@@ -40,12 +40,10 @@ public class AddFriendAdapter extends BaseAdapter {
 
     private Context context;
     private List<User> friendList;
-    private Button addButton;
     private FirebaseUser firebaseUser;
     private DatabaseReference myselfDB;
     private DatabaseReference usersDB;
     private User myself;
-
 
     public AddFriendAdapter(Context context, List<User> friendList) {
         this.context = context;
@@ -72,14 +70,14 @@ public class AddFriendAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        myselfDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("image");
+        myselfDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
         usersDB = FirebaseDatabase.getInstance().getReference().child("Users");
-
-        getMyself();
 
         View v = View.inflate(context, R.layout.listview_addfriend, null);
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
+
+        getMyself();
 
         try {
             StorageReference reference = FirebaseStorage.getInstance().getReference().child("Profiles").child(friendList.get(position).getImage());
@@ -89,7 +87,6 @@ public class AddFriendAdapter extends BaseAdapter {
         }
 
         Typeface lregular = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Regular.ttf");
-
 
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
@@ -109,19 +106,21 @@ public class AddFriendAdapter extends BaseAdapter {
     }
 
     public void getMyself(){
-        myself = new User();
+        /*myself = new User();
         myself.setUID(firebaseUser.getUid());
         myself.setEmail(firebaseUser.getEmail());
         myself.setName(firebaseUser.getDisplayName());
+*/
 
-        myselfDB.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                myself.setImage(dataSnapshot.getValue().toString());
-                notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
+            myselfDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    myself = dataSnapshot.getValue(User.class);
+                    notifyDataSetChanged();
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {}
+            });
+
     }
 }

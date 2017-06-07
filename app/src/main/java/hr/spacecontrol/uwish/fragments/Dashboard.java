@@ -109,8 +109,12 @@ public class Dashboard extends Fragment {
                         return o1.getDate().compareTo(o2.getDate());
                     }
                 });
-                eventListAdapter = new EventListAdapter(getActivity().getApplicationContext(), events);
-                eventListView.setAdapter(eventListAdapter);
+                try {
+                    eventListAdapter = new EventListAdapter(getActivity().getApplicationContext(), events);
+                    eventListView.setAdapter(eventListAdapter);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {}

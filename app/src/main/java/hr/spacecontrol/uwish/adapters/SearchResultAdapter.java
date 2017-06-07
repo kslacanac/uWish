@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import hr.spacecontrol.uwish.R;
 import hr.spacecontrol.uwish.objects.User;
 
 /**
+ * ?????????????????????????????????????????????
  * Created by tom on 14.05.17..
  */
 
@@ -36,6 +38,7 @@ public class SearchResultAdapter extends BaseAdapter{
     private List<User> friendList;
     DatabaseReference userDatabase;
     DatabaseReference friendDatabase;
+    DatabaseReference mDatabase;
     FirebaseUser firebaseUser;
     User friend;
     User myself;
@@ -67,6 +70,17 @@ public class SearchResultAdapter extends BaseAdapter{
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         friendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                myself = dataSnapshot.getValue(User.class);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
         //imageView.setImageResource(friendList.get(position).getImage());
@@ -76,15 +90,11 @@ public class SearchResultAdapter extends BaseAdapter{
         TextView friendName = (TextView) v.findViewById(R.id.friend_name);
         friendName.setText(friendList.get(position).getName());
 
-        ImageButton addButton = (ImageButton) v.findViewById(R.id.addButton);
+        Button addButton = (Button) v.findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 friend = friendList.get(position);
-                myself = new User();
-                myself.setUID(firebaseUser.getUid());
-                myself.setEmail(firebaseUser.getEmail());
-                myself.setName(firebaseUser.getDisplayName());
 
                 userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

@@ -24,7 +24,6 @@ import com.google.firebase.storage.StorageReference;
 import java.util.List;
 
 import hr.spacecontrol.uwish.R;
-import hr.spacecontrol.uwish.fragments.FriendRequests;
 import hr.spacecontrol.uwish.objects.User;
 
 /**
@@ -35,10 +34,9 @@ public class FriendRequestsAdapter extends BaseAdapter{
 
     private Context context;
     private List<User> friendList;
-   // private ImageButton acceptButton;
-   // private ImageButton declineButton;
-    DatabaseReference mDatabase;
-    DatabaseReference fDatabase;
+
+    DatabaseReference requestsDatabase;
+    DatabaseReference friendsDatabase;
     DatabaseReference myselfDB;
     FirebaseUser firebaseUser;
     User friend;
@@ -69,13 +67,12 @@ public class FriendRequestsAdapter extends BaseAdapter{
         View v = View.inflate(context, R.layout.listview_friend, null);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid())
-                .child("FriendRequests");
-        fDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
-        myselfDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("image");
+        requestsDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid()).child("FriendRequests");
+        friendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+        myselfDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
 
         ImageView imageView = (ImageView) v.findViewById(R.id.friend_image);
-        //imageView.setImageResource(friendList.get(position).getImage());
+
         try {
             StorageReference ref = FirebaseStorage.getInstance().getReference().child("Profiles").child(friendList.get(position).getImage());
             Glide.with(v.getContext()).using(new FirebaseImageLoader()).load(ref).into(imageView);
@@ -91,10 +88,10 @@ public class FriendRequestsAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 //friendList.get(position).getUID();
-                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                requestsDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        mDatabase.child(friendList.get(position).getUID()).removeValue();
+                        requestsDatabase.child(friendList.get(position).getUID()).removeValue();
                         friendList.remove(position);
                         notifyDataSetChanged();
                     }
@@ -104,29 +101,24 @@ public class FriendRequestsAdapter extends BaseAdapter{
                 Toast.makeText(v.getContext(), "You declined the friend request", Toast.LENGTH_LONG).show();
             }
         });
+
         ImageButton acceptButton = (ImageButton) v.findViewById(R.id.acceptButton);
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 friend = friendList.get(position);
-                myself = new User();
-                myself.setUID(firebaseUser.getUid());
-                myself.setEmail(firebaseUser.getEmail());
-                myself.setName(firebaseUser.getDisplayName());
+
                 myselfDB.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.getValue() != null) {
-                            myself.setImage(dataSnapshot.getValue().toString());
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            myself = dataSnapshot.getValue(User.class);
                             notifyDataSetChanged();
                         }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {}
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
                 });
 
-
-                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                requestsDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
               //          User friend = null;
@@ -135,9 +127,9 @@ public class FriendRequestsAdapter extends BaseAdapter{
                   //      } catch (Exception e) {
                             //e.printStackTrace();
                    //     }
-                        fDatabase.child(firebaseUser.getUid()).child(friend.getUID()).setValue(friend);
-                        fDatabase.child(friend.getUID()).child(firebaseUser.getUid()).setValue(myself);
-                        mDatabase.child(friend.getUID()).removeValue();
+                        friendsDatabase.child(firebaseUser.getUid()).child(friend.getUID()).setValue(friend);
+                        friendsDatabase.child(friend.getUID()).child(firebaseUser.getUid()).setValue(myself);
+                        requestsDatabase.child(friend.getUID()).removeValue();
                         friendList.remove(position);
                         notifyDataSetChanged();
                     }
