@@ -113,28 +113,14 @@ public class FriendRequestsAdapter extends BaseAdapter{
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             myself = dataSnapshot.getValue(User.class);
                             notifyDataSetChanged();
+                            friendsDatabase.child(firebaseUser.getUid()).child(friend.getUID()).setValue(friend);
+                            friendsDatabase.child(friend.getUID()).child(firebaseUser.getUid()).setValue(myself);
+                            requestsDatabase.child(friend.getUID()).removeValue();
+                            friendList.remove(position);
+                            notifyDataSetChanged();
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {}
-                });
-
-                requestsDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-              //          User friend = null;
-                //        try {
-                 //           friend = friendList.get(position);
-                  //      } catch (Exception e) {
-                            //e.printStackTrace();
-                   //     }
-                        friendsDatabase.child(firebaseUser.getUid()).child(friend.getUID()).setValue(friend);
-                        friendsDatabase.child(friend.getUID()).child(firebaseUser.getUid()).setValue(myself);
-                        requestsDatabase.child(friend.getUID()).removeValue();
-                        friendList.remove(position);
-                        notifyDataSetChanged();
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {}
                 });
                 Toast.makeText(v.getContext(), "You accepted the friend request", Toast.LENGTH_LONG).show();
             }
